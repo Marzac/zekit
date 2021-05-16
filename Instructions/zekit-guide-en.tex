@@ -271,7 +271,7 @@ In order to fully assemble the kit, you'll need the following tools:
 
 \subsection{Power Supply}
 
-The power supply is a simple but important block that provides the energy for all components. It is made up of two separate parts: a linear regulator for the main +3.3V voltage and a charge pump to generate a negative voltage of -2V out of the +3.3V.
+The Zekit needs the energy delivered by the power supply. This block provides 2 voltages: +3.3V and -2V, using a linear regulator and a charge pump respectively.
 
 \subsubsection{Linear Regulator}
 
@@ -279,13 +279,7 @@ The power supply is a simple but important block that provides the energy for al
     \includegraphics[scale=0.4]{assets/schema-power.png}
 \end{center}
 
-To power the \textbf{zekit}, an external power supply has to be connected to the power jack \textbf{J3}. It is then routed to the main power switch \textbf{SW1}. Next in the signal path is the diode \textbf{D3}, which acts as a protection diode. It only conducts in one direction and therefore prevents any damage to the kit in case of using a power supply with wrong polarity.
-
-After the diode, there is a relatively large capacitor \textbf{C4}, a resistor \textbf{R9} and another capacitor \textbf{C7}. These components act as a filter that smooths out any noise that potentially could be caused by the external power supply.
-
-Finally, there's the main component: the regulator \textbf{U2}. This chip acts as a variable resistor that is controlled by an internal circuit. This done in a way that it always provides a constant voltage at its output, independent of how much current is used by the connected load. Of course, there are some limits to it's operation: there is a maximum current it can provide and the input voltage has to be somewhat higher than the output voltage.
-
-The last component in this block is the capacitor \textbf{C8}. It is required by the regulator chip for stable operation. Without it, the circuit could run into conditions where it oscillates, which is (of course) not desirable.
+\emph{SW1} is the power switch. \emph{D3} ensure voltage polarity is correct, by letting the current flows only in the right direction. \emph{C4}, \emph{R9} \& \emph{C7} filter the input voltage, reducing supply noise. \emph{U2} regulates down the input, assuring a stable +3V3 in all circumstances. \emph{C8} secures \emph{U2} against possible oscillation of its output voltage.
 
 \subsubsection{Charge Pump}
 
