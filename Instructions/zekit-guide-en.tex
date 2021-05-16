@@ -287,7 +287,7 @@ The Zekit needs the energy delivered by the power supply. This block provides 2 
     \includegraphics[scale=0.3]{assets/schema-pump.png}
 \end{center}
 
-The \emph{PUMP} signal is fed by the microcontroller and alternates between GND and +3.3V at a high frequency. When \emph{PUMP} is at GND, \emph{C3} is charged via \emph{R3} and \emph{D2}, while \emph{D4} is non-conductive. When \emph{PUMP} is at +3.3V, \emph{D2} is isolating and the charge of \emph{C3} is transferred to \emph{C5} via the now conducting \emph{D4}. The inductor \emph{L1} filters the voltage for better noise immunity.
+The \emph{PUMP} signal is fed by the microcontroller and alternates between GND and +3.3V at a high frequency. When \emph{PUMP} is at +3.3V, \emph{C3} is charged via \emph{R3} and \emph{D2}, while \emph{D4} is non-conductive. When \emph{PUMP} is at GND, \emph{D2} is isolating and the charge of \emph{C3} is transferred to \emph{C5} via the now conducting \emph{D4}. The inductor \emph{L1} filters the voltage for better noise immunity.
 
 Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the loss inside the diodes, it will be around -2V, which is still sufficient for proper operation.
 
