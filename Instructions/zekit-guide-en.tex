@@ -56,8 +56,8 @@
     \huge{zekit} \\
     Instruction and User Guide \\
     \vspace*{0.25cm}
-    \small{Revision 1.0 EN - 14/05/2021} \\
-    \small{for Firmware V1.00 - 14/05/2021} \\
+    \small{Revision 1.0 EN - 17/05/2021} \\
+    \small{for Firmware V1.00 - 17/05/2021} \\
     \vspace*{0.5cm}
     (Todo: cover image)
     % \includegraphics[scale=0.9]{assets/panel.png}
@@ -73,30 +73,56 @@
 
 % ------------------------------------------------------------------------------------------
 
+%%% TABLE OF CONTENTS
+\tableofcontents
+\pagebreak
+
+% ------------------------------------------------------------------------------------------
+
 %%% INTRODUCTION
-\section*{Introduction}
+\section{Introduction}
 
 \textbf{Thank you very much for purchasing the zekit!}
 
-(Todo: intro text)
+The \textbf{zekit} is a 4-voice paraphonic synthesizer kit with digital sound synthesis and an analog filter and VCA. It also features two fully analog envelopes and can be controlled via MIDI and additional clock signals.
 
-The \textbf{zekit} is an educational 4-voice paraphonic synthesizer kit with digital sound synthesis and an analog filter and VCA. It also features two fully analog envelopes and can be controlled via MIDI and additional clock signals.
+You'll learn a lot while building this kit and you'll end up with a cheap and simple but fun instrument that will integrate into your studio setup.
 
-Required skills:
+\subsection{Required Skills}
 
 \begin{itemize}
     \item Basic knowledge of analog synthesis
-    \item Soldering experience with through-hole components
+    \item Soldering experience with through-hole (THT) components
+    \item Knowledge how to interpret a placement diagram
     \item Knowledge of electronics at an intermediate level
 \end{itemize}
 
-\textbf{Love from Germany}
-\begin{flushright}
-    Fred, from Fred's Lab
-\end{flushright}
+\subsection{Required Tools}
 
-%%% LEGALS
-\section*{Legal notices}
+In order to fully assemble the kit, you'll need the following tools:
+
+\begin{itemize}
+    \item A soldering iron with a tip size around 3mm
+    \item Solder with a diameter around 1mm
+    \item A wire cutter
+    \item A screwdriver
+    \item A multimeter (todo: check if required)
+\end{itemize}
+
+\subsection{Required Accessories}
+
+\begin{itemize}
+    \item Power supply DC 5-9V, 0.5A with barrel connector 5.5mm x 2.5mm, center positive
+    \item MIDI cable
+    \item Audio cable
+    \item Computer or MIDI controller
+    \item Audio system
+\end{itemize}
+
+% ------------------------------------------------------------------------------------------
+
+\section{Legal notices}
+
 \textbf{Fred's Lab} cannot be liable for erroneous information contained in this manual. The contents of this manual may be updated at any time without prior notice. We have put best effort to ensure the information provided here is useful and accurate. Fred's Lab extends no liabilities in regard to this manual other than those required by the local laws.
 
 \begin{center}
@@ -106,7 +132,6 @@ Required skills:
     \url{info@fredslab.net} \\
     \url{http://fredslab.net} \\
 \end{center}
-
 
 \textbf{Support requests} \\
 For support requests, you can reach me per e-mail at:
@@ -123,8 +148,9 @@ This original manual, its content, including the graphics \& descriptions are th
 
 \pagebreak
 
-%%% WARANTIES
-\section*{Warranty}
+% ------------------------------------------------------------------------------------------
+
+\section{Warranty}
 \textbf{Fred's Lab} warranty this product free of defects \textbf{3 years} from its
 date of purchase.
 
@@ -142,26 +168,27 @@ More information about product warranty can be found in the \textbf{General Term
     \url{https://fredslab.net/en/terms.html}
 \end{center}
 
-%%% SPECIAL THANKS
-\section*{Special Thanks}
+% ------------------------------------------------------------------------------------------
+
+\section{Special Thanks}
 
 I would like to thank the following persons for their contributions to this project:
 
 \begin{itemize}
-    \item Quality insurance: René Schmidt, Mathieu Meslin, Oliver Rockstedt
-    \item User manual: Oliver Rockstedt
+    \item Quality insurance: Benoit Ruelle, René Schmidt, Mathieu Meslin, Oliver Rockstedt
+    \item Instruction guide: Oliver Rockstedt
 \end{itemize}
 
-%%% PRECAUTIONS
-\section*{Precautions}
-Before plugging in the \textbf{zekit!} and go \textbf{rocking the World}, have a sit and read this precautions through:
+% ------------------------------------------------------------------------------------------
+
+\section{Precautions}
+Before plugging in the \textbf{zekit!} and go \textbf{rocking the world}, have a sit and read this precautions through:
 
 \begin{itemize}
     \item Always use the device in a dry and warm environment
     \item Never drop the device or expose to too much pressure or vibration
     \item Never spill liquids or bath the device in beer
     \item Never clean the device with an aggressive solvent
-    \item Only use certified USB power adapters to power the device
     \item Never wiggle the plugs to disconnect the cords
     \item Never connect the line outputs to the power outputs of an amplifier
     \item Only modify the unit at your own risk!
@@ -175,78 +202,66 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
 
 % ------------------------------------------------------------------------------------------
 
-%%% TABLE OF CONTENTS
-\tableofcontents
-\pagebreak
-
-% ------------------------------------------------------------------------------------------
-
-\section{Package Contents}
-
- (Todo: check)
+\section{Box Content}
 
 \begin{itemize}
     \item PCB with SMD components pre-assembled
     \item 7 tactile switches
     \item 2 toggle switches
-    \item 6 potentiometers
+    \item 2 potentiometers 10k
+    \item 4 potentiometers 100k
     \item 1 power switch
-    \item 1 Power jack
+    \item 1 power jack
     \item 1 MIDI jack
-    \item 1 jack (6.3mm) for audio output
+    \item 1 audio output jack (6.3mm)
     \item 2 jacks (3.5mm) for clock and input signals
     \item 3 film capacitors
     \item 6 potentiometer knobs
     \item PIC microcontroller IC
-    \item Optocoupler IC
-    \item Operational Amplifier IC
+    \item Optocoupler IC for VCF/VCA
+    \item Optocoupler IC for MIDI
     \item 3 sockets for ICs
     \item Enclosure plates
 \end{itemize}
 
-% ------------------------------------------------------------------------------------------
+\subsection{The Pre-Assembled PCB}
 
-\section{Required Accessories}
+\subsection{Provided Parts}
 
- (Todo: check)
-
-\begin{itemize}
-    \item Power supply DC 5-9V, 0.5A with barrel connector 5.5mm x 2.5mm, center positive
-    \item MIDI cable
-    \item Audio cable
-    \item Computer or MIDI controller
-    \item Audio system
-\end{itemize}
+(Todo: images with basic descriptions of all parts)
 
 % ------------------------------------------------------------------------------------------
 
 \section{Assembling the Kit}
 
-\subsection{Required Tools}
+\subsection{General Advices}
 
-In order to fully assemble the kit, you'll need the following tools:
-
-\begin{itemize}
-    \item A soldering iron with a tip size around 3mm
-    \item Solder with a diameter around 1mm
-    \item A wire cutter
-    \item A screwdriver
-    \item A multimeter (todo: check if required)
-\end{itemize}
+\subsection{Setting Up the Soldering Gig}
 
 \subsection{Soldering the Components}
 
-(Todo: check order of soldering)
+Order of soldering:
 
 \begin{itemize}
     \item IC sockets
     \item Film capacitors
-    \item 3.5mm jacks
-    \item 6.3mm jack
-    \item MIDI jack
+    \item Trimmers
     \item Tactile switches
     \item Toggle switches
-    \item Potentiometers
+    \item 10k Potentiometers
+    \item 100k Potentiometers
+    \item Connectors
+\end{itemize}
+
+Important remarks:
+
+\begin{itemize}
+    \item Polarity of switches
+    \item Polarity of sockets (matching the IC direction)
+    \item- Taping for easy soldering
+    \item Not heat film caps for too long
+    \item Solder pots and switches STRAIGHT
+          (first solder one leg, press it, then the rest)
 \end{itemize}
 
 \subsection{Installing the ICs}
@@ -259,9 +274,20 @@ In order to fully assemble the kit, you'll need the following tools:
     \item Microcontroller
 \end{itemize}
 
-\subsection{Operational Test}
+\section{Power Up and Test}
 
-(Todo: check if everything is working correctly)
+ (Todo: what to expect)
+
+\subsection{Calibration of the VCF}
+
+(Todo: adjusting the trimmers)
+
+\subsection{Identifying Common Issues}
+
+\begin{itemize}
+    \item Bad soldering
+    \item Wrong polarity (Todo: of what? ICs?)
+\end{itemize}
 
 \pagebreak
 
@@ -365,6 +391,22 @@ When the MCU pin is configured as input, the button state can be read. In case t
 \begin{center}
     \includegraphics[scale=0.40]{assets/schema-clocks.png}
 \end{center}
+
+\pagebreak
+
+% ------------------------------------------------------------------------------------------
+
+\section{Additional Resources}
+
+=> The github
+=> The webpage
+=> Where to find the MCU source code
+
+\pagebreak
+
+% ------------------------------------------------------------------------------------------
+
+\section{Legal / License}
 
 \pagebreak
 
