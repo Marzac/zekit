@@ -297,6 +297,10 @@ Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the los
     \includegraphics[scale=0.55]{assets/schema-mcu.png}
 \end{center}
 
+The microcontroller (MCU) \emph{U7} is the brain of the \textbf{zekit}. It processes all signals from the switches and the inputs and generates the audio waveform as well as some control signals for the analog circuitry. This is done by running a firmware that is stored in the internal flash of the chip. The firmware is pre-programmed by Fred's Lab, but can be replaced by using a dedicated programmer kit.
+
+The capacitors \emph{C11}, \emph{C12} and \emph{C14} are used together with the inductor \emph{L2} to improve the stability of the power supply and reduce noise.
+
 \subsection{DAC}
 
 \begin{center}
@@ -304,11 +308,21 @@ Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the los
     % \includegraphics[scale=0.55]{assets/schema-dac.png}
 \end{center}
 
-\subsection{Switches}
+The digital-to-analog converter (DAC) \emph{U3} is directly connected to the microcontroller via 3 signals. It converts the waveform calculated by the MCU into the analog domain. Capacitor \emph{C13} removes the DC offset of the signal, resistor \emph{R19} conditions the level to fit in the range of the next stage (the VCF).
+
+The DAC chip provides two independent output channels of which only one is used internally. The unused channel is routed to the test point \emph{TP4} and can be utilized for additional purposes.
+
+\subsection{Tactile Switches}
 
 \begin{center}
     \includegraphics[scale=0.25]{assets/schema-switch.png}
 \end{center}
+
+The 7 illuminated tactile switches are directly connected to the microcontroller. The image above shows the \emph{WAVE} button switch \emph{SW2} as an example.
+
+In order to reduce the number of required signal lines, the MCU firmware uses a neat trick: it alternates the mode of the pin connected to the \emph{BUT-WAVE} signal between input and output.
+
+When the MCU pin is configured as input, the button state can be read. In case the button is released, a high level is detected because the pin is connected to +3.3V via the LED and the resistor \emph{R18}. When the button is pressed, the pin is directly connected to GND and a low level is detected. When the MCU pin is configured as output, the LED can be illuminated by driving the signal to GND.
 
 \subsection{VCA}
 
