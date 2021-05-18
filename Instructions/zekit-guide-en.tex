@@ -368,9 +368,11 @@ When the MCU pin is configured as input, the button state can be read. In case t
     \includegraphics[scale=0.42]{assets/schema-expo.png}
 \end{center}
 
-This circuit is used to convert the linear filter control voltage into an exponential curve for setting the cutoff frequency. The requirement for this is the nature of our human hearing which recognizes pitches in an exponential way.
+This circuit is used to convert the linear control voltage into an exponential current for the optocouplers. The requirement for this is the nature of our human hearing which recognizes pitches and volumes in an exponential way.
 
 The input of this block uses the signal \emph{VCF} from the filter envelope to drive the buffer transistor \emph{Q1a}. The trim potentiometer \emph{TR1} is used to set a bias level for calibration which is added to the input. The emitter of \emph{Q1a} drives the base of transistor \emph{Q1b} which does the curve conversion. It is based on the fact that the relationship between the base-emitter voltage and the collector current of a transistor is exponential. The collector current of \emph{Q1b} drives the LEDs inside the optocoupler \emph{U5} which controls the filter cutoff.
+
+The VCA uses a similar circuit that is feeded by the VCA envelope.
 
 \subsection{Envelopes}
 
