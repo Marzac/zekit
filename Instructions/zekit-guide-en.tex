@@ -362,6 +362,10 @@ When the MCU pin is configured as input, the button state can be read. In case t
     \includegraphics[scale=0.39]{assets/schema-vcf.png}
 \end{center}
 
+The filter is a 2nd order design with a 12dB/octave slope. The first stage consists of the optocoupler \emph{U3a} and the capacitor \emph{C15}, the second one of optocoupler \emph{U3b} and capacitor \emph{C19}, in which the optocouplers take the role of the resistive element to control the frequency.
+
+The input signal \emph{VCF-IN} is decoupled by \emph{C13} and fed in either to the first stage or the feedback path, depending whether low-pass or band-pass configuration is selected by toggle switch \emph{TG1}. The resonance is determined by the feedback loop and can be chosen between two amounts via toggle switch \emph{TG2}. The trimmer \emph{TR2} allows to fine-control one of the settings. The operational amplifier \emph{U6b} provides the necessary gain for driving the next stage and the feedback loop. It utilizes the diode \emph{D7} to tame the amplitude at higher levels by producing a nice-sounding distortion.
+
 \subsection{Exponential Control Circuit}
 
 \begin{center}
