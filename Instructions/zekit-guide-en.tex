@@ -338,17 +338,15 @@ The digital-to-analog converter (DAC) \emph{U3} is directly connected to the mic
 
 The DAC chip provides two independent output channels of which only one is used internally. The unused channel is routed to the test point \emph{TP4} and can be utilized for additional purposes.
 
-\subsection{Tactile Switches}
+\subsection{VCF}
 
 \begin{center}
-    \includegraphics[scale=0.25]{assets/schema-switch.png}
+    \includegraphics[scale=0.39]{assets/schema-vcf.png}
 \end{center}
 
-The 7 illuminated tactile switches are directly connected to the microcontroller. The image above shows the \emph{WAVE} button switch \emph{SW2} as an example.
+The filter is a 2nd order design with a 12dB/octave slope. The first stage consists of the optocoupler \emph{U3a/U3b} and the capacitor \emph{C15}, the second one of optocoupler \emph{U3b} and capacitor \emph{C19}, in which the optocouplers take the role of the resistive element to control the frequency.
 
-In order to reduce the number of required signal lines, the MCU firmware uses a neat trick: it alternates the mode of the pin connected to the \emph{BUT-WAVE} signal between input and output.
-
-When the MCU pin is configured as input, the button state can be read. In case the button is released, a high level is detected because the pin is connected to +3.3V via the LED and the resistor \emph{R18}. When the button is pressed, the pin is directly connected to GND and a low level is detected. When the MCU pin is configured as output, the LED can be illuminated by driving the signal to GND.
+The input signal \emph{VCF-IN} is decoupled by \emph{C13} and fed in either to the first stage or the feedback path, depending whether low-pass or band-pass configuration is selected by toggle switch \emph{TG1}. The resonance is determined by the feedback loop and can be chosen between two amounts via toggle switch \emph{TG2}. The trimmer \emph{TR2} allows to fine-control one of the settings. The operational amplifier \emph{U6b} provides the necessary gain for driving the next stage and the feedback loop. It utilizes the diode \emph{D7} to tame the amplitude at higher levels by producing a nice-sounding distortion.
 
 \subsection{VCA}
 
@@ -356,27 +354,7 @@ When the MCU pin is configured as input, the button state can be read. In case t
     \includegraphics[scale=0.37]{assets/schema-vca.png}
 \end{center}
 
-\subsection{VCF}
-
-\begin{center}
-    \includegraphics[scale=0.39]{assets/schema-vcf.png}
-\end{center}
-
-The filter is a 2nd order design with a 12dB/octave slope. The first stage consists of the optocoupler \emph{U3a} and the capacitor \emph{C15}, the second one of optocoupler \emph{U3b} and capacitor \emph{C19}, in which the optocouplers take the role of the resistive element to control the frequency.
-
-The input signal \emph{VCF-IN} is decoupled by \emph{C13} and fed in either to the first stage or the feedback path, depending whether low-pass or band-pass configuration is selected by toggle switch \emph{TG1}. The resonance is determined by the feedback loop and can be chosen between two amounts via toggle switch \emph{TG2}. The trimmer \emph{TR2} allows to fine-control one of the settings. The operational amplifier \emph{U6b} provides the necessary gain for driving the next stage and the feedback loop. It utilizes the diode \emph{D7} to tame the amplitude at higher levels by producing a nice-sounding distortion.
-
-\subsection{Exponential Control Circuit}
-
-\begin{center}
-    \includegraphics[scale=0.42]{assets/schema-expo.png}
-\end{center}
-
-This circuit is used to convert the linear control voltage into an exponential current for the optocouplers. The requirement for this is the nature of our human hearing which recognizes pitches and volumes in an exponential way.
-
-The input of this block uses the signal \emph{VCF} from the filter envelope to drive the buffer transistor \emph{Q1a}. The trim potentiometer \emph{TR1} is used to set a bias level for calibration which is added to the input. The emitter of \emph{Q1a} drives the base of transistor \emph{Q1b} which does the curve conversion. It is based on the fact that the relationship between the base-emitter voltage and the collector current of a transistor is exponential. The collector current of \emph{Q1b} drives the LEDs inside the optocoupler \emph{U5} which controls the filter cutoff.
-
-The VCA uses a similar circuit that is feeded by the VCA envelope.
+The VCA uses the optocoupler \emph{U3c/U3d} to gain-control the operational amplifier \emph{U6a}. The input signal \emph{VCA-IN} is decoupled by capacitor \emph{C20} and then divided down by resistors \emph{R39} and \emph{R40} to an appropriate level for the optocoupler. To set the output level, the \textbf{Volume} potentiometer is located in the feedback path of the opamp. Resistor \emph{R47} in parallel to the pot provides a nicer control curve for the volume setting. The output is filtered by inductor \emph{L1}, followed by protection resistors \emph{R51} and \emph{R52} and then routed to the output jack \emph{J6}.
 
 \subsection{Envelopes}
 
@@ -393,6 +371,18 @@ The transistor \emph{Q7} acts as a buffer to decouple the envelope. The \emph{EN
 \subsubsection{VCA Envelope}
 
 The amplifier envelope works in the same ways as the VCF envelope, but lacks the attack control.
+
+\subsection{Exponential Control Circuit}
+
+\begin{center}
+    \includegraphics[scale=0.42]{assets/schema-expo.png}
+\end{center}
+
+This circuit is used to convert the linear control voltage into an exponential current for the optocouplers. The requirement for this is the nature of our human hearing which recognizes pitches and volumes in an exponential way.
+
+The input of this block uses the signal \emph{VCF} from the filter envelope to drive the buffer transistor \emph{Q1a}. The trim potentiometer \emph{TR1} is used to set a bias level for calibration which is added to the input. The emitter of \emph{Q1a} drives the base of transistor \emph{Q1b} which does the curve conversion. It is based on the fact that the relationship between the base-emitter voltage and the collector current of a transistor is exponential. The collector current of \emph{Q1b} drives the LEDs inside the optocoupler \emph{U5} which controls the filter cutoff.
+
+The VCA uses a similar circuit that is feeded by the VCA envelope.
 
 \subsection{MIDI Input}
 
@@ -411,6 +401,18 @@ The MIDI input is electrically isolated with an optocoupler to prevent ground lo
 The clock signal is taken from the tip of the input jack \emph{J4}. If no plug is inserted, a high level is preset by the pullup resistor \emph{R57}. Depending on the input voltage, transistor \emph{Q4} is either conducting or not. Resistor \emph{R12} and diode \emph{D6} protect the transistor against over-voltage or wrong polarity at the input. At the end, the signal \emph{CLK-IN} is then routed to the microcontroller. The MCU uses an internal pullup activated by the firmware to detect the high level when transistor \emph{Q4} is off.
 
 The clock start signal is taken from the ring of the input jack and processed in a similar way by driving the transistor \emph{Q3} to generate the \emph{CLK-START} signal for the MCU.
+
+\subsection{Tactile Switches}
+
+\begin{center}
+    \includegraphics[scale=0.25]{assets/schema-switch.png}
+\end{center}
+
+The 7 illuminated tactile switches are directly connected to the microcontroller. The image above shows the \emph{WAVE} button switch \emph{SW2} as an example.
+
+In order to reduce the number of required signal lines, the MCU firmware uses a neat trick: it alternates the mode of the pin connected to the \emph{BUT-WAVE} signal between input and output.
+
+When the MCU pin is configured as input, the button state can be read. In case the button is released, a high level is detected because the pin is connected to +3.3V via the LED and the resistor \emph{R18}. When the button is pressed, the pin is directly connected to GND and a low level is detected. When the MCU pin is configured as output, the LED can be illuminated by driving the signal to GND.
 
 \pagebreak
 
