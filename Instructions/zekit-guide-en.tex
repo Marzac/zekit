@@ -210,6 +210,8 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
     \item 2 toggle switches
     \item 2 potentiometers 10k
     \item 4 potentiometers 100k
+    \item 1 trim potentiometer 1k
+    \item 1 trim potentiometer 10k
     \item 1 power switch
     \item 1 power jack
     \item 1 MIDI jack
@@ -247,6 +249,20 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
     \includegraphics[scale=0.5]{assets/zekit-pots2-resized.jpg}
 \end{center}
 
+The potentiometers are variable resistors used to control parameters in the analog domain. They consist of a wiper that slides over a resistive element to form a voltage-divider.
+
+The \textbf{zekit} uses two types of potentiometers with different values: 10k and 100k. These must not be confused and can be identified by the labeling on the bottom. The 10k pot is marked with a \textbf{B1 03} print, the 100k pot has a \textbf{B1 04} labeling.
+
+\subsubsection{Trim Potentiometers}
+
+\begin{center}
+    (Todo: image)
+\end{center}
+
+The trimmers work like normal potentiometers but are intended for calibration purposes instead of regular use. They are much smaller the regular pots and need to be adjusted via a screwdriver.
+
+(Todo: labeling 1k / 10k)
+
 \subsubsection{Power Switch}
 
 \begin{center}
@@ -264,6 +280,8 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
 \begin{center}
     \includegraphics[scale=0.5]{assets/zekit-din-resized.jpg}
 \end{center}
+
+The DIN jack is a 5-pin connector that is used for the MIDI input.
 
 \subsubsection{6.3mm TRS Jack}
 
@@ -283,17 +301,25 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
     \includegraphics[scale=0.5]{assets/zekit-filmcaps-resized.jpg}
 \end{center}
 
+The film capacitors behave like normal capacitors but are superior in terms of distortion and noise immunity. They also have lower tolerances and are used in situations where these characteristics are important: in the \textbf{zekit} that's the filter and the VCA.
+
 \subsubsection{Potentiometer Knobs}
 
 \begin{center}
     \includegraphics[scale=0.5]{assets/zekit-knobs-resized.jpg}
 \end{center}
 
+The knobs are fit onto the potentiometers after the kit is fully assembled. They provide the final look-and-feel and allow precise control of the potentiometer setting.
+
 \subsubsection{Microcontroller IC}
 
 \begin{center}
     \includegraphics[scale=0.5]{assets/zekit-mcu-resized.jpg}
 \end{center}
+
+The microcontroller is an integrated circuit that contains flash memory to store the firmware, RAM for data and a number of peripherals to communicate with other components. It is used to calculate the audio waveforms, process incoming MIDI messages and clock signals, manage button presses and LEDs, and also to generate control signals for the envelopes.
+
+The firmware to handle all these tasks is already pre-pregrammed by Fred’s Lab, but can be replaced by using a dedicated programmer kit.
 
 \subsubsection{Optocoupler ICs}
 
@@ -307,6 +333,8 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
     (Todo: correct image)
     \includegraphics[scale=0.5]{assets/zekit-sockets-resized.jpg}
 \end{center}
+
+The IC sockets are mounted instead of soldering the ICs onto the PCB directly. They protect the ICs from the heat during the soldering process and keep them exchangeable.
 
 \subsubsection{Enclosure Plates}
 
@@ -345,7 +373,7 @@ Important remarks:
 \begin{itemize}
     \item Polarity of switches
     \item Polarity of sockets (matching the IC direction)
-    \item- Taping for easy soldering
+    \item Taping for easy soldering
     \item Not heat film caps for too long
     \item Solder pots and switches STRAIGHT
           (first solder one leg, press it, then the rest)
@@ -410,7 +438,7 @@ Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the los
     \includegraphics[scale=0.55]{assets/schema-mcu.png}
 \end{center}
 
-The microcontroller (MCU) \emph{U7} is the brain of the \textbf{zekit}. It processes all signals from the switches and the inputs and generates the audio waveform as well as some control signals for the analog circuitry. This is done by running a firmware that is stored in the internal flash of the chip. The firmware is pre-programmed by Fred's Lab, but can be replaced by using a dedicated programmer kit.
+The microcontroller (MCU) \emph{U7} is the brain of the \textbf{zekit}. It processes all signals from the switches and the inputs and generates the audio waveform as well as some control signals for the analog circuitry. This is done by running a firmware that is stored in the internal flash of the chip.
 
 The capacitors \emph{C11}, \emph{C12} and \emph{C14} are used together with the inductor \emph{L2} to improve the stability of the power supply and reduce noise.
 
