@@ -236,11 +236,15 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
     \includegraphics[scale=0.5]{assets/zekit-tacts-resized.jpg}
 \end{center}
 
+The tactile switches are momentary switches used as buttons. They feature a contact that is normally open and gets closed when the switch is pressed. The model of switch used in this kit has an additional LED that illuminates the cap to show status information. They are connected to the microcontroller directly.
+
 \subsubsection{Toggle Switches}
 
 \begin{center}
     (Todo: image)
 \end{center}
+
+In contrast to the tactile switches, the toggle switches have two stable positions. Depending on the position one contact is permanently closed while the other is open and vice versa. In the \textbf{zekit} these switches are used in the analog filter to select the mode (low-pass or band-pass) and resonance.
 
 \subsubsection{Potentiometers}
 
@@ -269,11 +273,15 @@ The trimmers work like normal potentiometers but are intended for calibration pu
     \includegraphics[scale=0.5]{assets/zekit-powerswitch-resized.jpg}
 \end{center}
 
+The power switch is a push button switch with a toggle behaviour. Pressed once, the contact closes and remains in this state until it is pushed again.
+
 \subsubsection{Power Jack}
 
 \begin{center}
     \includegraphics[scale=0.5]{assets/zekit-dcjack-resized.jpg}
 \end{center}
+
+The power jack is a barrel connector that has a widespread use with power supplies. It has an additional switch that is opened when a plug is inserted. This is useful in devices with internal batteries to disable them on external supply but not used in this kit.
 
 \subsubsection{DIN Jack}
 
@@ -281,7 +289,7 @@ The trimmers work like normal potentiometers but are intended for calibration pu
     \includegraphics[scale=0.5]{assets/zekit-din-resized.jpg}
 \end{center}
 
-The DIN jack is a 5-pin connector that is used for the MIDI input.
+The DIN jack is a 5-pin connector that is used for the MIDI input from external devices.
 
 \subsubsection{6.3mm TRS Jack}
 
@@ -289,11 +297,15 @@ The DIN jack is a 5-pin connector that is used for the MIDI input.
     \includegraphics[scale=0.5]{assets/zekit-jack1-resized.jpg}
 \end{center}
 
+TRS stands for tip, ring, sleeve. This connector is common in all kinds of audio systems and used for the output signal of the \textbf{zekit}.
+
 \subsubsection{3.5mm TRS Jacks}
 
 \begin{center}
     \includegraphics[scale=0.5]{assets/zekit-jack2-resized.jpg}
 \end{center}
+
+These jacks are the smaller versions of the TRS jack. In the \textbf{zekit}, they are used for the audio and clock inputs.
 
 \subsubsection{Film Capacitors}
 
@@ -327,6 +339,8 @@ The firmware to handle all these tasks is already pre-pregrammed by Fred’s Lab
     (Todo: images)
 \end{center}
 
+An optocoupler is a combination of a photo transistor and an LED inside a single package. It is used keep circuits isolated while transferring signals. The conductance of the photo transistor is related to the brightness of the LED. The \textbf{zekit} uses optocouplers for the MIDI input and as variable resistors in the VCF and VCA.
+
 \subsubsection{IC Sockets}
 
 \begin{center}
@@ -341,7 +355,6 @@ The IC sockets are mounted instead of soldering the ICs onto the PCB directly. T
 \begin{center}
     (Todo: image)
 \end{center}
-
 
 \pagebreak
 
