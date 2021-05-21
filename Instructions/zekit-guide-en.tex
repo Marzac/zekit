@@ -25,6 +25,7 @@
 \usepackage{longtable}
 \usepackage[defaultlines=4,all]{nowidow}
 \usepackage{multicol}
+\usepackage{tcolorbox}
 
 \usepackage{tikz}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
@@ -204,10 +205,15 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
 
 \section{Box Content}
 
+ (Todo: image with all components on table)
+
+\vspace{0.25cm}
+
 \begin{center}
     \begin{tabular}{|r|l|l|}
         \hline
         \textbf{Amount} & \textbf{Description} & \textbf{Value} \\
+        \hline
         1               & Pre-assembled PCB    &                \\
         7               & Tactile switches     &                \\
         2               & Toggle switches      &                \\
@@ -377,37 +383,74 @@ The IC sockets are mounted instead of soldering the ICs onto the PCB directly. T
 
 \subsection{Soldering the Components}
 
-Order of soldering:
+It is advisable to solder the parts in a specific order which is mainly determined by the height of the components. Respecting the order can save you time and makes your life a lot easier.
+
+Some useful tips:
 
 \begin{itemize}
-    \item IC sockets
-    \item Film capacitors
-    \item Trimmers
-    \item Tactile switches
-    \item Toggle switches
-    \item 10k Potentiometers
-    \item 100k Potentiometers
-    \item Connectors
+    \item Tape the components to prevent them from falling off when turning over the PCB for soldering
+    \item All potentiometers and switches must be soldered straight. Otherwise, the front plate will not fit. To achieve this, solder only one pin first, then correct the position by gently pressing the part in the right position. After that, solder the remaining pins.
 \end{itemize}
 
-Important remarks:
+\vspace{0.25cm}
 
-\begin{itemize}
-    \item Polarity of switches
-    \item Polarity of sockets (matching the IC direction)
-    \item Taping for easy soldering
-    \item Not heat film caps for too long
-    \item Solder pots and switches STRAIGHT
-          (first solder one leg, press it, then the rest)
-\end{itemize}
+\begin{tcolorbox}
+    \textcolor{red}{
+        \textbf{Some components have a polarity and must be soldered in the right orientation. Even if they fit onto the PCB mechanically in more than one way, using the wrong orientation will result in erroneous operation and can even destroy these parts.}
+    }
+\end{tcolorbox}
+
+\vspace{0.25cm}
+
+\begin{tcolorbox}
+    \textcolor{red}{
+        \textbf{All connectors are located on the bottom side of the PCB and must be soldered from the top.}
+    }
+\end{tcolorbox}
+
+\subsubsection{IC sockets}
+
+The IC sockets have a marking on one side. This marking must match the silk screen print of the PCB.
+
+\subsubsection{Film capacitors}
+
+These capacitors are more heat sensitive than other parts. Try to solder them quickly so that they are not exposed to the heat for a long time.
+
+\subsubsection{1k trimmer}
+
+This trimmer is labeled (Todo: labeling). Do not confuse it with the 10k variant.
+
+\subsubsection{10k trimmer}
+
+This trimmer is labeled (Todo: labeling). Do not confuse it with the 1k variant.
+
+\subsubsection{Tactile switches}
+
+While the switch itself works in all orientations, the internal LED must have the correct polarity. The pins of the LEDs have different lengths. The shorter pins must be located on the right side of the switch. (Todo: check / image)
+
+\subsubsection{Toggle switches}
+
+(Todo: write something useful)
+
+\subsubsection{10k potentiometers}
+
+These 2 pots are labeled \textbf{10 B3} on the bottom. Do not confuse them with the 100k variants.
+
+\subsubsection{100k potentiometers}
+
+These 4 pots are labeled \textbf{10 B4} on the bottom. Do not confuse them with the 10k variants.
+
+\subsubsection{Connectors}
+
+The connectors are soldered last because they are located on the bottom side of the PCB.
 
 \subsection{Installing the ICs}
 
 (Todo: maybe power up and measure supply voltages before)
 
 \begin{itemize}
-    \item Operational Amplifier
-    \item Optocoupler
+    \item MIDI optocoupler
+    \item VCF/VCA Optocoupler
     \item Microcontroller
 \end{itemize}
 
