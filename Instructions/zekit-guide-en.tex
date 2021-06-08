@@ -104,16 +104,18 @@ In order to fully assemble the kit, you'll need the following tools:
 
 \begin{itemize}
     \item A soldering iron with a tip size around 3mm
-    \item Solder with a diameter around 1mm
+    \item Solder wire with a diameter around 1mm
+    \item Solder braid (repair)
+    \item No-clean flux (liquid)
     \item A wire cutter
     \item A screwdriver
-    \item A multimeter (todo: check if required)
+    \item A multimeter
 \end{itemize}
 
 \subsection{Required Accessories}
 
 \begin{itemize}
-    \item Power supply DC 5-9V, 0.5A with barrel connector 5.5mm x 2.5mm, center positive
+    \item Power supply DC 5-9V, 0.5A with barrel connector 5.5mm x 2.5mm, center positive (can be bought from Fred's Lab website)
     \item MIDI cable
     \item Audio cable
     \item Computer or MIDI controller
@@ -215,7 +217,7 @@ The power switch is a push button switch with a toggle behaviour. Pressed once, 
     \includegraphics[scale=0.5]{assets/zekit-dcjack-resized.jpg}
 \end{center}
 
-The power jack is a barrel connector that has a widespread use with power supplies. It has an additional switch that is opened when a plug is inserted. This is useful in devices with internal batteries to disable them on external supply but not used in this kit.
+The power jack is a 2.1mm barrel connector that has a widespread use with power supplies. It has an additional switch that is opened when a plug is inserted. This is useful in devices with internal batteries to disable them on external supply but not used in this kit.
 
 \subsubsection{DIN Jack}
 
@@ -228,6 +230,7 @@ The DIN jack is a 5-pin connector that is used for the MIDI input from external 
 \subsubsection{6.3mm TRS Jack}
 
 \begin{center}
+    (Todo: correct image)
     \includegraphics[scale=0.5]{assets/zekit-jack1-resized.jpg}
 \end{center}
 
@@ -263,7 +266,7 @@ The knobs are fit onto the potentiometers after the kit is fully assembled. They
     \includegraphics[scale=0.5]{assets/zekit-mcu-resized.jpg}
 \end{center}
 
-The microcontroller is an integrated circuit that contains flash memory to store the firmware, RAM for data and a number of peripherals to communicate with other components. It is used to calculate the audio waveforms, process incoming MIDI messages and clock signals, manage button presses and LEDs, and also to generate control signals for the envelopes.
+The microcontroller is an integrated circuit that contains flash memory to store the firmware, RAM for data and a number of peripherals to communicate with other components. It processes MIDI data, handles the clocks, generates the waveforms, manages the sequencer, controls the envelopes and runs the interface.
 
 The firmware to handle all these tasks is already pre-pregrammed by Fred’s Lab, but can be replaced by using a dedicated programmer kit.
 
@@ -298,15 +301,33 @@ The IC sockets are mounted instead of soldering the ICs onto the PCB directly. T
 
 \subsection{General Advices}
 
-(Todo)
+To maximize your chance of success when assembling the Zekit, work on a tidy properly lit \& flat surface. Do not hesitate to use magnification to control your solder joints, reheat with flux when necessary. Store unused parts in boxes or bags.
+
+Soldering is well done using a clean and not oxidized iron tip. Switch off your iron when not in use to prevent damage of the tip.
 
 \subsection{Setting Up the Soldering Gig}
 
-(Todo)
+\begin{itemize}
+    \item Clean the tip with a tip cleaner
+    \item Always use a wet sponge to clean the tip
+    \item \textbf{Important:} use no-clean flux only
+    \item Use SnCuNiGe (SN100C) or SN96.5Ag3Cu0.5 (SAC305) or Sn60Pb40 solder wire
+    \item Have some duct tape at hand
+    \item Use proper lighting
+    \item Only work in a well ventilated room
+\end{itemize}
+
+Tips:
+
+\begin{itemize}
+    \item Make sure the board is clean
+    \item Apply flux before soldering
+    \item Double check the tact switches orientation (really!)
+\end{itemize}
 
 \subsection{Soldering the Components}
 
-It is advisable to solder the parts in a specific order which is mainly determined by the height of the components. Respecting the order can save you time and makes your life a lot easier.
+All parts have to be soldered in a specific order that is determined by the placement and size of each component.
 
 Some useful tips:
 
@@ -331,41 +352,41 @@ Some useful tips:
     }
 \end{tcolorbox}
 
-\subsubsection{IC Sockets}
+\subsubsection{Step 1: IC Sockets}
 
 The IC sockets have a marking on one side. This marking must match the silk screen print of the PCB.
 
-\subsubsection{Film Capacitors}
+\subsubsection{Step 2: Film Capacitors}
 
-These capacitors are more heat sensitive than other parts. Try to solder them quickly so that they are not exposed to the heat for a long time.
+These capacitors are more heat sensitive than other parts. Do not heat the pins for a period longer than 5s. These parts are not polarized and can be soldered in any orientation.
 
-\subsubsection{1k Trimmer}
+\subsubsection{Step 3: 1k Trimmer}
 
-This trimmer is labeled \textbf{W102} on the top. Do not confuse it with the 10k variant.
+This trimmer is labeled \textbf{W102} on the top. Do not confuse it with the 10k variant. This part is not polarized and can be soldered in any orientation.
 
-\subsubsection{10k Trimmer}
+\subsubsection{Step 4: 10k Trimmer}
 
-This trimmer is labeled \textbf{W103}. Do not confuse it with the 1k variant.
+This trimmer is labeled \textbf{W103}. Do not confuse it with the 1k variant. This part is not polarized and can be soldered in any orientation.
 
-\subsubsection{Tactile Switches}
+\subsubsection{Step 5: Tactile Switches}
 
-While the switch itself works in all orientations, the internal LED must have the correct polarity. The pins of the LEDs have different lengths. The shorter pins must be located on the right side of the switch. (Todo: check / image).
+While the switch itself works in all orientations, the internal LED must have the correct polarity. The pins of the LEDs have different lengths. The longer pin has a red marking and must be located on the right side of the switch. (Todo: image).
 
 Keep your attention on soldering them straight.
 
-\subsubsection{Toggle Switches}
+\subsubsection{Step 6: Toggle Switches}
 
-(Todo: write something useful). Keep your attention on soldering them straight.
+Keep your attention on soldering them straight. These parts are not polarized and can be soldered in any orientation.
 
-\subsubsection{10k Potentiometers}
+\subsubsection{Step 7: 10k Potentiometers}
 
 These 2 pots are labeled \textbf{10 B3} on the bottom. Do not confuse them with the 100k variants. Keep your attention on soldering them straight.
 
-\subsubsection{100k Potentiometers}
+\subsubsection{Step 8: 100k Potentiometers}
 
 These 4 pots are labeled \textbf{10 B4} on the bottom. Do not confuse them with the 10k variants. Keep your attention on soldering them straight.
 
-\subsubsection{Connectors \& Power Switch}
+\subsubsection{Step 9: Connectors \& Power Switch}
 
 The connectors and the power switch are soldered last because they are located on the bottom side of the PCB.
 
