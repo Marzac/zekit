@@ -54,16 +54,14 @@
 %%% TITLE PAGE
 \title{
     \vspace*{4cm}
-    \huge{zekit} \\
+    \huge{ZEKIT} \\
     Instruction and User Guide \\
     \vspace*{0.25cm}
-    \small{Revision 1.0 EN - 31/05/2021} \\
-    \small{for Firmware V1.00 - 17/05/2021} \\
+    \small{Revision 1.0 EN - 01/09/2021} \\
     \vspace*{0.5cm}
-    (Todo: cover image)
-    % \includegraphics[scale=0.9]{assets/panel.png}
+    \includegraphics[scale=0.2]{assets/zekit-assembled.jpg}
 }
-\author{Frédéric Meslin / Fred's Lab}
+\author{Fred's Lab}
 
 %%% DOCUMENT
 \begin{document}
@@ -95,7 +93,7 @@ You'll learn a lot while building this kit and you'll end up with a cheap and si
     \item Basic knowledge of analog synthesis
     \item Soldering experience with through-hole (THT) components
     \item Knowledge how to interpret a placement diagram
-    \item Knowledge of electronics at an intermediate level
+    \item Knowledge of electronics at a beginners level
 \end{itemize}
 
 \subsection{Required Tools}
@@ -108,8 +106,7 @@ In order to fully assemble the kit, you'll need the following tools:
     \item Solder braid (repair)
     \item No-clean flux (liquid)
     \item A wire cutter
-    \item A screwdriver
-    \item A multimeter
+    \item A flat screwdriver
 \end{itemize}
 
 \subsection{Required Accessories}
@@ -123,11 +120,10 @@ In order to fully assemble the kit, you'll need the following tools:
 \end{itemize}
 
 % ------------------------------------------------------------------------------------------
-
+\pagebreak
 \section{Box Content}
 
- (Todo: image with all components on table)
-
+\includegraphics[scale=0.3]{assets/zekit-content.jpg}
 \vspace{0.25cm}
 
 \begin{center}
@@ -161,7 +157,7 @@ In order to fully assemble the kit, you'll need the following tools:
 \subsection{The Pre-Assembled PCB}
 
 \begin{center}
-    (Todo: image)
+\includegraphics[scale=0.10]{assets/zekit-unassembled.jpg}
 \end{center}
 
 \subsection{Provided Parts}
@@ -169,7 +165,7 @@ In order to fully assemble the kit, you'll need the following tools:
 \subsubsection{Tactile Switches}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-tacts-resized.jpg}
+    \includegraphics[scale=0.20]{assets/zekit-tacts.jpg}
 \end{center}
 
 The tactile switches are momentary switches used as buttons. They feature a contact that is normally open and gets closed when the switch is pressed. The model of switch used in this kit has an additional LED that illuminates the cap to show status information. They are connected to the microcontroller directly.
@@ -177,7 +173,7 @@ The tactile switches are momentary switches used as buttons. They feature a cont
 \subsubsection{Toggle Switches}
 
 \begin{center}
-    (Todo: image)
+    \includegraphics[scale=0.15]{assets/zekit-toggles.jpg}
 \end{center}
 
 In contrast to the tactile switches, the toggle switches have two stable positions. Depending on the position one contact is permanently closed while the other is open and vice versa. In the \textbf{zekit} these switches are used in the analog filter to select the mode (low-pass or band-pass) and resonance.
@@ -185,18 +181,17 @@ In contrast to the tactile switches, the toggle switches have two stable positio
 \subsubsection{Potentiometers}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-pots1-resized.jpg}
-    \includegraphics[scale=0.5]{assets/zekit-pots2-resized.jpg}
+    \includegraphics[scale=0.20]{assets/zekit-pots.jpg}
 \end{center}
 
 The potentiometers are variable resistors used to control parameters in the analog domain. They consist of a wiper that slides over a resistive element to form a voltage-divider.
 
 The \textbf{zekit} uses two types of potentiometers with different values: 10k and 100k. These must not be confused and can be identified by the labeling on the bottom. The 10k pot is marked with a \textbf{B1 03} print, the 100k pot has a \textbf{B1 04} labeling.
 
-\subsubsection{Trim Potentiometers}
+\subsubsection{Trimmer}
 
 \begin{center}
-    (Todo: image)
+    \includegraphics[scale=0.20]{assets/zekit-trimmer.jpg}
 \end{center}
 
 The trimmers work like normal potentiometers but are intended for calibration purposes instead of regular use. They are much smaller the regular pots and need to be adjusted via a screwdriver.
@@ -206,7 +201,7 @@ There are two types of trimmers with different values: 1k and 10k. These must no
 \subsubsection{Power Switch}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-powerswitch-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-power.jpg}
 \end{center}
 
 The power switch is a push button switch with a toggle behaviour. Pressed once, the contact closes and remains in this state until it is pushed again.
@@ -214,7 +209,7 @@ The power switch is a push button switch with a toggle behaviour. Pressed once, 
 \subsubsection{Power Jack}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-dcjack-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-dcjack.jpg}
 \end{center}
 
 The power jack is a 2.1mm barrel connector that has a widespread use with power supplies. It has an additional switch that is opened when a plug is inserted. This is useful in devices with internal batteries to disable them on external supply but not used in this kit.
@@ -222,16 +217,15 @@ The power jack is a 2.1mm barrel connector that has a widespread use with power 
 \subsubsection{DIN Jack}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-din-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-din.jpg}
 \end{center}
 
 The DIN jack is a 5-pin connector that is used for the MIDI input from external devices.
 
-\subsubsection{6.3mm TRS Jack}
+\subsubsection{6.35mm TRS Jack}
 
 \begin{center}
-    (Todo: correct image)
-    \includegraphics[scale=0.5]{assets/zekit-jack1-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-jack.jpg}
 \end{center}
 
 TRS stands for tip, ring, sleeve. This connector is common in all kinds of audio systems and used for the output signal of the \textbf{zekit}.
@@ -239,7 +233,7 @@ TRS stands for tip, ring, sleeve. This connector is common in all kinds of audio
 \subsubsection{3.5mm TRS Jacks}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-jack2-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-minijack.jpg}
 \end{center}
 
 These jacks are the smaller versions of the TRS jack. In the \textbf{zekit}, they are used for the audio and clock inputs.
@@ -247,7 +241,7 @@ These jacks are the smaller versions of the TRS jack. In the \textbf{zekit}, the
 \subsubsection{Film Capacitors}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-filmcaps-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-caps.jpg}
 \end{center}
 
 The film capacitors behave like normal capacitors but are superior in terms of distortion and noise immunity. They also have lower tolerances and are used in situations where these characteristics are important: in the \textbf{zekit} that's the filter and the VCA.
@@ -255,7 +249,7 @@ The film capacitors behave like normal capacitors but are superior in terms of d
 \subsubsection{Potentiometer Knobs}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-knobs-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-knobs.jpg}
 \end{center}
 
 The knobs are fit onto the potentiometers after the kit is fully assembled. They provide the final look-and-feel and allow precise control of the potentiometer setting.
@@ -263,7 +257,7 @@ The knobs are fit onto the potentiometers after the kit is fully assembled. They
 \subsubsection{Microcontroller IC}
 
 \begin{center}
-    \includegraphics[scale=0.5]{assets/zekit-mcu-resized.jpg}
+    \includegraphics[scale=0.08]{assets/zekit-mcu.jpg}
 \end{center}
 
 The microcontroller is an integrated circuit that contains flash memory to store the firmware, RAM for data and a number of peripherals to communicate with other components. It processes MIDI data, handles the clocks, generates the waveforms, manages the sequencer, controls the envelopes and runs the interface.
@@ -273,7 +267,7 @@ The firmware to handle all these tasks is already pre-pregrammed by Fred’s Lab
 \subsubsection{Optocoupler ICs}
 
 \begin{center}
-    (Todo: images)
+    \includegraphics[scale=0.18]{assets/zekit-optocouplers.jpg}
 \end{center}
 
 An optocoupler is a combination of a photo transistor and an LED inside a single package. It is used keep circuits isolated while transferring signals. The conductance of the photo transistor is related to the brightness of the LED. The \textbf{zekit} uses optocouplers for the MIDI input and as variable resistors in the VCF and VCA.
@@ -281,17 +275,10 @@ An optocoupler is a combination of a photo transistor and an LED inside a single
 \subsubsection{IC Sockets}
 
 \begin{center}
-    (Todo: correct image)
-    \includegraphics[scale=0.5]{assets/zekit-sockets-resized.jpg}
+    \includegraphics[scale=0.15]{assets/zekit-sockets.jpg}
 \end{center}
 
 The IC sockets are mounted instead of soldering the ICs onto the PCB directly. They protect the ICs from the heat during the soldering process and keep them exchangeable.
-
-\subsubsection{Enclosure Plates}
-
-\begin{center}
-    (Todo: image)
-\end{center}
 
 \pagebreak
 
@@ -360,33 +347,29 @@ The IC sockets have a marking on one side. This marking must match the silk scre
 
 These capacitors are more heat sensitive than other parts. Do not heat the pins for a period longer than 5s. These parts are not polarized and can be soldered in any orientation.
 
-\subsubsection{Step 3: 1k Trimmer}
+\subsubsection{Step 3: 10k Trimmer}
 
-This trimmer is labeled \textbf{W102} on the top. Do not confuse it with the 10k variant. This part is not polarized and can be soldered in any orientation.
+This trimmer is labeled \textbf{W103}. This part is not polarized and can be soldered in any orientation.
 
-\subsubsection{Step 4: 10k Trimmer}
-
-This trimmer is labeled \textbf{W103}. Do not confuse it with the 1k variant. This part is not polarized and can be soldered in any orientation.
-
-\subsubsection{Step 5: Tactile Switches}
+\subsubsection{Step 4: Tactile Switches}
 
 While the switch itself works in all orientations, the internal LED must have the correct polarity. The pins of the LEDs have different lengths. The longer pin has a red marking and must be located on the right side of the switch. (Todo: image).
 
 Keep your attention on soldering them straight.
 
-\subsubsection{Step 6: Toggle Switches}
+\subsubsection{Step 5: Toggle Switches}
 
 Keep your attention on soldering them straight. These parts are not polarized and can be soldered in any orientation.
 
-\subsubsection{Step 7: 10k Potentiometers}
+\subsubsection{Step 6: 10k Potentiometers}
 
 These 2 pots are labeled \textbf{10 B3} on the bottom. Do not confuse them with the 100k variants. Keep your attention on soldering them straight.
 
-\subsubsection{Step 8: 100k Potentiometers}
+\subsubsection{Step 7: 100k Potentiometers}
 
 These 4 pots are labeled \textbf{10 B4} on the bottom. Do not confuse them with the 10k variants. Keep your attention on soldering them straight.
 
-\subsubsection{Step 9: Connectors \& Power Switch}
+\subsubsection{Step 8: Connectors \& Power Switch}
 
 The connectors and the power switch are soldered last because they are located on the bottom side of the PCB.
 
@@ -667,6 +650,7 @@ The following technical documents are provided for advisory, repair and educatio
     (Todo: full schematics)
     % \includegraphics[scale=0.7,angle=90,origin=c]{assets/schema-full.png}
 \end{center}
+
 
 
 \end{document}
