@@ -429,7 +429,7 @@ Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the los
 \subsection{Microcontroller}
 
 \begin{center}
-    \includegraphics[scale=0.55]{assets/schema-mcu.png}
+    \includegraphics[scale=0.50]{assets/schema-mcu.png}
 \end{center}
 
 The microcontroller (MCU) \emph{U7} is the brain of the \textbf{zekit}. It processes all signals from the switches and the inputs and generates the audio waveform as well as some control signals for the analog circuitry. This is done by running a firmware that is stored in the internal flash of the chip.
@@ -459,7 +459,7 @@ The input signal \emph{VCF-IN} is decoupled by \emph{C13} and fed in either to t
 \subsection{VCA}
 
 \begin{center}
-    \includegraphics[scale=0.35]{assets/schema-vca.png}
+    \includegraphics[scale=0.40]{assets/schema-vca.png}
 \end{center}
 
 The VCA uses the optocoupler \emph{U3c/U3d} to gain-control the operational amplifier \emph{U6a}. The input signal \emph{VCA-IN} is decoupled by capacitor \emph{C20} and then divided down by resistors \emph{R39} and \emph{R40} to an appropriate level for the optocoupler. To set the output level, the \textbf{Volume} potentiometer is located in the feedback path of the opamp. Resistor \emph{R47} in parallel to the pot provides a nicer control curve for the volume setting. The output is filtered by inductor \emph{L1}, followed by protection resistors \emph{R51} and \emph{R52} and then routed to the output jack \emph{J6}.
@@ -488,6 +488,7 @@ The amplifier envelope works in the same ways as the VCF envelope, but lacks the
 
 \begin{center}
     \includegraphics[scale=0.40]{assets/schema-expo-vcf.png}
+    \includegraphics[scale=0.40]{assets/schema-expo-vca.png}
 \end{center}
 
 This circuit is used to convert the linear control voltage into an exponential current for the optocouplers. The requirement for this is the nature of our human hearing which recognizes pitches and volumes in an exponential way.
@@ -495,10 +496,6 @@ This circuit is used to convert the linear control voltage into an exponential c
 The input of this block uses the signal \emph{VCF} from the filter envelope to drive the buffer transistor \emph{Q1a}. The trim potentiometer \emph{TR1} is used to set a bias level for calibration which is added to the input. The emitter of \emph{Q1a} drives the base of transistor \emph{Q1b} which does the curve conversion. It is based on the fact that the relationship between the base-emitter voltage and the collector current of a transistor is exponential. The collector current of \emph{Q1b} drives the LEDs inside the optocoupler \emph{U5} which controls the filter cutoff.
 
 The VCA uses a similar circuit that is feeded by the VCA envelope.
-
-\begin{center}
-    \includegraphics[scale=0.40]{assets/schema-expo-vca.png}
-\end{center}
 
 \subsection{MIDI Input}
 
@@ -511,7 +508,7 @@ The MIDI input is electrically isolated with an optocoupler to prevent ground lo
 \subsection{Clock Input}
 
 \begin{center}
-    \includegraphics[scale=0.40]{assets/schema-clocks.png}
+    \includegraphics[scale=0.35]{assets/schema-clocks.png}
 \end{center}
 
 The clock signal is taken from the tip of the input jack \emph{J4}. If no plug is inserted, a high level is preset by the pullup resistor \emph{R57}. Depending on the input voltage, transistor \emph{Q4} is either conducting or not. Resistor \emph{R12} and diode \emph{D6} protect the transistor against over-voltage or wrong polarity at the input. At the end, the signal \emph{CLK-IN} is then routed to the microcontroller. The MCU uses an internal pullup activated by the firmware to detect the high level when transistor \emph{Q4} is off.
