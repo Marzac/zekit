@@ -17,8 +17,8 @@
 \usepackage{wrapfig}
 \usepackage{textcomp}
 \usepackage{gensymb}
-\usepackage{graphicx} 		% support the \includegraphics command and options
-\usepackage{booktabs} 		% for much better looking tables
+\usepackage{graphicx} 	% support the \includegraphics command and options
+\usepackage{booktabs} 	% for much better looking tables
 \usepackage{array} 		% for better arrays (eg matrices) in maths
 \usepackage{url}
 \usepackage{enumitem}
@@ -55,7 +55,7 @@
 \title{
     \vspace*{4cm}
     \huge{ZEKIT} \\
-    Instruction and User Guide \\
+    Assembling Instructions \\
     \vspace*{0.25cm}
     \small{Revision 1.0 EN - 01/09/2021} \\
     \vspace*{0.5cm}
@@ -78,207 +78,330 @@
 
 % ------------------------------------------------------------------------------------------
 
+\section{Special Thanks}
+
+I would like to thank the following persons for their contributions:
+
+\begin{itemize}
+    \item Design consulting: René Schmitz, Oliver Rockstedt
+    \item Panel graphics: Serge "erewhon" Beauchamp 
+    \item Instruction guide: Oliver Rockstedt, Frédéric Meslin
+    \item Beta-testing: Benoit Ruelle, William Zegal, Mathieu Meslin
+\end{itemize}
+
+% ------------------------------------------------------------------------------------------
+
 %%% INTRODUCTION
 \section{Introduction}
 
-\textbf{Thank you very much for purchasing the zekit!}
+\textbf{Welcome to the ZeKit assembly guide!}
 
-The \textbf{zekit} is a 4-voice paraphonic synthesizer kit with digital sound synthesis and an analog filter and VCA. It also features two fully analog envelopes as well as a sequencer and can be controlled via MIDI and additional clock signals.
+The \textbf{ZeKit} is a fully functionnal 4-voice paraphonic synth kit with \textbf{digital oscillators} and an \textbf{analog filter and amplifier.} It also features two \textbf{analog envelopes} as well as a simple \textbf{pattern sequencer}. The instrument can be controlled via MIDI and handles \textbf{external clock} signals.
 
-You'll learn a lot while building this kit and you'll end up with a cheap and simple but fun instrument that will integrate into your studio setup.
+Hopefully, you'll learn a lot while building this kit and you'll end up with \textbf{an inexpensive} but \textbf{fun instrument} that will integrate into your studio setup.
 
-\subsection{Required Skills}
+\subsection{Required skills}
 
 \begin{itemize}
-    \item Basic knowledge of analog synthesis
-    \item Soldering experience with through-hole (THT) components
-    \item Knowledge how to interpret a placement diagram
-    \item Knowledge of electronics at a beginners level
+    \item Basic \textbf{knowledge of synthesis}
+    \item Soldering experience with through-hole components
+    \item Knowledge on how to interpret a placement diagram
 \end{itemize}
 
-\subsection{Required Tools}
+\subsection{Required tools}
 
 In order to fully assemble the kit, you'll need the following tools:
 
 \begin{itemize}
-    \item A soldering iron with a tip size around 3mm
-    \item Solder wire with a diameter around 1mm
-    \item Solder braid (repair)
-    \item No-clean flux (liquid)
+    \item A soldering iron with a 3mm flat tip
+    \item 1mm solder wire
     \item A wire cutter
-    \item A flat screwdriver
+    \item A flat head screwdriver
 \end{itemize}
 
-\subsection{Required Accessories}
+\subsection{Required accessories}
 
 \begin{itemize}
-    \item Power supply DC 5-9V, 0.5A with barrel connector 5.5mm x 2.5mm, center positive (can be bought from Fred's Lab website)
-    \item MIDI cable
-    \item Audio cable
-    \item Computer or MIDI controller
-    \item Audio system
+    \item Power supply DC 5 to 9V, 0.5A with barrel connector \\
+    2.1mm x 5.5mm, center positive (*)
+    \item 6.35mm jack audio cable
+    \item Optional / Computer, sequencer or MIDI controller
+    \item Optional / MIDI cable
 \end{itemize}
+
+* A compatible power adapter can be purchased from \textbf{Fred's Lab} website
 
 % ------------------------------------------------------------------------------------------
 \pagebreak
 \section{Box Content}
 
-\includegraphics[scale=0.3]{assets/zekit-content.jpg}
+In the \textbf{ZeKit} package, you'll find the following components:
+\vspace{-0.25cm}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.32]{assets/zekit-content.jpg}
+        \caption{Components included in the kit}
+    \end{center}
+\end{figure}
+
 \vspace{0.25cm}
 
 \begin{center}
-    \begin{tabular}{|r|l|l|}
+    \begin{tabular}{|c|l|l|}
         \hline
         \textbf{Amount} & \textbf{Description} & \textbf{Value} \\
         \hline
         1               & Pre-assembled PCB    &                \\
-        7               & Tactile switches     &                \\
-        2               & Toggle switches      &                \\
-        2               & Potentiometers       & 10k            \\
-        4               & Potentiometers       & 100k           \\
-        1               & Trim potentiometer   & 1k             \\
-        1               & Trim potentiometer   & 10k            \\
+        1               & TRS jack socket      & 6.35mm TRS     \\
+        1               & DIN5 socket          &                \\
+        2               & TRS jacks socket     & 3.5mm TRS      \\
+        1               & Power jack socket    &                \\
         1               & Power switch         &                \\
-        1               & Power jack           &                \\
-        1               & DIN jack             &                \\
-        1               & TRS jack             & 6.3mm          \\
-        2               & TRS jacks            & 3.5mm          \\
-        3               & Film capacitors      & 47nF           \\
+        1               & Trim potentiometer   & 10k Ohm        \\
+        6               & Potentiometer knobs  &                \\
+        3               & Film capacitors      & 47nF / 63v     \\
+        1               & DIL28 IC socket      &                \\        
+        1               & DIL16 IC socket      &                \\
+        1               & DIL6 IC socket       &                \\
+        7               & Tactile switches     &                \\
+        2               & Potentiometers       & 10k Ohm        \\
+        4               & Potentiometers       & 100k Ohm       \\
         1               & Microcontroller IC   & PIC24FJ64GA702 \\
         1               & Optocoupler IC       & LTV-847        \\
         1               & Optocoupler IC       & H11L1SM        \\
-        3               & IC sockets           &                \\
-        6               & Potentiometer knobs  &                \\
-        2               & Enclosure plates     &                \\
+        1               & LED                  & 3mm red color  \\
+        3               & Toggle switches      &                \\
         \hline
     \end{tabular}
 \end{center}
 
-\subsection{The Pre-Assembled PCB}
+\vspace{0.25cm}
+Before firing up your soldering iron, \textbf{make sure your kit is complete} and take the time to \textbf{get to know} the different parts.
 
-\begin{center}
-\includegraphics[scale=0.10]{assets/zekit-unassembled.jpg}
-\end{center}
+\pagebreak
+\subsection{Pre-Assembled PCB}
+
+The \textbf{ZeKit} makes use of \textbf{SMD} (surface mounted devices) and \textbf{THT} (through hole technology) components. SMD components allow the design to remain \textbf{compact and simple} to manufacture but and more cost effective.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.10]{assets/zekit-unassembled.jpg}
+        \caption{Pre-assembled ZeKit PCB}
+    \end{center}
+\end{figure}
+
+All SMD components come already assembled on the PCB (printed circuit board). The THT components are left to be hand soldered, and this is your mission!
 
 \subsection{Provided Parts}
 
+\subsubsection{LED}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.15]{assets/zekit-led.jpg}
+        \caption{3mm LED}
+    \end{center}
+\end{figure}
+
+The \textbf{LED} (Light Emitting Diode) is an indicator that lights up when a current is running through it.
+It shows here when the instrument is turned on.
+
 \subsubsection{Tactile Switches}
 
-\begin{center}
-    \includegraphics[scale=0.20]{assets/zekit-tacts.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.20]{assets/zekit-tacts.jpg}
+        \caption{Tactile switches}
+    \end{center}
+\end{figure}
 
-The tactile switches are momentary switches used as buttons. They feature a contact that is normally open and gets closed when the switch is pressed. The model of switch used in this kit has an additional LED that illuminates the cap to show status information. They are connected to the microcontroller directly.
+The \textbf{tactile switches} are \textbf{momentary switches} used as interface buttons.
+
+Their contact is normally open and gets closed when the switch is pressed. These switches have an \textbf{LED built in} that illuminates the cap to show some status information.
+
+They are connected to the microcontroller directly and are used to select the oscillator waveform, choose the sequencer pattern and toggle various options.
 
 \subsubsection{Toggle Switches}
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-toggles.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.16]{assets/zekit-toggles.jpg}
+        \caption{SPDT toggle switches}
+    \end{center}
+\end{figure}
 
-In contrast to the tactile switches, the toggle switches have two stable positions. Depending on the position one contact is permanently closed while the other is open and vice versa. In the \textbf{zekit} these switches are used in the analog filter to select the mode (low-pass or band-pass) and resonance.
+In contrast to the tactile switches, the \textbf{toggle switches} have \textbf{two stable positions.} They are also called \textbf{SPDT} (single pole, dual throw) switches.
+Depending on the lever position, one contact is closed while the other is open and vice versa.
+
+In the \textbf{ZeKit}, these switches select the filter mode (low-pass or band-pass), the filter resonance amount (low or high) and the routing of the external audio input.
 
 \subsubsection{Potentiometers}
 
-\begin{center}
-    \includegraphics[scale=0.20]{assets/zekit-pots.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.25]{assets/zekit-pots.jpg}
+        \caption{Linear mono potentiometers}
+    \end{center}
+\end{figure}
 
-The potentiometers are variable resistors used to control parameters in the analog domain. They consist of a wiper that slides over a resistive element to form a voltage-divider.
+The \textbf{potentiometers} (or "pots") are \textbf{variable resistors} meant to control sound parameters in the analog domain. They consist of a \textbf{conductive wiper} that slides over a circular \textbf{resistive track} to form a voltage-divider.
 
-The \textbf{zekit} uses two types of potentiometers with different values: 10k and 100k. These must not be confused and can be identified by the labeling on the bottom. The 10k pot is marked with a \textbf{B1 03} print, the 100k pot has a \textbf{B1 04} labeling.
+The \textbf{ZeKit} uses potentiometers of two different values: \textbf{10k} and \textbf{100k} Ohm.
+
+The pots must not be interchanged or the circuit won't work correctly. They can be easily identified by the label found on their bottom.
+
+$\bullet$ \textbf{B103} = 10k Ohm\\
+$\bullet$ \textbf{B104} = 100k Ohm\\
 
 \subsubsection{Trimmer}
 
-\begin{center}
-    \includegraphics[scale=0.20]{assets/zekit-trimmer.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.20]{assets/zekit-trimmer.jpg}
+        \caption{Multiturn trimmer}
+    \end{center}
+\end{figure}
 
-The trimmers work like normal potentiometers but are intended for calibration purposes instead of regular use. They are much smaller the regular pots and need to be adjusted via a screwdriver.
+\textbf{Trimmers} are specific potentiometers \textbf{intended for calibration}, to compensate for the effects of tolerances in other components manufacturing.
 
-There are two types of trimmers with different values: 1k and 10k. These must not be confused and can be identified by the labeling on the top. The 1k trimmer is marked with a \textbf{W102} print, the 10k trimmer has a \textbf{W103} labeling.
+These are smaller than regular potentiometers and need to be adjusted with a flathead screwdriver. They offer a \textbf{great setting precision} since their screw can be turned multiple times. They are also called \textbf{multiturn trimmers}.
+
+The \textbf{ZeKit} uses a single trimmer to define the filter cutoff frequency range.
 
 \subsubsection{Power Switch}
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-power.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.18]{assets/zekit-power.jpg}
+        \caption{Power switch}
+    \end{center}
+\end{figure}
 
-The power switch is a push button switch with a toggle behaviour. Pressed once, the contact closes and remains in this state until it is pushed again.
+The \textbf{power switch} is a \textbf{latching push button} with a toggle behaviour. \\
+Pressed once, the contact closes and remains in this state until it is pressed again. \\
+This switch turns the \textbf{ZeKit} power on or off.
 
-\subsubsection{Power Jack}
+\subsubsection{Power Jack Socket}
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-dcjack.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.15]{assets/zekit-dcjack.jpg}
+        \caption{Power jack socket}
+    \end{center}
+\end{figure}
 
-The power jack is a 2.1mm barrel connector that has a widespread use with power supplies. It has an additional switch that is opened when a plug is inserted. This is useful in devices with internal batteries to disable them on external supply but not used in this kit.
+The \textbf{power jack} is a standard 2.1mm barrel or coaxial connector that has a widespread use with low voltage power supplies.
 
-\subsubsection{DIN Jack}
+The \textbf{ZeKit} can be powered from any DC (direct current) adapter with a voltage ranging from 5V to 9V. The center connection must be positive.
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-din.jpg}
-\end{center}
+\subsubsection{DIN5 Socket}
 
-The DIN jack is a 5-pin connector that is used for the MIDI input from external devices.
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.15]{assets/zekit-din.jpg}
+        \caption{DIN5 socket}
+    \end{center}
+\end{figure}
 
-\subsubsection{6.35mm TRS Jack}
+The \textbf{DIN5 socket} is a 5-pin connector used for \textbf{MIDI input}. \textbf{MIDI} stands for \textbf{Music Instrument Digital Interface} and allows the \textbf{ZeKit} to play notes and be synchronized rythmically with other compatible gear, like controllers or sequencers.
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-jack.jpg}
-\end{center}
+\subsubsection{6.35mm TRS Socket}
 
-TRS stands for tip, ring, sleeve. This connector is common in all kinds of audio systems and used for the output signal of the \textbf{zekit}.
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.20]{assets/zekit-jack.jpg}
+        \caption{6.35mm Jack Socket}
+    \end{center}
+\end{figure}
 
-\subsubsection{3.5mm TRS Jacks}
+The \textbf{TRS jack} stands for "tip, ring and sleeve". This connector is common in \textbf{audio systems} to transmit the sound. The sleeve connection is always grounded whereas the tip and ring respectively carry the left and right audio signals.
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-minijack.jpg}
-\end{center}
+This connector is used as the \textbf{ZeKit} line and headphones output.
 
-These jacks are the smaller versions of the TRS jack. In the \textbf{zekit}, they are used for the audio and clock inputs.
+\pagebreak
+\subsubsection{3.5mm TRS Sockets}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.15]{assets/zekit-minijack.jpg}
+        \caption{3.5mm Jack Sockets}
+    \end{center}
+\end{figure}
+
+These sockets are smaller versions of the 6.35mm ones. In the \textbf{ZeKit}, they are used for the \textbf{external audio} and the \textbf{clock or "sync"} inputs.
+
+The \textbf{clock signal} is expected on the jack tip and the sequencer running state (start or stop) on the ring connection. The sleeve connection is grounded.
 
 \subsubsection{Film Capacitors}
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-caps.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.15]{assets/zekit-caps.jpg}
+        \caption{47nF Film Capacitors}
+    \end{center}
+\end{figure}
 
-The film capacitors behave like normal capacitors but are superior in terms of distortion and noise immunity. They also have lower tolerances and are used in situations where these characteristics are important: in the \textbf{zekit} that's the filter and the VCA.
+The \textbf{film capacitors} are capacitors or "caps", they can \textbf{store and release energy.} These types are superior to standard ceramic ones, in terms of \textbf{distortion and noise immunity.}
+They also have tighter capacity tolerances.
 
-\subsubsection{Potentiometer Knobs}
+In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplifier, to process the audio signal.
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-knobs.jpg}
-\end{center}
+\pagebreak
+\subsubsection{PIC Microcontroller IC}
 
-The knobs are fit onto the potentiometers after the kit is fully assembled. They provide the final look-and-feel and allow precise control of the potentiometer setting.
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.08]{assets/zekit-mcu.jpg}
+        \caption{PIC24F 16bit MCU}
+    \end{center}
+\end{figure}
 
-\subsubsection{Microcontroller IC}
+The \textbf{microcontroller} or "MCU" (Micro-Controller Unit) is an IC (integrated circuit) that contains a \textbf{complete computer.} It features flash memory to store the firmware, RAM to hold data and a processing core with a number of integrated peripherals to communicate with external components.
 
-\begin{center}
-    \includegraphics[scale=0.08]{assets/zekit-mcu.jpg}
-\end{center}
-
-The microcontroller is an integrated circuit that contains flash memory to store the firmware, RAM for data and a number of peripherals to communicate with other components. It processes MIDI data, handles the clocks, generates the waveforms, manages the sequencer, controls the envelopes and runs the interface.
-
-The firmware to handle all these tasks is already pre-pregrammed by Fred’s Lab, but can be replaced by using a dedicated programmer kit.
+The \textbf{ZeKit} MCU has a 16bit architecture running at 16Mhz. Its job is to process incoming MIDI messages, handle clock signals, generate the waveforms, run the sequencer, control the envelopes and manage the user interface (buttons and LEDs).
+The firmware that handles all these tasks is already pre-programmed by \textbf{Fred’s Lab,} but it can be modified and replaced by the user, using a \textbf{dedicated programmer probe} (non provided).
 
 \subsubsection{Optocoupler ICs}
 
-\begin{center}
-    \includegraphics[scale=0.18]{assets/zekit-optocouplers.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.18]{assets/zekit-optocouplers.jpg}
+        \caption{Single and quad optocouplers}
+    \end{center}
+\end{figure}
 
-An optocoupler is a combination of a photo transistor and an LED inside a single package. It is used keep circuits isolated while transferring signals. The conductance of the photo transistor is related to the brightness of the LED. The \textbf{zekit} uses optocouplers for the MIDI input and as variable resistors in the VCF and VCA.
+An \textbf{optocoupler} is a combination of a \textbf{photo transistor} and \textbf{a LED} inside a single package. It is used keep circuits \textbf{electrically isolated} while transferring signals. The conductance of the photo transistor is related to the brightness of the LED.
 
+The \textbf{ZeKit} uses optocouplers for the \textbf{MIDI input} and as \textbf{current controlled resistors} in the VCF (voltage controlled filter) and VCA (voltage controlled amplifier) sections.
+
+\pagebreak
 \subsubsection{IC Sockets}
 
-\begin{center}
-    \includegraphics[scale=0.15]{assets/zekit-sockets.jpg}
-\end{center}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.17]{assets/zekit-sockets.jpg}
+        \caption{DIP sockets}
+    \end{center}
+\end{figure}
 
-The IC sockets are mounted instead of soldering the ICs onto the PCB directly. They protect the ICs from the heat during the soldering process and keep them exchangeable.
+
+\textbf{DIP sockets} (Dual In-line Package) are mounted instead of directly soldering the ICs onto the PCB.
+
+While not mandatory, they will protect the ICs from \textbf{overheating} when soldering and keep them \textbf{exchangeable.} Finally, the sockets will prevent the ICs being soldered in "the wrong direction" ... Do not worry, this happens to the best of us!
+
+\subsubsection{Potentiometer Knobs}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.15]{assets/zekit-knobs.jpg}
+        \caption{Potentiometer knobs}
+    \end{center}
+\end{figure}
+
+\textbf{The knobs} are fitted onto the potentiometers after the kit is fully assembled.
+
+They provide the final \textbf{look-and-feel} and allow precise control of the potentiometer and sound settings.
 
 \pagebreak
 
@@ -288,39 +411,62 @@ The IC sockets are mounted instead of soldering the ICs onto the PCB directly. T
 
 \subsection{General Advices}
 
-To maximize your chance of success when assembling the Zekit, work on a tidy properly lit \& flat surface. Do not hesitate to use magnification to control your solder joints, reheat with flux when necessary. Store unused parts in boxes or bags.
+To maximize your chance of success assembling the \textbf{ZeKit,} work preferably on a tidy \& properly lit surface.
+Don't hesitate to use \textbf{magnification} to control your solder joints, reheat with noclean flux if necessary.
+Keep unused parts in their original packaging.
 
-Soldering is well done using a clean and not oxidized iron tip. Switch off your iron when not in use to prevent damage of the tip.
+Soldering is easier with a \textbf{clean and not oxidized} iron tip. Always switch your iron off when not soldering to extend the tip lifespan!
 
-\subsection{Setting Up the Soldering Gig}
+\subsection{Setting up the soldering gig}
 
 \begin{itemize}
-    \item Clean the tip with a tip cleaner
-    \item Always use a wet sponge to clean the tip
-    \item \textbf{Important:} use no-clean flux only
-    \item Use SnCuNiGe (SN100C) or SN96.5Ag3Cu0.5 (SAC305) or Sn60Pb40 solder wire
-    \item Have some duct tape at hand
-    \item Use proper lighting
     \item Only work in a well ventilated room
+    \item Use SnCuNiGe (SN100C), SN96.5Ag3Cu0.5 (SAC305) or Sn60Pb40
+    \item Regularly clean the tip with a wet sponge
+    \item Have some duct tape at hand
 \end{itemize}
 
-Tips:
+\subsection{How to solder like a Pro}
+
+Great soldering joints can be achieved even with basic equipment and little practice,\\
+when respecting the following steps:
+
+\begin{enumerate}
+    \item Position (and secure) the component properly
+    \item Apply heat to the PCB pad with the iron tip
+    \item Bring in the wire until there is enough material
+    \item Remove the soldering wire while heating the joint
+    \item Pull back the tip from the joint
+    \item Let the solder junction cool down naturally
+\end{enumerate}
+
+\vspace{0.25cm}
+\begin{center}
+    \includegraphics[scale=0.65]{assets/solder-strip.jpg}
+\end{center}
+
+\pagebreak
+\textbf{Additional Tips:}
 
 \begin{itemize}
-    \item Make sure the board is clean
-    \item Apply flux before soldering
-    \item Double check the tact switches orientation (really!)
+    \item Ensure the board is clean before soldering
+    \item Use Isopropyl alcohol to clean the PCB (if needed)
+    \item Apply noclean flux BEFORE soldering
+    \item Double check components orientation
+    \item Tape the components before soldering
 \end{itemize}
 
+\pagebreak
 \subsection{Soldering the Components}
 
-All parts have to be soldered in a specific order that is determined by the placement and size of each component.
+The parts have to be soldered in a \textbf{specific order} that is determined by the placement and size of each component.
 
 Some useful tips:
 
 \begin{itemize}
-    \item Tape the components to prevent them from falling off when turning over the PCB for soldering
-    \item All potentiometers and switches must be soldered straight. Otherwise, the front plate will not fit. To achieve this, solder only one pin first, then correct the position by gently pressing the part in the right position. After that, solder the remaining pins.
+    \item Tape the components to prevent them from moving or falling off when turning over the PCB for soldering.
+    \item All potentiometers, switches and connectors must be \textbf{soldered straight.} \\\\
+    Otherwise, the optional panel and housing won't fit. To achieve this, solder only one pin first. Then, correct the component position by \textbf{gently pressing} it in the right position. Finally, solder the remaining pins.
 \end{itemize}
 
 \vspace{0.25cm}
@@ -401,12 +547,17 @@ The connectors and the power switch are soldered last because they are located o
 \pagebreak
 
 % ------------------------------------------------------------------------------------------
-
 \section{Functional Description}
 
 \subsection{Power Supply}
 
-The Zekit needs the energy delivered by the power supply. This block provides 2 voltages: +3.3V and -2V, using a linear regulator and a charge pump respectively.
+The \textbf{ZeKit} needs the energy delivered by the power supply.
+This block provides 3 voltages: 
+\begin{itemize}
+    \item UNREG (what comes as input voltage)
+    \item +3.3V using a \textbf{linear regulator}
+    \item -2.0V using a \textbf{charge pump}
+\end{itemize}
 
 \subsubsection{Linear Regulator}
 
@@ -414,7 +565,9 @@ The Zekit needs the energy delivered by the power supply. This block provides 2 
     \includegraphics[scale=0.4]{assets/schema-power.png}
 \end{center}
 
-\emph{SW1} is the power switch. \emph{D3} ensure voltage polarity is correct, by letting the current flows only in the right direction. \emph{C4}, \emph{R9} \& \emph{C7} filter the input voltage, reducing supply noise. \emph{U2} regulates down the input, assuring a stable +3V3 in all circumstances. \emph{C8} secures \emph{U2} against possible oscillation of its output voltage.
+\emph{SW1} is the power switch. The diodes \emph{D2} \& \emph{D3} ensure a \textbf{correct voltage polarity,} by letting the current flows only in the right direction. The diodes also select which source (power adapter or battery) powers the \textbf{ZeKit}.
+
+\emph{C4}, \emph{L2} \& \emph{C7} filter the input voltage, \textbf{reducing supply noise.} \emph{U2} regulates down the input, assuring a stable +3V3 in all circumstances. \emph{C8} secures \emph{U2} against possible oscillation of its output voltage.
 
 \subsubsection{Charge Pump}
 
@@ -422,9 +575,11 @@ The Zekit needs the energy delivered by the power supply. This block provides 2 
     \includegraphics[scale=0.3]{assets/schema-pump.png}
 \end{center}
 
-The \emph{PUMP} signal is fed by the microcontroller and alternates between GND and +3.3V at a high frequency. When \emph{PUMP} is at +3.3V, \emph{C3} is charged via \emph{R3} and \emph{D2}, while \emph{D4} is non-conductive. When \emph{PUMP} is at GND, \emph{D2} is isolating and the charge of \emph{C3} is transferred to \emph{C5} via the now conducting \emph{D4}. The inductor \emph{L1} filters the voltage for better noise immunity.
+The \emph{PUMP} signal is generated by the MCU and alternates between GND and +3.3V at a high frequency. When \emph{PUMP} is at +3.3V, \emph{C3} is charged via \emph{R3} and \emph{D4}, while \emph{D5} is non-conductive. When \emph{PUMP} is at GND, \emph{D4} is blocking and the charge of \emph{C3} is dumped through \emph{R3}, literally pumping charges from \emph{C6} via the now conducting \emph{D5}.
 
-Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the loss inside the diodes, it will be around -2V, which is still sufficient for proper operation.
+The inductor \emph{L1} filters the charge pump voltage for better noise immunity.
+
+Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the losses inside the diodes, it will be around -2V, which is sufficient for proper operation.
 
 \subsection{Microcontroller}
 
@@ -432,9 +587,9 @@ Ideally, the output voltage at \emph{TP1} would be -3.3V, but because of the los
     \includegraphics[scale=0.50]{assets/schema-mcu.png}
 \end{center}
 
-The microcontroller (MCU) \emph{U7} is the brain of the \textbf{zekit}. It processes all signals from the switches and the inputs and generates the audio waveform as well as some control signals for the analog circuitry. This is done by running a firmware that is stored in the internal flash of the chip.
+The \textbf{microcontroller} (MCU) \emph{U4} is the brain of the \textbf{ZeKit}. It processes all signals from the switches and the inputs and generates the \textbf{audio waveforms} as well as control signals for the analog circuitry. This is done by running a firmware that is stored in the internal flash of the chip.
 
-The capacitors \emph{C11}, \emph{C12} and \emph{C14} are used together with the inductor \emph{L2} to improve the stability of the power supply and reduce noise.
+The capacitors \emph{C12}, \emph{C13} and \emph{C14} are used together with the inductor \emph{L3} to improve the stability of the power supply and reduce noise propagation.
 
 \subsection{DAC}
 
@@ -442,9 +597,9 @@ The capacitors \emph{C11}, \emph{C12} and \emph{C14} are used together with the 
     \includegraphics[scale=0.30]{assets/schema-dac.png}
 \end{center}
 
-The digital-to-analog converter (DAC) \emph{U3} is directly connected to the microcontroller via 3 signals. It converts the waveform calculated by the MCU into the analog domain. Capacitor \emph{C13} removes the DC offset of the signal, resistor \emph{R19} conditions the level to fit in the range of the next stage (the VCF).
+The \textbf{digital-to-analog converter} (DAC) \emph{U3} is directly connected to the MCU via 3 signals. It converts the digital waveforms into a signal in the analog domain. Capacitor \emph{C11} removes the DC offset of the signal, resistor \emph{R18} \& \emph{R19} condition the level to suit the VCF inputs.
 
-The DAC chip provides two independent output channels of which only one is used internally. The unused channel is routed to the test point \emph{TP4} and can be utilized for additional purposes.
+This DAC chip provides two independent output channels (audio out and filter cutoff control).
 
 \subsection{VCF}
 
@@ -452,7 +607,9 @@ The DAC chip provides two independent output channels of which only one is used 
     \includegraphics[scale=0.50]{assets/schema-vcf.png}
 \end{center}
 
-The filter is a 2nd order design with a 12dB/octave slope. The first stage consists of the optocoupler \emph{U3a/U3b} and the capacitor \emph{C15}, the second one of optocoupler \emph{U3b} and capacitor \emph{C19}, in which the optocouplers take the role of the resistive element to control the frequency.
+The filter is a \textbf{2nd order design} with a 12dB/octave slope. The first stage consists of the optocouplers \emph{U5a \& U5b} and the capacitor \emph{C15}, the second stage of the optocoupler \emph{U5b} and the capacitor \emph{C19}. The optocouplers take the role of the resistive elements to control the cutoff frequency.
+
+NOT CHECKED FROM HERE
 
 The input signal \emph{VCF-IN} is decoupled by \emph{C13} and fed in either to the first stage or the feedback path, depending whether low-pass or band-pass configuration is selected by toggle switch \emph{TG1}. The resonance is determined by the feedback loop and can be chosen between two amounts via toggle switch \emph{TG2}. The trimmer \emph{TR2} allows to fine-control one of the settings. The operational amplifier \emph{U6b} provides the necessary gain for driving the next stage and the feedback loop. It utilizes the diode \emph{D7} to tame the amplitude at higher levels by producing a nice-sounding distortion.
 
@@ -527,33 +684,7 @@ In order to reduce the number of required signal lines, the MCU firmware uses a 
 
 When the MCU pin is configured as input, the button state can be read. In case the button is released, a high level is detected because the pin is connected to +3.3V via the LED and the resistor \emph{R18}. When the button is pressed, the pin is directly connected to GND and a low level is detected. When the MCU pin is configured as output, the LED can be illuminated by driving the signal to GND.
 
-\pagebreak
-
 % ------------------------------------------------------------------------------------------
-
-\section{Operation}
-
-\subsection{Precautions}
-Before plugging in the \textbf{zekit!} and go \textbf{rocking the world}, have a sit and read this precautions through:
-
-\begin{itemize}
-    \item Always use the device in a dry and warm environment
-    \item Never drop the device or expose to too much pressure or vibration
-    \item Never spill liquids or bath the device in beer
-    \item Never clean the device with an aggressive solvent
-    \item Never wiggle the plugs to disconnect the cords
-    \item Never connect the line outputs to the power outputs of an amplifier
-    \item Only modify the unit at your own risk!
-\end{itemize}
-
-\textbf{The zekit} used in conjunction with headphones and speaker systems can produce \textbf{very loud sounds} in a wide range of frequencies.
-
-Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch out your hears and those of your audience!
-
-(Todo: user manual)
-
-% ------------------------------------------------------------------------------------------
-
 \section{Additional Resources}
 
 \begin{itemize}
@@ -567,8 +698,9 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
 
 \section{Legal Notices}
 
-\textbf{Fred's Lab} cannot be liable for erroneous information contained in this manual. The contents of this manual may be updated at any time without prior notice. We have put best effort to ensure the information provided here is useful and accurate. Fred's Lab extends no liabilities in regard to this manual other than those required by the local laws.
+\textbf{Fred's Lab} cannot be liable for erroneous information contained in this manual. Its contents may be updated without prior notice. We have put our best effort to ensure the information provided here is \textbf{useful and accurate.} \textbf{Fred's Lab} extends no liabilities in regard to this manual other than those required by the local laws.
 
+\vspace{0.25cm}
 \begin{center}
     \textbf{Frédéric Meslin Audiogeräte} \\
     Herwarthstraße, 20 \\
@@ -577,84 +709,36 @@ Human hearing is \textbf{very sensitive} and can be damaged quickly. So watch ou
     \url{http://fredslab.net} \\
 \end{center}
 
+\vspace{0.25cm}
 \textbf{Support requests} \\
-For support requests, you can reach me per e-mail at:
+For support requests, you can reach us per e-mail at:
 \begin{center}
     \url{support@fredslab.net}
 \end{center}
-or per post, using the previously mentioned company address.
+or per post, using the company address.
 
-For each support request, please include the instrument model, serial number and a precise description of the problem encountered with a maximum of details and supporting elements for a quick resolution.
+For each support request, please include the \textbf{product model, serial number} and a \textbf{precise description} of the problem encountered with a maximum of details and supporting elements for a quick resolution.
 
+\vspace{0.5cm}
 \textbf{Copyright information}
 
-This original manual, its content, including the graphics \& descriptions are the property of \textbf{Fred's Lab}. No part of this manual should be reproduced other than for customer personal use and backup needs without a written permission from \textbf{Fred's Lab}.
+This original manual, its content, including graphics, pictures \& descriptions are the property of \textbf{Fred's Lab}. No part of this manual should be reproduced other than for customer personal use and backup needs without a written permission from \textbf{Fred's Lab}.
 
 \pagebreak
 
 % ------------------------------------------------------------------------------------------
-
-\section{Special Thanks}
-
-I would like to thank the following persons for their contributions to this project:
-
-\begin{itemize}
-    \item Quality insurance: Benoit Ruelle, William Zegal, René Schmidt, Mathieu Meslin, Oliver Rockstedt
-    \item Instruction guide: Oliver Rockstedt
-\end{itemize}
-
-% ------------------------------------------------------------------------------------------
-
-\section{Warranty}
-
- (Todo: check if really required)
-
-\textbf{Fred's Lab} warranty this product free of defects \textbf{3 years} from its
-date of purchase.
-
-This warranty covers product from manufacturing defects, when the product is used observing normal operating conditions. However, the warranty \textbf{does not cover}:
-
-\begin{itemize}
-    \item Normal product wear-out
-    \item Damages caused by failure to observe the rules of use
-    \item Damages due to negligence of the user
-    \item Products having been modified or repaired by the user or a third person
-\end{itemize}
-
-More information about product warranty can be found in the \textbf{General Terms and Conditions of Sale document} available at:
-\begin{center}
-    \url{https://fredslab.net/en/terms.html}
-\end{center}
-
-% ------------------------------------------------------------------------------------------
-
-\section{License}
-
- (Todo)
-
-\begin{itemize}
-    \item Schematics
-    \item Software
-    \item Design
-\end{itemize}
-
-\pagebreak
-
-% ------------------------------------------------------------------------------------------
-
 \section{Schematics}
-
-To minimize electronic waste and ensure long product life, Fred’s Lab is willing to provide all technical documents needed to repair his products. The following schematics are provided ”as is” with no warranty of any kind. Any modification made to a Fred’s Lab instrument immediately voids the included 3-year product warranty. Repairs must be carried out by a competent repair service. Fred’s Lab stays available for the maintenance of your instruments. Do not hesitate to contact the support service for a free quote. Spare parts can directly be ordered from us.
-
-\textbf{Intellectual property:}
-
-The following technical documents are provided for advisory, repair and educational purposes only. They remain the entire property of Fred's Lab and cannot be reproduced without a written authorization. Users are granted to draw inspiration from this information for their projects (commercial or not), while respecting the limits of non-cloning or counterfeiting the original product. If in doubt about legal matters, please contact us.
-
+\textbf{Schematics} are provided under the Creative Commons \textbf{CC BY-NC licence}.\\\\
+This license allows you to \textbf{remix, adapt, and build upon} this work non-commercially, provided that the derivative works acknowledge the contributions of the original author. 
+\vspace{0.25cm}
 \begin{center}
-    (Todo: full schematics)
-    % \includegraphics[scale=0.7,angle=90,origin=c]{assets/schema-full.png}
+    \includegraphics[scale=0.72,origin=c]{assets/schema-full.png}
 \end{center}
 
-
+\section{Bill Of Material}
+\vspace{0.25cm}
+\begin{center}
+    \includegraphics[scale=0.72,origin=c]{assets/bom.png}
+\end{center}
 
 \end{document}
