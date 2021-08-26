@@ -125,7 +125,7 @@ In order to fully assemble the kit, you'll need the following tools:
     \item Power supply DC 5 to 9V, 0.5A with barrel connector \\
     2.1mm x 5.5mm, center positive (*)
     \item 6.35mm jack audio cable
-    \item Optional / Computer, sequencer or MIDI controller
+    \item Optional / computer, sequencer or MIDI controller
     \item Optional / MIDI cable
 \end{itemize}
 
@@ -195,17 +195,17 @@ All SMD components come already assembled on the PCB (printed circuit board). Th
 
 \subsection{Provided Parts}
 
-\subsubsection{LED}
+\subsubsection{Power LED}
 
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[scale=0.15]{assets/zekit-led.jpg}
-        \caption{3mm LED}
+        \caption{3mm red LED}
     \end{center}
 \end{figure}
 
 The \textbf{LED} (Light Emitting Diode) is an indicator that lights up when a current is running through it.
-It shows here when the instrument is turned on.
+Here, it shows when the instrument is powered on.
 
 \subsubsection{Tactile Switches}
 
@@ -306,7 +306,7 @@ The \textbf{ZeKit} can be powered from any DC (direct current) adapter with a vo
 
 The \textbf{DIN5 socket} is a 5-pin connector used for \textbf{MIDI input}. \textbf{MIDI} stands for \textbf{Music Instrument Digital Interface} and allows the \textbf{ZeKit} to play notes and be synchronized rythmically with other compatible gear, like controllers or sequencers.
 
-\subsubsection{6.35mm TRS Socket}
+\subsubsection{6.35mm TRS Jack Socket}
 
 \begin{figure}[!ht]
     \begin{center}
@@ -320,7 +320,7 @@ The \textbf{TRS jack} stands for "tip, ring and sleeve". This connector is commo
 This connector is used as the \textbf{ZeKit} line and headphones output.
 
 \pagebreak
-\subsubsection{3.5mm TRS Sockets}
+\subsubsection{3.5mm TRS Jack Sockets}
 
 \begin{figure}[!ht]
     \begin{center}
@@ -468,15 +468,10 @@ when respecting the following steps:
 \pagebreak
 \subsection{Soldering the Components}
 
-The parts have to be soldered in a \textbf{specific order} that is determined by the placement and size of each component.
+The parts have to be soldered in \textbf{a specific order} that is determined by the placement and size of each component.
 
-Some useful tips:
-
-\begin{itemize}
-    \item Tape the components to prevent them from moving or falling off when turning over the PCB for soldering.
-    \item All potentiometers, switches and connectors must be \textbf{soldered straight.} \\\\
-    Otherwise, the optional panel and housing won't fit. To achieve this, solder only one pin first. Then, correct the component position by \textbf{gently pressing} it in the right position. Finally, solder the remaining pins.
-\end{itemize}
+You can \textbf{tape the components} to prevent them from moving when turning over the PCB for soldering.
+All potentiometers, switches, leds and connectors \textbf{must be soldered as straight as possible.}
 
 \begin{figure}[!ht]
     \begin{center}
@@ -487,9 +482,11 @@ Some useful tips:
 
 \vspace{0.25cm}
 
+\textbf{Important remarks}
+
 \begin{tcolorbox}
     \textcolor{red}{
-        \textbf{Some components have a polarity and must be soldered in the right orientation. Even if they fit onto the PCB mechanically in more than one way, using the wrong orientation will result in erroneous operation and can even destroy these parts.}
+        \textbf{Some parts have a polarity and \emph{must be soldered in the right orientation.} These components may fit in more than one way but using a wrong orientation will result in erroneous operation or can destroy them.}
     }
 \end{tcolorbox}
 
@@ -497,7 +494,14 @@ Some useful tips:
 
 \begin{tcolorbox}
     \textcolor{red}{
-        \textbf{All connectors and the power switch are located on the bottom side of the PCB and must be soldered from the top.}
+        \textbf{All connectors and the power switch are located on \emph{the bottom side} of the PCB and must be soldered from the top.}
+    }
+\end{tcolorbox}
+
+\vspace{0.5cm}
+\begin{tcolorbox}
+    \textcolor{red}{
+        \textbf{Desoldering a part which has been incorrectly mounted is tedious and requires good soldering experience and specific tools. To avoid this, better check the part placement twice before soldering.}
     }
 \end{tcolorbox}
 
@@ -591,6 +595,9 @@ The \textbf{toggle switches} are not polarized and can be soldered in any orient
 
 \subsubsection{Step 6: Potentiometers}
 
+There are two \textbf{potentiometer values} provided: 10k and 100k Ohm.
+The \textbf{10k pots} are labeled \textbf{B103} at their bottom whereas the \textbf{100k pots} are labeled \textbf{B104}.
+
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[scale=0.32]{assets/pots-marking.jpg}
@@ -598,24 +605,27 @@ The \textbf{toggle switches} are not polarized and can be soldered in any orient
     \end{center}
 \end{figure}
 
-There are two \textbf{potentiometer} values provided: 10k and 100k Ohm.
-
-The 10k pots are labeled \textbf{B103} at their bottom whereas the 100k pots are labeled \textbf{B104}.
-Make sure to install the right value at the right spot, by \textbf{following the markings} drawn on the PCB silk screen print.
+To install the right pot at the right spot, \textbf{follow the markings} drawn on the PCB silk screen.
 Also, keep your attention on soldering the pots straight.
 
 \pagebreak
-\subsubsection{Step 7: Connectors, Power Switch \& Power LED}
+
+\subsubsection{Step 7: Power LED}
+
+The \textbf{power LED} is a polarized component and must be installed so \textbf{its longer leg} is the closest to the \emph{SW2 tactile switch} (see picture).
+To suit the optional enclosure, the LED should be \textbf{mounted straight} and top at approximatively 1cm from the PCB surface.
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.60]{assets/pcb-bot.png}
-        \caption{Bottom placement diagram}
+        \includegraphics[scale=0.35]{assets/pcb-led.jpg}
+        \caption{Power LED orientation}
     \end{center}
 \end{figure}
 
-The \textbf{connectors, power switch and power LED} are soldered last because they are located at the bottom side of the PCB.
-If the trimmer was not installed at step 3, it is the moment to solder it too.
+Solder the long leg first and then carefully adjust the LED height and alignment by reheating the solder joint and moving gently the part.
+Once you're satisfied with the LED position, solder the short leg and then trim the excess off.
+
+\subsubsection{Step 8: Connectors \& Power Switch}
 
 \begin{figure}[!ht]
     \begin{center}
@@ -624,8 +634,19 @@ If the trimmer was not installed at step 3, it is the moment to solder it too.
     \end{center}
 \end{figure}
 
-\pagebreak
-\subsubsection{Step 8: Installing the ICs}
+The \textbf{connectors, power switch and power LED} are soldered last because they are located on the bottom side of the PCB.
+If the trimmer was not installed at step 3, solder it now.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.60]{assets/pcb-bot.png}
+        \caption{Bottom placement diagram}
+    \end{center}
+\end{figure}
+
+\subsubsection{Step 9: Inserting the ICs}
+
+(Todo: maybe power up and measure supply voltages before)
 
 \begin{figure}[!ht]
     \begin{center}
@@ -634,7 +655,6 @@ If the trimmer was not installed at step 3, it is the moment to solder it too.
     \end{center}
 \end{figure}
 
-(Todo: maybe power up and measure supply voltages before)
 
 \begin{itemize}
     \item MIDI optocoupler
@@ -644,6 +664,8 @@ If the trimmer was not installed at step 3, it is the moment to solder it too.
 
 \pagebreak
 \section{Power Up and Test}
+
+Kaboom!
 
  (Todo: what to expect)
 
