@@ -450,10 +450,20 @@ when respecting the following steps:
 \begin{itemize}
     \item Tape the components before soldering
     \item Double check components orientation
+    \item Verify sockets notch match with footprint
     \item Ensure the board is clean before soldering
     \item Use Isopropyl alcohol to clean the board
     \item Apply noclean flux BEFORE soldering
 \end{itemize}
+
+\vspace{0.25cm}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.40]{assets/ic-notch.png}
+        \caption{IC sockets notch}
+    \end{center}
+\end{figure}
 
 \pagebreak
 \subsection{Soldering the Components}
@@ -470,7 +480,7 @@ Some useful tips:
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.60]{assets/pcb-top.png}
+        \includegraphics[scale=0.70]{assets/pcb-top.png}
         \caption{Top placement diagram}
     \end{center}
 \end{figure}
@@ -494,46 +504,135 @@ Some useful tips:
 \pagebreak
 \subsubsection{Step 1: IC Sockets}
 
-The IC sockets have a marking on one side. This marking must match the silk screen print of the PCB.
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.30]{assets/ic-socket.jpg}
+        \caption{Inserting sockets}
+    \end{center}
+\end{figure}
 
+The \textbf{IC sockets} have a \textbf{notch} on one side.
+This marking must match the \textbf{footprint} drawn on the PCB \textbf{silk screen print}. The notch is represented by a semi-circle. The white point located next to it indicates the component pin number 1.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.28]{assets/pcb-sockets.jpg}
+        \caption{All sockets placed}
+    \end{center}
+\end{figure}
+Take the necessary time to solder each socket pin and then make sure there is no \textbf{solder bridges} nor \textbf{cold solder joints}. Once it's done, the board should ressemble the following picture.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.20]{assets/ic-solder.jpg}
+        \caption{All sockets soldered}
+    \end{center}
+\end{figure}
+
+\pagebreak
 \subsubsection{Step 2: Film Capacitors}
 
-These capacitors are more heat sensitive than other parts. Do not heat the pins for a period longer than 5s. These parts are not polarized and can be soldered in any orientation.
+The \textbf{film capacitors} are more \textbf{heat sensitive} than other parts. Do not heat the pins for a period longer than 5s.
+These parts are \textbf{not polarized} and can be soldered in any orientation.
 
-\subsubsection{Step 3: 10k Trimmer}
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.25]{assets/pcb-caps.jpg}
+        \caption{Film capacitors}
+    \end{center}
+\end{figure}
 
-This trimmer is labeled \textbf{W103}. This part is not polarized and can be soldered in any orientation.
+After soldering, trim the capacitors legs with a wire cutter, like on the picture.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.25]{assets/pcb-legs.jpg}
+        \caption{Trimming legs}
+    \end{center}
+\end{figure}
+
+\subsubsection{Step 3: Trimmer}
+
+The \textbf{trimmer} is the blue part labeled \textbf{W103}. This component is not polarized and can be soldered in any orientation.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.35]{assets/pcb-trimmer.jpg}
+        \caption{Top or bottom configuration}
+    \end{center}
+\end{figure}
+
+The trimmer can be installed at the top or at the bottom of the PCB. If you plan to give the \textbf{ZeKit} an enclosure, install the trimmer at the bottom and solder it later, at the connectors soldering step.
 
 \subsubsection{Step 4: Tactile Switches}
 
-While the switch itself works in all orientations, the internal LED must have the correct polarity. The pins of the LEDs have different lengths. The longer pin has a red marking and must be located on the right side of the switch. (Todo: image).
+While the \textbf{tactile switch} itself will work in all orientations, the internal LED must have the correct polarity.
 
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.30]{assets/tact-marking.jpg}
+        \caption{Mind the red leg!}
+    \end{center}
+\end{figure}
+
+LEDs pins have different lengths. The longer pin also has a \textbf{red marking} and must be located on the \textbf{right side} of the switch.
 Keep your attention on soldering them straight.
 
 \subsubsection{Step 5: Toggle Switches}
 
-Keep your attention on soldering them straight. These parts are not polarized and can be soldered in any orientation.
-
-\subsubsection{Step 6: 10k Potentiometers}
-
-These 2 pots are labeled \textbf{10 B3} on the bottom. Do not confuse them with the 100k variants. Keep your attention on soldering them straight.
-
-\subsubsection{Step 7: 100k Potentiometers}
-
-These 4 pots are labeled \textbf{10 B4} on the bottom. Do not confuse them with the 10k variants. Keep your attention on soldering them straight.
+The \textbf{toggle switches} are not polarized and can be soldered in any orientation.
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.60]{assets/pcb-top.png}
+        \includegraphics[scale=0.25]{assets/pcb-toggles.jpg}
+        \caption{Mounted toggle switches}
+    \end{center}
+\end{figure}
+
+\subsubsection{Step 6: Potentiometers}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.32]{assets/pots-marking.jpg}
+        \caption{Pots resistivity marking}
+    \end{center}
+\end{figure}
+
+There are two \textbf{potentiometer} values provided: 10k and 100k Ohm.
+
+The 10k pots are labeled \textbf{B103} at their bottom whereas the 100k pots are labeled \textbf{B104}.
+Make sure to install the right value at the right spot, by \textbf{following the markings} drawn on the PCB silk screen print.
+Also, keep your attention on soldering the pots straight.
+
+\pagebreak
+\subsubsection{Step 7: Connectors, Power Switch \& Power LED}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.60]{assets/pcb-bot.png}
         \caption{Bottom placement diagram}
     \end{center}
 \end{figure}
 
-\subsubsection{Step 8: Connectors \& Power Switch}
+The \textbf{connectors, power switch and power LED} are soldered last because they are located at the bottom side of the PCB.
+If the trimmer was not installed at step 3, it is the moment to solder it too.
 
-The connectors and the power switch are soldered last because they are located on the bottom side of the PCB.
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.30]{assets/pcb-connectors.jpg}
+        \caption{Bottom side connectors}
+    \end{center}
+\end{figure}
 
-\subsection{Installing the ICs}
+\pagebreak
+\subsubsection{Step 8: Installing the ICs}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.20]{assets/ic-orientation.jpg}
+        \caption{Correct ICs orientation}
+    \end{center}
+\end{figure}
 
 (Todo: maybe power up and measure supply voltages before)
 
@@ -555,8 +654,11 @@ The connectors and the power switch are soldered last because they are located o
 \subsection{Identifying Common Issues}
 
 \begin{itemize}
-    \item Bad soldering
-    \item Wrong polarity (Todo: of what? ICs?)
+    \item Missing joints
+    \item Solder bridges
+    \item Cold solder joints
+    \item Wrong component polarity
+    \item Bad IC insertion
 \end{itemize}
 
 \pagebreak
