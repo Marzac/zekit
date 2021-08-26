@@ -406,7 +406,6 @@ They provide the final \textbf{look-and-feel} and allow precise control of the p
 \pagebreak
 
 % ------------------------------------------------------------------------------------------
-
 \section{Assembling the Kit}
 
 \subsection{General Advices}
@@ -449,11 +448,11 @@ when respecting the following steps:
 \textbf{Additional Tips:}
 
 \begin{itemize}
-    \item Ensure the board is clean before soldering
-    \item Use Isopropyl alcohol to clean the PCB (if needed)
-    \item Apply noclean flux BEFORE soldering
-    \item Double check components orientation
     \item Tape the components before soldering
+    \item Double check components orientation
+    \item Ensure the board is clean before soldering
+    \item Use Isopropyl alcohol to clean the board
+    \item Apply noclean flux BEFORE soldering
 \end{itemize}
 
 \pagebreak
@@ -468,6 +467,13 @@ Some useful tips:
     \item All potentiometers, switches and connectors must be \textbf{soldered straight.} \\\\
     Otherwise, the optional panel and housing won't fit. To achieve this, solder only one pin first. Then, correct the component position by \textbf{gently pressing} it in the right position. Finally, solder the remaining pins.
 \end{itemize}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.60]{assets/pcb-top.png}
+        \caption{Top placement diagram}
+    \end{center}
+\end{figure}
 
 \vspace{0.25cm}
 
@@ -485,6 +491,7 @@ Some useful tips:
     }
 \end{tcolorbox}
 
+\pagebreak
 \subsubsection{Step 1: IC Sockets}
 
 The IC sockets have a marking on one side. This marking must match the silk screen print of the PCB.
@@ -515,6 +522,13 @@ These 2 pots are labeled \textbf{10 B3} on the bottom. Do not confuse them with 
 
 These 4 pots are labeled \textbf{10 B4} on the bottom. Do not confuse them with the 10k variants. Keep your attention on soldering them straight.
 
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.60]{assets/pcb-top.png}
+        \caption{Bottom placement diagram}
+    \end{center}
+\end{figure}
+
 \subsubsection{Step 8: Connectors \& Power Switch}
 
 The connectors and the power switch are soldered last because they are located on the bottom side of the PCB.
@@ -529,6 +543,7 @@ The connectors and the power switch are soldered last because they are located o
     \item Microcontroller
 \end{itemize}
 
+\pagebreak
 \section{Power Up and Test}
 
  (Todo: what to expect)
