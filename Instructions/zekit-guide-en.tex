@@ -96,7 +96,7 @@ I would like to thank the following persons for their contributions:
 
 \textbf{Welcome to the ZeKit assembly guide!}
 
-The \textbf{ZeKit} is a fully functionnal 4-voice paraphonic synth kit with \textbf{digital oscillators} and an \textbf{analog filter and amplifier.} It also features two \textbf{analog envelopes} as well as a simple \textbf{pattern sequencer}. The instrument can be controlled via MIDI and handles \textbf{external clock} signals.
+The \textbf{ZeKit} is a fully functional 4-voice paraphonic synth kit with \textbf{digital oscillators} and an \textbf{analog filter and amplifier.} It also features two \textbf{analog envelopes} as well as a simple \textbf{pattern sequencer}. The instrument can be controlled via MIDI and handles \textbf{external clock} signals.
 
 Hopefully, you'll learn a lot while building this kit and you'll end up with \textbf{an inexpensive} but \textbf{fun instrument} that will integrate into your studio setup.
 
@@ -129,7 +129,7 @@ In order to fully assemble the kit, you'll need the following tools:
     \item Optional / MIDI cable
 \end{itemize}
 
-* A compatible power adapter can be purchased from \textbf{Fred's Lab} website
+(*) A compatible \textbf{power adapter} can be purchased from \textbf{Fred's Lab} website, but we recommend you to reuse any compatible adapter which is collecting dust at your place.
 
 % ------------------------------------------------------------------------------------------
 \pagebreak
@@ -278,7 +278,7 @@ The \textbf{ZeKit} uses a single trimmer to define the filter cutoff frequency r
     \end{center}
 \end{figure}
 
-The \textbf{power switch} is a \textbf{latching push button} with a toggle behaviour. \\
+The \textbf{power switch} is a \textbf{latching push button} with a toggle behavior. \\
 Pressed once, the contact closes and remains in this state until it is pressed again. \\
 This switch turns the \textbf{ZeKit} power on or off.
 
@@ -304,7 +304,7 @@ The \textbf{ZeKit} can be powered from any DC (direct current) adapter with a vo
     \end{center}
 \end{figure}
 
-The \textbf{DIN5 socket} is a 5-pin connector used for \textbf{MIDI input}. \textbf{MIDI} stands for \textbf{Music Instrument Digital Interface} and allows the \textbf{ZeKit} to play notes and be synchronized rythmically with other compatible gear, like controllers or sequencers.
+The \textbf{DIN5 socket} is a 5-pin connector used for \textbf{MIDI input}. \textbf{MIDI} stands for \textbf{Music Instrument Digital Interface} and allows the \textbf{ZeKit} to play notes and be synchronized rhythmically with other compatible gear, like controllers or sequencers.
 
 \subsubsection{6.35mm TRS Jack Socket}
 
@@ -352,56 +352,57 @@ In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplif
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.08]{assets/zekit-mcu.jpg}
+        \includegraphics[scale=0.10]{assets/zekit-mcu.jpg}
         \caption{PIC24F 16bit MCU}
     \end{center}
 \end{figure}
 
-The \textbf{microcontroller} or "MCU" (Micro-Controller Unit) is an IC (integrated circuit) that contains a \textbf{complete computer.} It features flash memory to store the firmware, RAM to hold data and a processing core with a number of integrated peripherals to communicate with external components.
+The \textbf{microcontroller} or "MCU" (Micro-Controller Unit) is an IC (integrated circuit) that contains a \textbf{complete computer.} It features flash memory to store the firmware, RAM to hold data and a processing core with a number of integrated peripherals, to communicate with external components.
 
-The \textbf{ZeKit} MCU has a 16bit architecture running at 16Mhz. Its job is to process incoming MIDI messages, handle clock signals, generate the waveforms, run the sequencer, control the envelopes and manage the user interface (buttons and LEDs).
-The firmware that handles all these tasks is already pre-programmed by \textbf{Fred’s Lab,} but it can be modified and replaced by the user, using a \textbf{dedicated programmer probe} (non provided).
+The \textbf{ZeKit} MCU has a \textbf{16bit architecture} running at 16Mhz. Its job is to process incoming MIDI messages, handle clock signals, generate the waveforms, run the sequencer, control the envelopes and manage the user interface (buttons and LEDs).
+
+The firmware handling these tasks comes pre-programmed by \textbf{Fred’s Lab,} but it can be modified and replaced by the user, using special tools.
 
 \subsubsection{Optocoupler ICs}
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.18]{assets/zekit-optocouplers.jpg}
+        \includegraphics[scale=0.20]{assets/zekit-optocouplers.jpg}
         \caption{Single and quad optocouplers}
     \end{center}
 \end{figure}
 
-An \textbf{optocoupler} is a combination of a \textbf{photo transistor} and \textbf{a LED} inside a single package. It is used keep circuits \textbf{electrically isolated} while transferring signals. The conductance of the photo transistor is related to the brightness of the LED.
+An \textbf{optocoupler} is a combination of a \textbf{photo transistor} and an \textbf{LED} inside a light sealed package. It is used keep circuits \textbf{electrically isolated} while transferring signals. The conductance of the photo transistor is related to the brightness of the LED.
 
 The \textbf{ZeKit} uses optocouplers for the \textbf{MIDI input} and as \textbf{current controlled resistors} in the VCF (voltage controlled filter) and VCA (voltage controlled amplifier) sections.
 
 \pagebreak
-\subsubsection{IC Sockets}
+\subsubsection{DIP IC Sockets}
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.17]{assets/zekit-sockets.jpg}
-        \caption{DIP sockets}
+        \includegraphics[scale=0.20]{assets/zekit-sockets.jpg}
+        \caption{DIP IC Sockets}
     \end{center}
 \end{figure}
 
 
-\textbf{DIP sockets} (Dual In-line Package) are mounted instead of directly soldering the ICs onto the PCB.
+\textbf{DIP IC Sockets} (Dual In-line Package) are preferably mounted instead of directly soldering the ICs onto the PCB.
 
-While not mandatory, they will protect the ICs from \textbf{overheating} when soldering and keep them \textbf{exchangeable.} Finally, the sockets will prevent the ICs being soldered in "the wrong direction" ... Do not worry, this happens to the best of us!
+While not mandatory, they will protect ICs from \textbf{soldering heat} and keep them \textbf{exchangeable.}
+That way, ICs also won't be soldered "the wrong direction" ... Don't worry, this happens to the best of us!
 
 \subsubsection{Potentiometer Knobs}
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.15]{assets/zekit-knobs.jpg}
-        \caption{Potentiometer knobs}
+        \includegraphics[scale=0.20]{assets/zekit-knobs.jpg}
+        \caption{Potentiometer Knobs}
     \end{center}
 \end{figure}
 
-\textbf{The knobs} are fitted onto the potentiometers after the kit is fully assembled.
-
-They provide the final \textbf{look-and-feel} and allow precise control of the potentiometer and sound settings.
+\textbf{The knobs} are fitted onto the pots, after the kit is \textbf{fully assembled}, and only then!.
+They contribute to the \textbf{final look-and-feel} and allow precise control of the potentiometers and sound settings.
 
 \pagebreak
 
@@ -411,10 +412,10 @@ They provide the final \textbf{look-and-feel} and allow precise control of the p
 \subsection{General Advices}
 
 To maximize your chance of success assembling the \textbf{ZeKit,} work preferably on a tidy \& properly lit surface.
-Don't hesitate to use \textbf{magnification} to control your solder joints, reheat with noclean flux if necessary.
-Keep unused parts in their original packaging.
+Don't hesitate to use \textbf{magnification} to control your solder joints, reheat with \emph{"no clean"} flux if necessary.
+Keep unused parts in the original packaging not to loose them.
 
-Soldering is easier with a \textbf{clean and not oxidized} iron tip. Always switch your iron off when not soldering to extend the tip lifespan!
+Soldering is easier with a \textbf{clean and not oxidized} iron tip. Always \textbf{switch your iron off} when not soldering to extend the tip lifespan!
 
 \subsection{Setting up the soldering gig}
 
@@ -427,16 +428,16 @@ Soldering is easier with a \textbf{clean and not oxidized} iron tip. Always swit
 
 \subsection{How to solder like a Pro}
 
-Great soldering joints can be achieved even with basic equipment and little practice,\\
-when respecting the following steps:
+Great solder joints can be achieved \emph{even with basic equipment} and little practice,\\
+when the following steps:
 
 \begin{enumerate}
     \item Position (and secure) the component properly
-    \item Apply heat to the PCB pad with the iron tip
-    \item Bring in the wire until there is enough material
-    \item Remove the soldering wire while heating the joint
+    \item Apply heat to the PCB pad first with the iron tip
+    \item Bring in the solder wire until there is enough material
+    \item Pull back the solder wire still heating the joint
     \item Pull back the tip from the joint
-    \item Let the solder junction cool down naturally
+    \item Let the solder joint cool down naturally (don't blow at it)
 \end{enumerate}
 
 \vspace{0.25cm}
@@ -448,12 +449,12 @@ when respecting the following steps:
 \textbf{Additional Tips:}
 
 \begin{itemize}
-    \item Tape the components before soldering
-    \item Double check components orientation
+    \item Tape or tack the components before soldering
+    \item Double check the components orientation
     \item Verify sockets notch match with footprint
     \item Ensure the board is clean before soldering
-    \item Use Isopropyl alcohol to clean the board
-    \item Apply noclean flux BEFORE soldering
+    \item Optional - use Isopropyl alcohol (propan-2-ol) to clean the board
+    \item Optional - apply \emph{no clean} flux on pads and legs
 \end{itemize}
 
 \vspace{0.25cm}
@@ -467,11 +468,14 @@ when respecting the following steps:
 
 \pagebreak
 \subsection{Soldering the Components}
+\Large
+Time to heat-up that iron!
+\normalsize
 
-The parts have to be soldered in \textbf{a specific order} that is determined by the placement and size of each component.
+The electronic parts are better soldered in \textbf{a specific order} that is determined by their placement and their size.
 
-You can \textbf{tape the components} to prevent them from moving when turning over the PCB for soldering.
-All potentiometers, switches, leds and connectors \textbf{must be soldered as straight as possible.}
+You can \textbf{tape or tack the parts} to prevent them from moving when turning over the PCB for soldering.
+All potentiometers, switches and connectors \textbf{must be soldered as straight as possible.}
 
 \begin{figure}[!ht]
     \begin{center}
@@ -480,28 +484,27 @@ All potentiometers, switches, leds and connectors \textbf{must be soldered as st
     \end{center}
 \end{figure}
 
-\vspace{0.25cm}
-
-\textbf{Important remarks}
-
-\begin{tcolorbox}
-    \textcolor{red}{
-        \textbf{Some parts have a polarity and \emph{must be soldered in the right orientation.} These components may fit in more than one way but using a wrong orientation will result in erroneous operation or can destroy them.}
-    }
-\end{tcolorbox}
-
-\vspace{0.25cm}
-
-\begin{tcolorbox}
-    \textcolor{red}{
-        \textbf{All connectors and the power switch are located on \emph{the bottom side} of the PCB and must be soldered from the top.}
-    }
-\end{tcolorbox}
-
 \vspace{0.5cm}
+\textbf{IMPORTANT}
+
 \begin{tcolorbox}
     \textcolor{red}{
-        \textbf{Desoldering a part which has been incorrectly mounted is tedious and requires good soldering experience and specific tools. To avoid this, better check the part placement twice before soldering.}
+        Some parts have a polarity and \emph{must be soldered in the right orientation.} These components may fit in more than one way but using a wrong orientation will result in erroneous operation or can destroy them.
+    }
+\end{tcolorbox}
+
+\vspace{0.25cm}
+
+\begin{tcolorbox}
+    \textcolor{red}{
+        All connectors and the power switch are located on \emph{the bottom side} of the PCB and must be soldered from the top.
+    }
+\end{tcolorbox}
+
+\vspace{0.25cm}
+\begin{tcolorbox}
+    \textcolor{red}{
+        De-soldering a part which has been incorrectly mounted is tedious and requires good soldering experience and specific tools. To avoid this, better check the part placement twice before soldering.
     }
 \end{tcolorbox}
 
@@ -528,7 +531,7 @@ Take the necessary time to solder each socket pin and then make sure there is no
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.20]{assets/ic-solder.jpg}
+        \includegraphics[scale=0.22]{assets/ic-solder.jpg}
         \caption{All sockets soldered}
     \end{center}
 \end{figure}
@@ -541,16 +544,16 @@ These parts are \textbf{not polarized} and can be soldered in any orientation.
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.25]{assets/pcb-caps.jpg}
+        \includegraphics[scale=0.24]{assets/pcb-caps.jpg}
         \caption{Film capacitors}
     \end{center}
 \end{figure}
 
-After soldering, trim the capacitors legs with a wire cutter, like on the picture.
+After soldering, \textbf{trim off} the capacitors legs with a wire cutter, like on the picture.
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.25]{assets/pcb-legs.jpg}
+        \includegraphics[scale=0.24]{assets/pcb-legs.jpg}
         \caption{Trimming legs}
     \end{center}
 \end{figure}
@@ -566,7 +569,7 @@ The \textbf{trimmer} is the blue part labeled \textbf{W103}. This component is n
     \end{center}
 \end{figure}
 
-The trimmer can be installed at the top or at the bottom of the PCB. If you plan to give the \textbf{ZeKit} an enclosure, install the trimmer at the bottom and solder it later, at the connectors soldering step.
+The trimmer can be installed at the \textbf{top or at the bottom} of the PCB. If you plan to give the \textbf{ZeKit} an enclosure, install the trimmer at the bottom and solder it later, at the connectors soldering step.
 
 \subsubsection{Step 4: Tactile Switches}
 
@@ -612,8 +615,10 @@ Also, keep your attention on soldering the pots straight.
 
 \subsubsection{Step 7: Power LED}
 
-The \textbf{power LED} is a polarized component and must be installed so \textbf{its longer leg} is the closest to the \emph{SW2 tactile switch} (see picture).
-To suit the optional enclosure, the LED should be \textbf{mounted straight} and top at approximatively 1cm from the PCB surface.
+The \textbf{power LED} is a polarized component and must be installed so \textbf{its longer leg is the closest} to the \emph{SW2 tactile switch} (see picture).
+The LED should be \textbf{mounted straight} and top at approximately \textbf{1cm} from the PCB surface.
+
+\vspace{0.50cm}
 
 \begin{figure}[!ht]
     \begin{center}
@@ -622,8 +627,8 @@ To suit the optional enclosure, the LED should be \textbf{mounted straight} and 
     \end{center}
 \end{figure}
 
-Solder the long leg first and then carefully adjust the LED height and alignment by reheating the solder joint and moving gently the part.
-Once you're satisfied with the LED position, solder the short leg and then trim the excess off.
+Solder the long leg first and then adjust the LED height and alignment by reheating the solder joint.
+Once you're satisfied with the LED position, solder the second leg and then trim them off with the cutter.
 
 \subsubsection{Step 8: Connectors \& Power Switch}
 
@@ -634,8 +639,9 @@ Once you're satisfied with the LED position, solder the short leg and then trim 
     \end{center}
 \end{figure}
 
-The \textbf{connectors, power switch and power LED} are soldered last because they are located on the bottom side of the PCB.
-If the trimmer was not installed at step 3, solder it now.
+The \textbf{connectors \& power switch} are soldered last because they are located at the \textbf{bottom side} of the PCB.
+
+If the \textbf{trimmer} wasn't installed at step 3, solder it now.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -646,7 +652,7 @@ If the trimmer was not installed at step 3, solder it now.
 
 \subsubsection{Step 9: Inserting the ICs}
 
-(Todo: maybe power up and measure supply voltages before)
+Now that the \textbf{ZeKit} is completely soldered, all ICs need to be inserted in their sockets, respecting the given orientation.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -655,33 +661,99 @@ If the trimmer was not installed at step 3, solder it now.
     \end{center}
 \end{figure}
 
-
+There are 3 different ICs:
 \begin{itemize}
-    \item MIDI optocoupler
-    \item VCF/VCA Optocoupler
-    \item Microcontroller
+    \item H11L1 (*) - "MIDI" Optocoupler
+    \item LTV847 - VCF / VCA Optocoupler
+    \item PIC24FJ256GA702 - 16bit microcontroller
 \end{itemize}
 
+(*) The H11L1 can wear a black or white DIP (dual in-line package). That doesn't matter.
+
+Before placing the ICs, it is recommended to \textbf{carefully bend} their legs so they are made \textbf{vertical.} It will be easier to insert them in the sockets.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.20]{assets/ic-bending.jpg}
+        \caption{ICs vertical legs}
+    \end{center}
+\end{figure}
+
+Verify the \textbf{parts alignment}, make sure \textbf{no leg is pointing out} and firmly press the ICs in their sockets.
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.28]{assets/ic-incorrect.jpg}
+        \caption{ICs incorrect mounting}
+    \end{center}
+\end{figure}
+
 \pagebreak
-\section{Power Up and Test}
+\section{Finishing the kit}
 
-Kaboom!
+\subsection{First Power Up}
+\Large
+\emph{Exciting moment ahead!}
+\normalsize
 
- (Todo: what to expect)
+Before powering up the \textbf{ZeKit} for the first time, \textbf{a last visual control} of the soldering work and a full check of the ICs orientation won't hurt.
+Refer to the \textbf{component placement diagram.} 
+
+If this is your first build, try powering it up using a \textbf{lab power supply} or at least an adapter with some form of \textbf{current limiting.}
+You don't want all your work going up in smoke!
+
+Once turned on, the \textbf{power LED} should illuminate and \textbf{all tact switches} should light up when pushed. The \textbf{linear regulator} \emph{U2} must stay cool.
+If you press the \textbf{play} \emph{SW8} switch, it should latch, and the \textbf{tap} \emph{SW6} switch should blink, indicating that the MCU is running the firmware.
+
+Now attach your \textbf{ZeKit} to a speaker system, a MIDI controller and \textbf{have lots of fun} discovering your new instrument!
+
+\vspace{0.5cm}
+\textbf{IMPORTANT}
+
+\begin{tcolorbox}
+    \textcolor{red}{
+        If what described isn't what you're getting, \textbf{switch the power off} and read the \emph{Identifying Common Issues} section of this manual.
+    }
+\end{tcolorbox}
 
 \subsection{Calibration of the VCF}
 
-(Todo: adjusting the trimmers)
+\Large
+Congratulations, your \textbf{ZeKit} is functional :-)
+\normalsize
 
+AsThe sound generation relying partly on analog electronics, it needs to be calibrated.
+
+\subsection{What's Next?}
+
+- Software modification
+- Hardware modding 
+- Front panel / housing
+- Derivative work
+
+\pagebreak
 \subsection{Identifying Common Issues}
 
+Here is a list of the common troubles you may face:
+
 \begin{itemize}
-    \item Missing joints
-    \item Solder bridges
-    \item Cold solder joints
+    \item Missing solder joints
+    \item Cold solder joints - see picture
+    \item Solder bridges - see picture
     \item Wrong component polarity
     \item Bad IC insertion
+    \item Dead IC (overheated or shorted)
 \end{itemize}
+
+\vspace{0.50cm}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[scale=0.42]{assets/solder-issues.jpg}
+        \caption{Soldering issues}
+    \end{center}
+\end{figure}
+
+If you cannot figure out the problem, please don't hesitate to \textbf{write us an email} or kindly ask other users who successfully assembled their \textbf{ZeKit}.
 
 \pagebreak
 
