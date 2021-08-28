@@ -57,7 +57,7 @@
     \huge{ZEKIT} \\
     Assembling Instructions \\
     \vspace*{0.25cm}
-    \small{Revision 1.0 EN - 27/08/2021} \\
+    \small{Revision 1.1 EN - 28/08/2021} \\
     \vspace*{0.5cm}
     \includegraphics[scale=0.2]{assets/zekit-assembled.jpg}
 }
@@ -80,7 +80,7 @@
 
 \section{Special Thanks}
 
-I would personally like to thank the following persons for their contributions:
+I would like to thank the following persons for their contributions:
 
 \begin{itemize}
     \item Design consulting: René Schmitz, Oliver Rockstedt
@@ -96,15 +96,17 @@ I would personally like to thank the following persons for their contributions:
 
 \textbf{Welcome to the ZeKit assembly guide!}
 
-The \textbf{ZeKit} is a fully functional 4-voice paraphonic synth kit with \textbf{digital oscillators} and an \textbf{analog filter and amplifier.} It also features two \textbf{analog envelopes} as well as a simple \textbf{pattern sequencer}. The instrument can be controlled via MIDI and handles \textbf{external clock} signals.
+The \textbf{ZeKit} is a fully functional 4-voice paraphonic synth kit with \textbf{digital oscillators} and \textbf{an analog filter and amplifier.}
+It also features \textbf{two analog envelopes} as well as \textbf{a simple pattern sequencer}.
+The instrument can be controlled via MIDI, handles \textbf{external clocks} and has \textbf{an audio input.}
 
-Hopefully, you'll learn a lot while building this kit and you'll end up with \textbf{an inexpensive} but \textbf{fun instrument} that will integrate into your studio setup.
+Hopefully, \emph{you'll learn a lot} while building this kit and you'll end up with \textbf{an inexpensive} but \textbf{fun instrument} that will integrate into your studio setup.
 
 \subsection{Required skills}
 
 \begin{itemize}
-    \item Basic \textbf{knowledge of synthesis}
-    \item Soldering experience with through-hole components
+    \item Basic \textbf{knowledge of analog synthesis}
+    \item Some soldering experience with through-hole components
     \item Knowledge on how to interpret a placement diagram
 \end{itemize}
 
@@ -122,14 +124,15 @@ In order to fully assemble the kit, you'll need the following tools:
 \subsection{Required accessories}
 
 \begin{itemize}
-    \item Power supply DC 5 to 9V, 0.5A with barrel connector \\
-    2.1mm x 5.5mm, center positive (*)
-    \item 6.35mm jack audio cable
+    \item A power supply, DC 5 to 9V, 0.5A with a 2.1mm x 5.5mm \\
+    barrel connector, center positive (*)
+    \item A 6.35mm jack audio cable
     \item Optional / computer, sequencer or MIDI controller
     \item Optional / MIDI cable
 \end{itemize}
 
-(*) A compatible \textbf{power adapter} can be purchased from \textbf{Fred's Lab} website, but we recommend you to reuse any compatible adapter which is collecting dust at your place.
+(*) A compatible \textbf{power adapter} can be purchased from \textbf{Fred's Lab} website, \\
+but we recommend you to reuse any adapter you already own.
 
 % ------------------------------------------------------------------------------------------
 \pagebreak
@@ -167,7 +170,7 @@ In the \textbf{ZeKit} package, you'll find the following components:
         7               & Tactile switches     &                \\
         2               & Potentiometers       & 10k Ohm        \\
         4               & Potentiometers       & 100k Ohm       \\
-        1               & Microcontroller IC   & PIC24FJ64GA702 \\
+        1               & Microcontroller IC   & PIC24FJ256GA702 \\
         1               & Optocoupler IC       & LTV-847        \\
         1               & Optocoupler IC       & H11L1SM        \\
         1               & LED                  & 3mm red color  \\
@@ -191,7 +194,8 @@ The \textbf{ZeKit} makes use of \textbf{SMD} (surface mounted devices) and \text
     \end{center}
 \end{figure}
 
-All SMD components come already assembled on the PCB (printed circuit board). The THT components are left to be hand soldered, and this is your mission!
+All \textbf{SMD components} come already assembled on the PCB (printed circuit board). \\
+The \textbf{THT components} are left to be hand soldered, and \textbf{this is your mission!}
 
 \subsection{Learn the Components}
 
@@ -218,7 +222,7 @@ Here, it shows when the instrument is powered on.
 
 The \textbf{tactile switches} are \textbf{momentary switches} used as interface buttons.
 
-Their contact is normally open and gets closed when the switch is pressed. These switches have an \textbf{LED built in} that illuminates the cap to show some status information.
+Their contact is normally open and gets closed when the switch is pressed. These switches have \textbf{an LED built in} that illuminates the cap to show some status information.
 
 They are connected to the microcontroller directly and are used to select the oscillator waveform, choose the sequencer pattern and toggle various options.
 
@@ -245,11 +249,12 @@ In the \textbf{ZeKit}, these switches select the filter mode (low-pass or band-p
     \end{center}
 \end{figure}
 
-The \textbf{potentiometers} (or "pots") are \textbf{variable resistors} meant to control sound parameters in the analog domain. They consist of a \textbf{conductive wiper} that slides over a circular \textbf{resistive track} to form a voltage-divider.
+The \textbf{potentiometers} (or "pots") are \textbf{variable resistors} meant to control sound parameters in the analog domain. They consist of \textbf{a conductive wiper} that slides over a circular \textbf{resistive track} to form a voltage-divider.
 
-The \textbf{ZeKit} uses potentiometers of two different values: \textbf{10k} and \textbf{100k} Ohm.
+The \textbf{ZeKit} uses potentiometers of two different values: \textbf{10k \& 100k Ohm.}
 
-The pots must not be interchanged or the circuit won't work correctly. They can be easily identified by the label found on their bottom.
+The pots must not be interchanged or the circuit won't work correctly. \\
+They can be easily identified by the label found at their bottom:
 
 $\bullet$ \textbf{B103} = 10k Ohm\\
 $\bullet$ \textbf{B104} = 100k Ohm\\
@@ -267,7 +272,7 @@ $\bullet$ \textbf{B104} = 100k Ohm\\
 
 These are smaller than regular potentiometers and need to be adjusted with a flathead screwdriver. They offer a \textbf{great setting precision} since their screw can be turned multiple times. They are also called \textbf{multiturn trimmers}.
 
-The \textbf{ZeKit} uses a single trimmer to define the filter cutoff frequency range.
+The \textbf{ZeKit} uses a single trimmer to define the filter \textbf{cutoff frequency} range.
 
 \subsubsection{Power Switch}
 
@@ -279,7 +284,8 @@ The \textbf{ZeKit} uses a single trimmer to define the filter cutoff frequency r
 \end{figure}
 
 The \textbf{power switch} is a \textbf{latching push button} with a toggle behavior. \\
-Pressed once, the contact closes and remains in this state until it is pressed again. \\
+Pressed once, the contact closes and remains in this state until it is pressed again.
+
 This switch turns the \textbf{ZeKit} power on or off.
 
 \subsubsection{Power Jack Socket}
@@ -345,7 +351,7 @@ The \textbf{clock signal} is expected on the jack tip and the sequencer running 
 The \textbf{film capacitors} are capacitors or "caps", they can \textbf{store and release energy.} These types are superior to standard ceramic ones, in terms of \textbf{distortion and noise immunity.}
 They also have tighter capacity tolerances.
 
-In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplifier, to process the audio signal.
+In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplifier circuits, to process the audio signal.
 
 \pagebreak
 \subsubsection{PIC Microcontroller IC}
@@ -359,7 +365,7 @@ In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplif
 
 The \textbf{microcontroller} or "MCU" (Micro-Controller Unit) is an IC (integrated circuit) that contains a \textbf{complete computer.} It features flash memory to store the firmware, RAM to hold data and a processing core with a number of integrated peripherals, to communicate with external components.
 
-The \textbf{ZeKit} MCU has a \textbf{16bit architecture} running at 16Mhz. Its job is to process incoming MIDI messages, handle clock signals, generate the waveforms, run the sequencer, control the envelopes and manage the user interface (buttons and LEDs).
+The \textbf{ZeKit} MCU has a \textbf{16 bit architecture} running at 16Mhz. Its job is to process incoming MIDI messages, handle clock signals, generate the waveforms, run the sequencer, control the envelopes and manage the user interface (buttons and LEDs).
 
 The firmware handling these tasks comes pre-programmed by \textbf{Fred’s Lab,} but it can be modified and replaced by the user, using special tools.
 
@@ -372,7 +378,9 @@ The firmware handling these tasks comes pre-programmed by \textbf{Fred’s Lab,}
     \end{center}
 \end{figure}
 
-An \textbf{optocoupler} is a combination of a \textbf{photo transistor} and an \textbf{LED} inside a light sealed package. It is used keep circuits \textbf{electrically isolated} while transferring signals. The conductance of the photo transistor is related to the brightness of the LED.
+An \textbf{optocoupler} is a combination of a \textbf{photo transistor} and an \textbf{LED} inside a light sealed package. It is used keep circuits \textbf{electrically isolated} while transferring signals.
+
+The conductance of the photo transistor is related to the brightness of the LED.
 
 The \textbf{ZeKit} uses optocouplers for the \textbf{MIDI input} and as \textbf{current controlled resistors} in the VCF (voltage controlled filter) and VCA (voltage controlled amplifier) sections.
 
@@ -403,7 +411,7 @@ That way, ICs also won't be soldered "the wrong direction" ... Don't worry, this
 
 \textbf{The knobs} are fitted onto the pots, after the kit is \textbf{fully assembled}, and only then!.
 
-They contribute to the \textbf{final look-and-feel} and allow precise control of the potentiometers and sound settings.
+They contribute to the \textbf{final look-and-feel} and allow precise control of the potentiometers and the associated sound settings.
 
 \pagebreak
 
@@ -602,7 +610,7 @@ The \textbf{toggle switches} are not polarized and can be soldered in any orient
 \subsubsection{Step 6: Potentiometers}
 
 There are \textbf{two potentiometer values} provided: \emph{10k and 100k Ohm.} \\
-The \textbf{10k pots} are labeled \textbf{B103} at the bottom whereas the \textbf{100k pots} are labeled \textbf{B104}.
+The \textbf{10k pots} are labeled \textbf{B103} at the bottom whereas the \textbf{100k} are labeled \textbf{B104}.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -671,9 +679,9 @@ There are 3 different ICs:
     \item \textbf{PIC24FJ256GA702} - 16bit microcontroller
 \end{itemize}
 
-(*) H11L1 can be in black or white DIP (dual in-line package). They are both as great.
+(*) H11L1 can be shipped in black or white DIP (dual in-line package).
 
-Before positioning the ICs, it is recommended to \textbf{carefully bend} their legs so they are made \textbf{vertical.} It will be easier to insert them in the sockets.
+Before positioning the ICs, it is recommended to \textbf{carefully bend} their legs, so they are made to be \textbf{vertical.} It will be easier to insert them in the sockets.
 
 \vspace{0.25cm}
 \begin{figure}[!ht]
@@ -703,8 +711,8 @@ Verify the \textbf{ICs alignment} with their socket, make sure \textbf{no leg is
 Before powering up the \textbf{ZeKit} for the first time, \textbf{a last visual control} of the soldering job and a full check of the ICs orientation won't hurt.
 For this, refer to the \textbf{component placement diagram.} 
 
-If this is your first build, try powering it up using a \textbf{lab power supply} or at least an adapter with some form of \textbf{current limiting.}
-You don't want all your work going up in smoke!
+If this is your first build, try powering it up using \textbf{a lab power supply} or at least an adapter with some form of \textbf{current limiting.}
+You don't want all your hard work going up in smoke!
 
 Once turned on, the \textbf{power LED} should light up and \textbf{all tact switches} should blink when pushed. The \textbf{linear regulator} \emph{U2} must stay cool.
 If you press the \textbf{play} \emph{SW8} switch, the function should latch, and the \textbf{tap} \emph{SW6} switch should blink regularly, indicating that the MCU is \textbf{correctly running the firmware.}
@@ -712,7 +720,7 @@ If you press the \textbf{play} \emph{SW8} switch, the function should latch, and
 \vspace{0.5cm}
 \textbf{Congratulations!}
 
-Now you can attach your \textbf{ZeKit} to a \emph{speaker system}, a \emph{MIDI controller} and \textbf{have a lot of fun} discovering your new instrument!
+Now, you can attach your \textbf{ZeKit} to a \emph{speaker system}, a \emph{MIDI controller} and \textbf{have a lot of fun} discovering your new instrument!
 
 \begin{figure}[!ht]
     \begin{center}
@@ -757,8 +765,8 @@ To begin the calibration procedure, set the:
     \item \textbf{Release} pot \emph{RV3} to middle
     \item \textbf{Level} pot \emph{RV4} to middle
     \item \textbf{VCF Mode} switch \emph{TG2} to top
-    \item \textbf{VCF Q} switch \emph{TG2} to bottom
-    \item \textbf{EXT IN} switch \emph{TG2} to top
+    \item \textbf{VCF Q} switch \emph{TG3} to bottom
+    \item \textbf{EXT IN} switch \emph{TG1} to top
 \end{itemize}
 
 \vspace{0.25cm}
@@ -769,21 +777,27 @@ Finally, check the overall \emph{cutoff range} by sweeping the \textbf{Cutoff} p
 \pagebreak
 \subsection{What's Next?}
 
-The \textbf{ZeKit} has been designed to be more than a \emph{quickly assembled and affordable synth kit.} The design material is provided under \textbf{Creative Commons and GNU licenses} that allows you to \textbf{modify, extend and build upon} this project, as long as this \textbf{isn't for commercial purposes} (or contact us).
+\textbf{ZeKit} has been designed to be more than a \emph{quickly assembled and affordable synth kit.}
 
-So let \textbf{your imagination be at the driving seat,} here are areas to explore:
+The design material is provided under \textbf{Creative Commons (Schematics / PCB) and GNU GPL (Firmware) licenses} that allows you \textbf{to modify, extend and build upon} this project,
+as long as it \textbf{isn't for commercial purposes} (or contact us).
+
+\textbf{So let your imagination free,} here are areas to explore:
 
 \begin{itemize}
-    \item \textbf{Software modification}\\ Firmware code is on GitHub
-    \item \textbf{Hardware modding}\\ Test points are provided
-    \item \textbf{Front panel design}\\ Template are on GitHub
+    \item \textbf{Software modification} \\
+    Firmware code is on GitHub
+    \item \textbf{Hardware modding} \\
+    Various test points are provided
+    \item \textbf{Front panel design} \\
+    Templates are on GitHub
     \item \textbf{Completely new housings}
     \item \textbf{Derivative work}
 \end{itemize}
 
 \subsection{Identifying Common Issues}
 
-Here is a list of the \textbf{common troubles} you may be facing with:
+Here is a list of \textbf{the common troubles} you may be facing with:
 
 \begin{itemize}
     \item Missing solder joints
@@ -858,14 +872,14 @@ The capacitors \emph{C12}, \emph{C13} and \emph{C14} are used together with the 
     \includegraphics[scale=0.30]{assets/schema-dac.png}
 \end{center}
 
-The \textbf{digital-to-analog converter} (DAC) \emph{U3} is connected to the MCU via a standard signal bus, called \emph{I2S.} It converts the digital waveforms into a signal in the analog domain. Capacitor \emph{C11} removes the DC offset of the signal, resistor \emph{R18} \& \emph{R19} condition the levels to suit the VCF block inputs.
+The \textbf{digital-to-analog converter} (DAC) \emph{U3} is connected to the MCU via a standard signal bus, called \emph{I2S.} It converts the generated digital waveforms into a signal in the analog domain. Capacitor \emph{C11} removes the DC offset of the signal, resistor \emph{R18} \& \emph{R19} condition the levels to suit the VCF block inputs.
 
 This DAC chip provides two independent output channels which are used as oscillators output and filter cutoff control.
 
 \subsection{VCF}
 
 \begin{center}
-    \includegraphics[scale=0.65]{assets/schema-vcf.png}
+    \includegraphics[scale=0.70]{assets/schema-vcf.png}
 \end{center}
 \vspace{0.25cm}
 
@@ -914,8 +928,8 @@ The \textbf{amplifier envelope} is a simplified version of the filter envelope. 
 \subsection{Exponential Control Circuits}
 
 \begin{center}
-    \includegraphics[scale=0.40]{assets/schema-expo-vcf.png}
-    \includegraphics[scale=0.40]{assets/schema-expo-vca.png}
+    \includegraphics[scale=0.42]{assets/schema-expo-vcf.png}
+    \includegraphics[scale=0.42]{assets/schema-expo-vca.png}
 \end{center}
 
 This \textbf{exponentiator circuit} converts the linear control voltage into \textbf{an exponential current}, to drive the optocouplers LEDs.
@@ -967,7 +981,7 @@ The \textbf{start signal} is taken from the ring of the input jack and processed
 The \textbf{illuminated tactile switches} are directly connected to the microcontroller.
 
 To reduce the number of required signals, the MCU firmware uses a neat trick: \\
-It alternates the MCU pin mode connected to the switch signal between input and open-drain modes.
+It alternates the MCU pin mode connected to the switch signal between input and open-drain (like a switch to ground) modes.
 
 When the MCU pin is \textbf{configured as an input,} the button state can be read.
 When the button is released, a high level is detected, because the pin is connected to +3.3V via the LED and the limiting resistor.
@@ -978,7 +992,7 @@ When the MCU pin is \textbf{configured as an output,} the switch LED can be swit
 % ------------------------------------------------------------------------------------------
 \pagebreak
 \section{Additional Resource}
-You will find plenty of \textbf{additional resource} (graphic files, firmwares, sources, template, manuals ...) at the following addresses:
+You will find plenty of \textbf{additional resource} (graphic files, firmwares, sources, template, manuals ...), at the following addresses:
 
 \vspace{0.25cm}
 \begin{itemize}
