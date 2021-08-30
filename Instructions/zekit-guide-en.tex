@@ -644,7 +644,7 @@ Once you're satisfied with the LED position, solder the second leg and then trim
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[scale=0.32]{assets/pcb-connectors.jpg}
+        \includegraphics[scale=0.31]{assets/pcb-connectors.jpg}
         \caption{Bottom side connectors}
     \end{center}
 \end{figure}
@@ -681,13 +681,13 @@ There are 3 different ICs:
 
 (*) H11L1 can be shipped in black or white DIP (dual in-line package).
 
-Before positioning the ICs, it is recommended to \textbf{carefully bend} their legs, so they are made to be \textbf{vertical.} It will be easier to insert them in the sockets.
+Before positioning the ICs, it is recommended to \textbf{carefully bend} their legs, so they are orientated more \textbf{parallel.} It will be easier to insert them in the sockets that way.
 
 \vspace{0.25cm}
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[scale=0.20]{assets/ic-bending.jpg}
-        \caption{ICs vertical legs}
+        \caption{ICs parallel legs}
     \end{center}
 \end{figure}
 
@@ -715,7 +715,7 @@ If this is your first build, try powering it up using \textbf{a lab power supply
 You don't want all your hard work going up in smoke!
 
 Once turned on, the \textbf{power LED} should light up and \textbf{all tact switches} should blink when pushed. The \textbf{linear regulator} \emph{U2} must stay cool.
-If you press the \textbf{play} \emph{SW8} switch, the function should latch, and the \textbf{tap} \emph{SW6} switch should blink regularly, indicating that the MCU is \textbf{correctly running the firmware.}
+If you press the \textbf{play} switch \emph{SW8}, its function should latch, and the \textbf{tap} switch \emph{SW6} should blink regularly, indicating that the MCU is \textbf{correctly running the firmware.}
 
 \vspace{0.5cm}
 \textbf{Congratulations!}
@@ -734,7 +734,7 @@ Now, you can attach your \textbf{ZeKit} to a \emph{speaker system}, a \emph{MIDI
 
 \begin{tcolorbox}
     \textcolor{red}{
-        If what described isn't what you're getting ... \textbf{immediately switch the power off} and read the \emph{Identifying Common Issues} section of this manual.
+        If what described isn't what you're getting... \textbf{immediately switch the power off} and read the \emph{Identifying Common Issues} section of this manual.
     }
 \end{tcolorbox}
 
@@ -745,7 +745,7 @@ Now, you can attach your \textbf{ZeKit} to a \emph{speaker system}, a \emph{MIDI
 \emph{Let's tweak this VCF!}
 \normalsize
 
-The \textbf{ZeKit} sound generation relies partly on \textbf{analog electronics}, with their intrinsic manufacturing tolerances. The filter will need some manual calibration.
+The \textbf{ZeKit} sound generation relies partly on \textbf{analog electronics} with their intrinsic manufacturing tolerances. Therefore, the filter will need some manual calibration.
 
 The goal is to set the \textbf{VCF Cutoff Range} so the filter \emph{opens and closes} completely.
 
@@ -762,8 +762,8 @@ To begin the calibration procedure, set the:
     \item \textbf{Attack} pot \emph{RV1} to minimum
     \item \textbf{Decay} pot \emph{RV2} to minimum
     \item \textbf{Accent} pot \emph{RV5} to minimum
-    \item \textbf{Release} pot \emph{RV3} to middle
-    \item \textbf{Level} pot \emph{RV4} to middle
+    \item \textbf{Release} pot \emph{RV3} to center
+    \item \textbf{Level} pot \emph{RV4} to center
     \item \textbf{VCF Mode} switch \emph{TG2} to top
     \item \textbf{VCF Q} switch \emph{TG3} to bottom
     \item \textbf{EXT IN} switch \emph{TG1} to top
@@ -772,7 +772,7 @@ To begin the calibration procedure, set the:
 \vspace{0.25cm}
 Play some \textbf{very low notes} such as G1 (49Hz) or C1 (32Hz) using a \emph{MIDI keyboard} and \textbf{adjust the trimmer} \emph{TR1 screw} with a screw driver \textbf{until these notes are dampened.}
 
-Finally, check the overall \emph{cutoff range} by sweeping the \textbf{Cutoff} pot \emph{RV6} and control that the filter \textbf{can open completely} when the \textbf{cutoff} is at maximum. Adjust the \emph{TR1} trimmer accordingly.
+Finally, check the overall \emph{cutoff range} by sweeping the \textbf{Cutoff} pot \emph{RV6} and ensure that the filter \textbf{is opened completely} when the \textbf{cutoff} is at maximum. Adjust the trimmer \emph{TR1} accordingly.
 
 \pagebreak
 \subsection{What's Next?}
@@ -900,7 +900,7 @@ The \textbf{VCA} (voltage controlled amplifier) uses the optocoupler \emph{U5c/U
 
 To set the output level, the \textbf{Volume} potentiometer is part of the feedback path of the opamp. Resistor \emph{52} in parallel to the pot provides a nicer control curve for the volume setting.
 
-he output is HF filtered by inductor \emph{L4}, followed by protection resistors \emph{R57} and \emph{R58} and then routed to the output jack \emph{J7}.
+The output is RF filtered by inductor \emph{L4}, followed by protection resistors \emph{R57} and \emph{R58} and then routed to the output jack \emph{J7}.
 
 \subsection{Envelopes}
 
@@ -992,7 +992,7 @@ When the MCU pin is \textbf{configured as an output,} the switch LED can be swit
 % ------------------------------------------------------------------------------------------
 \pagebreak
 \section{Additional Resource}
-You will find plenty of \textbf{additional resource} (graphic files, firmwares, sources, template, manuals ...), at the following addresses:
+You will find plenty of \textbf{additional resource} (graphic files, firmwares, sources, template, manuals...), at the following addresses:
 
 \vspace{0.25cm}
 \begin{itemize}
