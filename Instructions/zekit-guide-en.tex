@@ -84,7 +84,7 @@ I would like to thank the following persons for their contributions:
 
 \begin{itemize}
     \item Design consulting: René Schmitz, Oliver Rockstedt
-    \item Panel graphics: Serge "erewhon" Beauchamp 
+    \item Panel graphics: Serge "erewhon" Beauchamp
     \item Instruction guide: Oliver Rockstedt
     \item Beta-testing: Benoit Ruelle, William Zegal, Mathieu Meslin
 \end{itemize}
@@ -125,7 +125,7 @@ In order to fully assemble the kit, you'll need the following tools:
 
 \begin{itemize}
     \item A power supply, DC 5 to 9V, 0.5A with a 2.1mm x 5.5mm \\
-    barrel connector, center positive (*)
+          barrel connector, center positive (*)
     \item A 6.35mm jack audio cable
     \item Optional / computer, sequencer or MIDI controller
     \item Optional / MIDI cable
@@ -153,28 +153,28 @@ In the \textbf{ZeKit} package, you'll find the following components:
 \begin{center}
     \begin{tabular}{|c|l|l|}
         \hline
-        \textbf{Amount} & \textbf{Description} & \textbf{Value} \\
+        \textbf{Amount} & \textbf{Description} & \textbf{Value}  \\
         \hline
-        1               & Pre-assembled PCB    &                \\
-        1               & TRS jack socket      & 6.35mm TRS     \\
-        1               & DIN5 socket          &                \\
-        2               & TRS jacks socket     & 3.5mm TRS      \\
-        1               & Power jack socket    &                \\
-        1               & Power switch         &                \\
-        1               & Trim potentiometer   & 10k Ohm        \\
-        6               & Potentiometer knobs  &                \\
-        3               & Film capacitors      & 47nF / 63v     \\
-        1               & DIL28 IC socket      &                \\        
-        1               & DIL16 IC socket      &                \\
-        1               & DIL6 IC socket       &                \\
-        7               & Tactile switches     &                \\
-        2               & Potentiometers       & 10k Ohm        \\
-        4               & Potentiometers       & 100k Ohm       \\
+        1               & Pre-assembled PCB    &                 \\
+        1               & TRS jack socket      & 6.35mm TRS      \\
+        1               & DIN5 socket          &                 \\
+        2               & TRS jacks socket     & 3.5mm TRS       \\
+        1               & Power jack socket    &                 \\
+        1               & Power switch         &                 \\
+        1               & Trim potentiometer   & 10k Ohm         \\
+        6               & Potentiometer knobs  &                 \\
+        3               & Film capacitors      & 47nF / 63v      \\
+        1               & DIL28 IC socket      &                 \\
+        1               & DIL16 IC socket      &                 \\
+        1               & DIL6 IC socket       &                 \\
+        7               & Tactile switches     &                 \\
+        2               & Potentiometers       & 10k Ohm         \\
+        4               & Potentiometers       & 100k Ohm        \\
         1               & Microcontroller IC   & PIC24FJ256GA702 \\
-        1               & Optocoupler IC       & LTV-847        \\
-        1               & Optocoupler IC       & H11L1SM        \\
-        1               & LED                  & 3mm red color  \\
-        3               & Toggle switches      &                \\
+        1               & Optocoupler IC       & LTV-847         \\
+        1               & Optocoupler IC       & H11L1SM         \\
+        1               & LED                  & 3mm red color   \\
+        3               & Toggle switches      &                 \\
         \hline
     \end{tabular}
 \end{center}
@@ -185,7 +185,7 @@ Before firing up your soldering iron, \textbf{make sure your kit is complete} an
 \pagebreak
 \subsection{Pre-assembled PCB}
 
-The \textbf{ZeKit} makes use of \textbf{SMD} (surface mounted devices) and \textbf{THT} (through hole technology) components. SMD components allow the design to remain \textbf{compact and simple} to manufacture but and more cost effective.
+The \textbf{ZeKit} makes use of \textbf{SMD} (surface mounted devices) and \textbf{THT} (through hole technology) components. SMD components allow the design to remain \textbf{compact and simple} to manufacture but more cost effective.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -222,7 +222,7 @@ Here, it shows when the instrument is powered on.
 
 The \textbf{tactile switches} are \textbf{momentary switches} used as interface buttons.
 
-Their contact is normally open and gets closed when the switch is pressed. These switches have \textbf{an LED built in} that illuminates the cap to show some status information.
+Their contact is normally open and gets closed when the switch is pressed. These switches have \textbf{an LED built-in} that illuminates the cap to show some status information.
 
 They are connected to the microcontroller directly and are used to select the oscillator waveform, choose the sequencer pattern and toggle various options.
 
@@ -268,7 +268,7 @@ $\bullet$ \textbf{B104} = 100k Ohm\\
     \end{center}
 \end{figure}
 
-\textbf{Trimmers} are specific potentiometers \textbf{intended for calibration}, to compensate for the effects of tolerances in other components manufacturing.
+\textbf{Trimmers} are specific potentiometers \textbf{intended for calibration} to compensate for the effects of tolerances in other components manufacturing.
 
 These are smaller than regular potentiometers and need to be adjusted with a flathead screwdriver. They offer a \textbf{great setting precision} since their screw can be turned multiple times. They are also called \textbf{multiturn trimmers}.
 
@@ -351,7 +351,7 @@ The \textbf{clock signal} is expected on the jack tip and the sequencer running 
 The \textbf{film capacitors} are capacitors or "caps", they can \textbf{store and release energy.} These types are superior to standard ceramic ones, in terms of \textbf{distortion and noise immunity.}
 They also have tighter capacity tolerances.
 
-In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplifier circuits, to process the audio signal.
+In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplifier circuits to process the audio signal.
 
 \pagebreak
 \subsubsection{PIC Microcontroller IC}
@@ -363,9 +363,9 @@ In the \textbf{ZeKit}, they are used in the voltage controlled filter and amplif
     \end{center}
 \end{figure}
 
-The \textbf{microcontroller} or "MCU" (Micro-Controller Unit) is an IC (integrated circuit) that contains a \textbf{complete computer.} It features flash memory to store the firmware, RAM to hold data and a processing core with a number of integrated peripherals, to communicate with external components.
+The \textbf{microcontroller} or "MCU" (Micro-Controller Unit) is an IC (integrated circuit) that contains a \textbf{complete computer.} It features flash memory to store the firmware, RAM to hold data and a processing core with a number of integrated peripherals to communicate with external components.
 
-The \textbf{ZeKit} MCU has a \textbf{16 bit architecture} running at 16Mhz. Its job is to process incoming MIDI messages, handle clock signals, generate the waveforms, run the sequencer, control the envelopes and manage the user interface (buttons and LEDs).
+The \textbf{ZeKit} MCU has a \textbf{16-bit architecture} running at 16Mhz. Its job is to process incoming MIDI messages, handle clock signals, generate the waveforms, run the sequencer, control the envelopes and manage the user interface (buttons and LEDs).
 
 The firmware handling these tasks comes pre-programmed by \textbf{Fred’s Lab,} but it can be modified and replaced by the user, using special tools.
 
@@ -709,7 +709,7 @@ Verify the \textbf{ICs alignment} with their socket, make sure \textbf{no leg is
 \normalsize
 
 Before powering up the \textbf{ZeKit} for the first time, \textbf{a last visual control} of the soldering job and a full check of the ICs orientation won't hurt.
-For this, refer to the \textbf{component placement diagram.} 
+For this, refer to the \textbf{component placement diagram.}
 
 If this is your first build, try powering it up using \textbf{a lab power supply} or at least an adapter with some form of \textbf{current limiting.}
 You don't want all your hard work going up in smoke!
@@ -770,9 +770,9 @@ To begin the calibration procedure, set the:
 \end{itemize}
 
 \vspace{0.25cm}
-Play some \textbf{very low notes} such as G1 (49Hz) or C1 (32Hz) using a \emph{MIDI keyboard} and \textbf{adjust the trimmer} \emph{TR1 screw} with a screw driver \textbf{until these notes are dampened.} 
+Play some \textbf{very low notes} such as G1 (49Hz) or C1 (32Hz) using a \emph{MIDI keyboard} and \textbf{adjust the trimmer} \emph{TR1 screw} with a screw driver \textbf{until these notes are dampened.}
 
-Finally, check the overall \emph{cutoff range} by sweeping the \textbf{Cutoff} pot \emph{RV6} and control that the filter \textbf{can open completely} when the \textbf{cutoff} is at maximum. Adjust the \emph{TR1} trimmer accordingly. 
+Finally, check the overall \emph{cutoff range} by sweeping the \textbf{Cutoff} pot \emph{RV6} and control that the filter \textbf{can open completely} when the \textbf{cutoff} is at maximum. Adjust the \emph{TR1} trimmer accordingly.
 
 \pagebreak
 \subsection{What's Next?}
@@ -786,11 +786,11 @@ as long as it \textbf{isn't for commercial purposes} (or contact us).
 
 \begin{itemize}
     \item \textbf{Software modification} \\
-    Firmware code is on GitHub
+          Firmware code is on GitHub
     \item \textbf{Hardware modding} \\
-    Various test points are provided
+          Various test points are provided
     \item \textbf{Front panel design} \\
-    Templates are on GitHub
+          Templates are on GitHub
     \item \textbf{Completely new housings}
     \item \textbf{Derivative work}
 \end{itemize}
@@ -826,7 +826,7 @@ If you cannot figure out your build problems, please \textbf{write us an email} 
 
 \subsection{Power Supply}
 
-The \textbf{ZeKit} needs energy delivered by the power supply. This block provides 3 voltages: 
+The \textbf{ZeKit} needs energy delivered by the power supply. This block provides 3 voltages:
 \begin{itemize}
     \item UNREG (what comes as input voltage)
     \item +3.3V using a \textbf{linear regulator}
@@ -883,7 +883,7 @@ This DAC chip provides two independent output channels which are used as oscilla
 \end{center}
 \vspace{0.25cm}
 
-The \textbf{VCF} (voltage controlled filter) is a \textbf{2nd order design} with a 12dB/octave slope. The first stage consists of the optocouplers \emph{U5a \& U5b} and the capacitor \emph{C15}, the second stage of the optocoupler \emph{U5b} and the capacitor \emph{C19}. Here, the optocouplers play the role of the resistive elements, to control the cutoff frequency.
+The \textbf{VCF} (voltage controlled filter) is a \textbf{2nd order design} with a 12dB/octave slope. The first stage consists of the optocouplers \emph{U5a \& U5b} and the capacitor \emph{C15}, the second stage of the optocoupler \emph{U5b} and the capacitor \emph{C19}. Here, the optocouplers play the role of the resistive elements to control the cutoff frequency.
 
 The input signal \emph{VCF-IN} is fed in either to the first stage or the filter feedback path, depending whether low-pass or band-pass configuration is selected by the toggle switch \emph{TG2}. The resonance is determined by the feedback loop and can be chosen between two amounts via toggle switch \emph{TG3}.
 
@@ -932,13 +932,13 @@ The \textbf{amplifier envelope} is a simplified version of the filter envelope. 
     \includegraphics[scale=0.42]{assets/schema-expo-vca.png}
 \end{center}
 
-This \textbf{exponentiator circuit} converts the linear control voltage into \textbf{an exponential current}, to drive the optocouplers LEDs.
+This \textbf{exponentiator circuit} converts the linear control voltage into \textbf{an exponential current} to drive the optocouplers LEDs.
 The requirement for this is the \emph{nature of our human hearing} which recognizes pitches and volumes in an exponential way.
 
 \pagebreak
 The signal \emph{VCF} comes from the filter envelope and drives the buffer transistor \emph{Q1a}.
 
-The trim potentiometer \emph{TR1} adds an offset to the input, to calibrate the filter cutoff range. The emitter of \emph{Q1a} drives the base of transistor \emph{Q1b} which does the curve conversion.
+The trim potentiometer \emph{TR1} adds an offset to the input to calibrate the filter cutoff range. The emitter of \emph{Q1a} drives the base of transistor \emph{Q1b} which does the curve conversion.
 It exploits the exponential relationship between the base-emitter voltage and the collector current of a transistor.
 The collector current of \emph{Q1b} drives the LEDs inside the optocoupler \emph{U5}, controlling the filter cutoff.
 
@@ -950,7 +950,7 @@ The VCA uses a similar circuit that is driven by the \emph{VCA} signal coming fr
     \includegraphics[scale=0.68]{assets/schema-midi.png}
 \end{center}
 
-The \textbf{MIDI input} is electrically isolated from the attached MIDI gear by using an optocoupler (this time in their intended usage), to prevent ground loops and the commonly associated audio noises.
+The \textbf{MIDI input} is electrically isolated from the attached MIDI gear by using an optocoupler (this time in their intended usage) to prevent ground loops and the commonly associated audio noises.
 This is required by the \emph{official MIDI specification.}
 
 The external MIDI device drives the optocoupler \emph{U1} internal LED via the resistor \emph{R5}. When the LED is on, the phototransistor conducts and the \emph{MIDI-IN} signal is pulled to GND.
@@ -997,10 +997,10 @@ You will find plenty of \textbf{additional resource} (graphic files, firmwares, 
 \vspace{0.25cm}
 \begin{itemize}
     \item \textbf{GitHub (source code, design files)} \\
-    https://github.com/Marzac/zekit
-    \vspace{0.25cm}
+          https://github.com/Marzac/zekit
+          \vspace{0.25cm}
     \item \textbf{Fred's Lab Website} \\
-    https://fredslab.net/en/zekit-module.php
+          https://fredslab.net/en/zekit-module.php
 \end{itemize}
 
 \vspace{0.25cm}
@@ -1041,7 +1041,7 @@ This original manual, its content (including all graphics, pictures \& descripti
 % ------------------------------------------------------------------------------------------
 \section{Schematics}
 \textbf{Schematics} are provided under the Creative Commons \textbf{CC BY-NC licence}.\\\\
-This license allows you to \textbf{remix, adapt, and build upon} this work non-commercially, provided that the derivative works acknowledge the contributions of the original author. 
+This license allows you to \textbf{remix, adapt, and build upon} this work non-commercially, provided that the derivative works acknowledge the contributions of the original author.
 \vspace{0.25cm}
 \begin{center}
     \includegraphics[scale=0.72,origin=c]{assets/schema-full.png}
