@@ -10,7 +10,7 @@
 
 %%% PAGE DIMENSIONS
 \usepackage{geometry}		% to change the page dimensions
-\geometry{a4paper}		% or letterpaper (US) or a5paper or....
+\geometry{a4paper}		    % or letterpaper (US) or a5paper or....
 \geometry{margin=3cm}		% for example, change the margins to 2 inches all round
 
 %%% PACKAGES
@@ -57,7 +57,7 @@
     \huge{ZEKIT} \\
     Assembling Instructions \\
     \vspace*{0.25cm}
-    \small{Revision 1.1 EN - 28/08/2021} \\
+    \small{Revision 1.1 EN - 30/08/2021} \\
     \vspace*{0.5cm}
     \includegraphics[scale=0.2]{assets/zekit-assembled.jpg}
 }
@@ -98,16 +98,16 @@ I would like to thank the following persons for their contributions:
 
 The \textbf{ZeKit} is a fully functional 4-voice paraphonic synth kit with \textbf{digital oscillators} and \textbf{an analog filter and amplifier.}
 It also features \textbf{two analog envelopes} as well as \textbf{a simple pattern sequencer}.
-The instrument can be controlled via MIDI, handles \textbf{external clocks} and has \textbf{an audio input.}
+The instrument can be controlled via \textbf{MIDI,} handles \textbf{external clocks} and has \textbf{an audio input.}
 
-Hopefully, \emph{you'll learn a lot} while building this kit and you'll end up with \textbf{an inexpensive} but \textbf{fun instrument} that will integrate into your studio setup.
+Hopefully, \emph{you'll learn a lot} while building this kit and you'll end up with \textbf{an inexpensive and fun instrument} that will quickly integrate your studio setup.
 
 \subsection{Required skills}
 
 \begin{itemize}
-    \item Basic \textbf{knowledge of analog synthesis}
+    \item \textbf{Basic knowledge of analog synthesis}
     \item Some soldering experience with through-hole components
-    \item Knowledge on how to interpret a placement diagram
+    \item Some knowledge on how to read a placement diagram
 \end{itemize}
 
 \subsection{Required tools}
@@ -125,20 +125,21 @@ In order to fully assemble the kit, you'll need the following tools:
 
 \begin{itemize}
     \item A power supply, DC 5 to 9V, 0.5A with a 2.1mm x 5.5mm \\
-          barrel connector, center positive (*)
+    center positive barrel connector  (*)
     \item A 6.35mm jack audio cable
     \item Optional / computer, sequencer or MIDI controller
     \item Optional / MIDI cable
 \end{itemize}
 
-(*) A compatible \textbf{power adapter} can be purchased from \textbf{Fred's Lab} website, \\
-but we recommend you to reuse any adapter you already own.
+\vspace{0.25cm}
+(*) A compatible power adapter can be purchased from \textbf{Fred's Lab},
+but we recommend you \textbf{to reuse} any adapter you already own.
 
 % ------------------------------------------------------------------------------------------
 \pagebreak
 \section{Box Content}
 
-In the \textbf{ZeKit} package, you'll find the following components:
+In addition to \textbf{the pre-assembled PCB,} the \textbf{ZeKit} package contains the following:
 \vspace{-0.25cm}
 
 \begin{figure}[!ht]
@@ -172,20 +173,20 @@ In the \textbf{ZeKit} package, you'll find the following components:
         4               & Potentiometers       & 100k Ohm        \\
         1               & Microcontroller IC   & PIC24FJ256GA702 \\
         1               & Optocoupler IC       & LTV-847         \\
-        1               & Optocoupler IC       & H11L1SM         \\
+        1               & Optocoupler IC       & H11L1           \\
         1               & LED                  & 3mm red color   \\
         3               & Toggle switches      &                 \\
         \hline
     \end{tabular}
 \end{center}
 
-\vspace{0.25cm}
-Before firing up your soldering iron, \textbf{make sure your kit is complete} and take the time to \textbf{get to know} the different parts.
+\vspace{0.5cm}
+Before firing up your soldering iron, \textbf{make sure your kit is complete} and take the time \textbf{to get to know} the different components.
 
 \pagebreak
 \subsection{Pre-assembled PCB}
 
-The \textbf{ZeKit} makes use of \textbf{SMD} (surface mounted devices) and \textbf{THT} (through hole technology) components. SMD components allow the design to remain \textbf{compact and simple} to manufacture but more cost effective.
+The \textbf{ZeKit} makes use of \textbf{SMD} (Surface Mounted Devices) and \textbf{THT} (Through Hole Technology) components. SMD components allow the design to \textbf{remain compact and simple to manufacture} and more cost effective.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -194,8 +195,8 @@ The \textbf{ZeKit} makes use of \textbf{SMD} (surface mounted devices) and \text
     \end{center}
 \end{figure}
 
-All \textbf{SMD components} come already assembled on the PCB (printed circuit board). \\
-The \textbf{THT components} are left to be hand soldered, and \textbf{this is your mission!}
+All \textbf{SMD components} come already assembled on the \textbf{PCB} (Printed Circuit Board). \\
+The \textbf{THT components} are left to be hand soldered, \textbf{and this is your mission!}
 
 \subsection{Learn the Components}
 
@@ -312,7 +313,7 @@ The \textbf{ZeKit} can be powered from any DC (direct current) adapter with a vo
 
 The \textbf{DIN5 socket} is a 5-pin connector used for \textbf{MIDI input}. \textbf{MIDI} stands for \textbf{Music Instrument Digital Interface} and allows the \textbf{ZeKit} to play notes and be synchronized rhythmically with other compatible gear, like controllers or sequencers.
 
-\subsubsection{6.35mm TRS Jack Socket}
+\subsubsection{6.35mm TS Jack Socket}
 
 \begin{figure}[!ht]
     \begin{center}
@@ -321,9 +322,9 @@ The \textbf{DIN5 socket} is a 5-pin connector used for \textbf{MIDI input}. \tex
     \end{center}
 \end{figure}
 
-The \textbf{TRS jack} stands for "tip, ring and sleeve". This connector is common in \textbf{audio systems} to transmit the sound. The sleeve connection is always grounded whereas the tip and ring respectively carry the left and right audio signals.
+The \textbf{TS jack} stands for "tip and sleeve". This connector is common in \textbf{audio systems} to transmit the sound. The sleeve connection is always grounded whereas the tip carries the mono or "left" audio signal. An optional "ring" connection will carry the "right" signal.
 
-This connector is used as the \textbf{ZeKit} line and headphones output.
+This connector is used as the \textbf{ZeKit} line and, optionally, headphones output.
 
 \pagebreak
 \subsubsection{3.5mm TRS Jack Sockets}
@@ -335,7 +336,7 @@ This connector is used as the \textbf{ZeKit} line and headphones output.
     \end{center}
 \end{figure}
 
-These sockets are smaller versions of the 6.35mm ones. In the \textbf{ZeKit}, they are used for the \textbf{external audio} and the \textbf{clock or "sync"} inputs.
+These sockets are smaller and stereo versions of the 6.35mm ones. In the \textbf{ZeKit}, they are used for the \textbf{external audio} and the \textbf{clock or "sync"} inputs.
 
 The \textbf{clock signal} is expected on the jack tip and the sequencer running state (start or stop) on the ring connection. The sleeve connection is grounded.
 
@@ -395,10 +396,11 @@ The \textbf{ZeKit} uses optocouplers for the \textbf{MIDI input} and as \textbf{
 \end{figure}
 
 
-\textbf{DIP Sockets} (Dual In-line Package) are preferably mounted instead of directly soldering the ICs onto the PCB.
+Instead of directly soldering the ICs onto the PCB, \textbf{DIP Sockets} (Dual In-line Package) are preferably installed first.
 
-While not mandatory, they will protect ICs from \textbf{soldering heat} and keep them \textbf{exchangeable.}
-That way, ICs also can't be soldered "the wrong direction"... Don't worry, this happens to the best of us!
+They will \textbf{protect the ICs from soldering heat and keep them exchangeable.} \\
+Using sockets, ICs also can't be soldered "the wrong way"... \\
+Don't worry, this has happened to the best of us!
 
 \subsubsection{Knobs}
 
@@ -418,11 +420,11 @@ They contribute to the \textbf{final look-and-feel} and allow precise control of
 % ------------------------------------------------------------------------------------------
 \section{Assembling the Kit}
 
-\subsection{General Advices}
+\subsection{General Advice}
 
 To maximize your chance of success assembling the \textbf{ZeKit,} work preferably on a \textbf{tidy \& properly lit} surface.
-Don't hesitate to \textbf{use magnification} to control your solder joints, reheat with \emph{"no clean"} flux if necessary.
-Keep unused parts in their original packaging, not to loose them.
+Don't hesitate to \textbf{use magnification} to control your solder joints, reheat with \emph{no-clean flux}, when necessary.
+Keep unused parts in their original packaging, so you won't loose them.
 
 Soldering is easier with a \textbf{clean and not oxidized} iron tip. Always \textbf{switch off your iron} when not soldering to extend your tip lifespan!
 
@@ -446,7 +448,7 @@ by following these steps:
     \item Bring in the solder wire until there is enough material
     \item Pull back the solder wire still heating the joint
     \item Pull back the tip from the joint
-    \item Let the solder joint cool down naturally (don't blow at it)
+    \item Let the solder joint cool down naturally - don't blow on it
 \end{enumerate}
 
 \pagebreak
@@ -464,8 +466,8 @@ by following these steps:
     \item Double-check the components orientation
     \item Verify sockets notch match with footprint
     \item Ensure the board is clean before soldering
-    \item Optional - use Isopropyl alcohol (propan-2-ol) to clean the board
-    \item Optional - apply \emph{no clean} flux on pads and legs
+    \item Optional - use isopropyl alcohol (propan-2-ol) to clean the board
+    \item Optional - apply \emph{no-clean flux} on pads and legs
 \end{itemize}
 
 \vspace{0.25cm}
@@ -508,14 +510,14 @@ All potentiometers, switches and connectors \textbf{must be soldered as straight
 
 \begin{tcolorbox}
     \textcolor{red}{
-        All connectors and the power switch are located on \textbf{the bottom side} of the PCB and must be soldered from the top.
+        All connectors and the power switch are located \textbf{on the bottom side} of the PCB and must be soldered \textbf{from the top.}
     }
 \end{tcolorbox}
 
 \vspace{0.25cm}
 \begin{tcolorbox}
     \textcolor{red}{
-        De-soldering a part which has been incorrectly mounted is \textbf{tedious} and requires good soldering experience and specific tools. To avoid this, better check the part placement twice \textbf{before soldering.}
+        \textbf{De-soldering a part} which has been incorrectly mounted \textbf{is tedious} and requires good soldering experience and specific tools. To avoid this, better check the part placement twice \textbf{before soldering.}
     }
 \end{tcolorbox}
 
@@ -538,7 +540,7 @@ This marking must match the \textbf{footprint} drawn on the PCB \textbf{silk scr
         \caption{All sockets placed}
     \end{center}
 \end{figure}
-Take the time necessary to solder each socket pin and then make sure there are no \textbf{solder bridges} nor \textbf{cold solder joints}. Once it's done, the board should ressemble the following picture.
+Take the necessary time to solder each socket pin and ensure there are \textbf{no solder bridges nor cold solder joints}. Once done, the board should ressemble the following picture.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -560,7 +562,7 @@ These parts \textbf{are not polarized} and can be soldered in any orientation.
     \end{center}
 \end{figure}
 
-After soldering, \textbf{trim off} the capacitors legs with a wire cutter, like on the picture.
+After soldering, \textbf{trim off} the capacitors legs with a wire cutter, as shown on the picture.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -701,7 +703,7 @@ Verify the \textbf{ICs alignment} with their socket, make sure \textbf{no leg is
 \end{figure}
 
 \pagebreak
-\section{Finishing the kit}
+\section{Finishing the Kit}
 
 \subsection{First Power Up}
 \Large
