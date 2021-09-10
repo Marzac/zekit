@@ -57,7 +57,7 @@
     \huge{ZEKIT} \\
     Assembling Instructions \\
     \vspace*{0.25cm}
-    \small{Revision 1.1 EN - 30/08/2021} \\
+    \small{Revision 1.2 EN - 10/09/2021} \\
     \vspace*{0.5cm}
     \includegraphics[scale=0.2]{assets/zekit-assembled.jpg}
 }
@@ -94,7 +94,7 @@ I would like to thank the following persons for their contributions:
 %%% INTRODUCTION
 \section{Introduction}
 
-\textbf{Welcome to the ZeKit assembly guide!}
+\textbf{Welcome to ZeKit assembly guide!}
 
 The \textbf{ZeKit} is a fully functional 4-voice paraphonic synth kit with \textbf{digital oscillators} and \textbf{an analog filter and amplifier.}
 It also features \textbf{two analog envelopes} as well as \textbf{a simple pattern sequencer}.
@@ -183,10 +183,12 @@ In addition to \textbf{the pre-assembled PCB,} the \textbf{ZeKit} package contai
 \vspace{0.5cm}
 Before firing up your soldering iron, \textbf{make sure your kit is complete} and take the time \textbf{to get to know} the different components.
 
+Also, no need to print out every page of this manual. Only \textbf{pages 15 to 22} describe the assembly process.
+
 \pagebreak
 \subsection{Pre-assembled PCB}
 
-The \textbf{ZeKit} makes use of \textbf{SMD} (Surface Mounted Devices) and \textbf{THT} (Through Hole Technology) components. SMD components allow the design to \textbf{remain compact and simple to manufacture} and more cost effective.
+The \textbf{ZeKit} makes use of \textbf{SMD} (Surface Mounted Devices) and \textbf{THT} (Through Hole Technology) components. SMD components allow the design to \textbf{remain compact and simple to manufacture} and also more cost effective.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -210,7 +212,7 @@ The \textbf{THT components} are left to be hand soldered, \textbf{and this is yo
 \end{figure}
 
 The \textbf{LED} (Light Emitting Diode) is an indicator that lights up when a current is running through it.
-Here, it shows when the instrument is powered on.
+Here, it shows that the instrument is powered on.
 
 \subsubsection{Tactile Switches}
 
@@ -223,7 +225,7 @@ Here, it shows when the instrument is powered on.
 
 The \textbf{tactile switches} are \textbf{momentary switches} used as interface buttons.
 
-Their contact is normally open and gets closed when the switch is pressed. These switches have \textbf{an LED built-in} that illuminates the cap to show some status information.
+Their contact is normally open and gets closed when the switch is pressed. These switches have \textbf{a LED built-in} that illuminates the cap to show some status information.
 
 They are connected to the microcontroller directly and are used to select the oscillator waveform, choose the sequencer pattern and toggle various options.
 
@@ -379,7 +381,7 @@ The firmware handling these tasks comes pre-programmed by \textbf{Fred’s Lab,}
     \end{center}
 \end{figure}
 
-An \textbf{optocoupler} is a combination of a \textbf{photo transistor} and an \textbf{LED} inside a light sealed package. It is used keep circuits \textbf{electrically isolated} while transferring signals.
+An \textbf{optocoupler} is a combination of a \textbf{photo transistor} and an \textbf{LED} inside a light sealed package. It is used to keep circuits \textbf{electrically isolated} while transferring signals.
 
 The conductance of the photo transistor is related to the brightness of the LED.
 
@@ -398,9 +400,9 @@ The \textbf{ZeKit} uses optocouplers for the \textbf{MIDI input} and as \textbf{
 
 Instead of directly soldering the ICs onto the PCB, \textbf{DIP Sockets} (Dual In-line Package) are preferably installed first.
 
-They will \textbf{protect the ICs from soldering heat and keep them exchangeable.} \\
-Using sockets, ICs also can't be soldered "the wrong way"... \\
-Don't worry, this has happened to the best of us!
+They will \textbf{protect the ICs} from soldering heat and keep them exchangeable.
+
+Lastly, that way ICs won't be soldered in the wrong direction ... but don't worry, this happens to all of us!
 
 \subsubsection{Knobs}
 
@@ -426,7 +428,7 @@ To maximize your chance of success assembling the \textbf{ZeKit,} work preferabl
 Don't hesitate to \textbf{use magnification} to control your solder joints, reheat with \emph{no-clean flux}, when necessary.
 Keep unused parts in their original packaging, so you won't loose them.
 
-Soldering is easier with a \textbf{clean and not oxidized} iron tip. Always \textbf{switch off your iron} when not soldering to extend your tip lifespan!
+Soldering is easier with \textbf{a clean \& non oxidized} iron tip. Always \textbf{switch off your iron} when not soldering to extend your tip lifespan!
 
 \subsection{Setting up the soldering gig}
 
@@ -582,7 +584,7 @@ The \textbf{trimmer} is the blue part labeled \textbf{W103}. This component is n
     \end{center}
 \end{figure}
 
-The trimmer can be installed at the \textbf{top or at the bottom} of the PCB. If you plan to give the \textbf{ZeKit} an enclosure, install the trimmer at the bottom and solder it later, at the connectors soldering step.
+The trimmer can be installed at the \textbf{top or at the bottom} of the PCB. If you plan to give the \textbf{ZeKit} an enclosure, install the trimmer at the bottom and solder it later, at the connectors soldering step (see step 8).
 
 \subsubsection{Step 4: Tactile Switches}
 
@@ -717,7 +719,7 @@ If this is your first build, try powering it up using \textbf{a lab power supply
 You don't want all your hard work going up in smoke!
 
 Once turned on, the \textbf{power LED} should light up and \textbf{all tact switches} should blink when pushed. The \textbf{linear regulator} \emph{U2} must stay cool.
-If you press the \textbf{play} switch \emph{SW8}, its function should latch, and the \textbf{tap} switch \emph{SW6} should blink regularly, indicating that the MCU is \textbf{correctly running the firmware.}
+If you press \textbf{the play switch} \emph{SW8}, its function should latch, and \textbf{the tap switch} \emph{SW6} should blink regularly, indicating that the MCU is \textbf{correctly running the firmware.}
 
 \vspace{0.5cm}
 \textbf{Congratulations!}
@@ -772,7 +774,7 @@ To begin the calibration procedure, set the:
 \end{itemize}
 
 \vspace{0.25cm}
-Play some \textbf{very low notes} such as G1 (49Hz) or C1 (32Hz) using a \emph{MIDI keyboard} and \textbf{adjust the trimmer} \emph{TR1 screw} with a screw driver \textbf{until these notes are dampened.}
+Play some \textbf{very low notes} (the default MIDI channel is 1) such as G1 (49Hz) or C1 (32Hz) using a \emph{MIDI keyboard} and \textbf{adjust the trimmer} \emph{TR1 screw} with a screw driver \textbf{until these notes are dampened.}
 
 Finally, check the overall \emph{cutoff range} by sweeping the \textbf{Cutoff} pot \emph{RV6} and ensure that the filter \textbf{is opened completely} when the \textbf{cutoff} is at maximum. Adjust the trimmer \emph{TR1} accordingly.
 
