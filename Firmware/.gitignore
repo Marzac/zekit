@@ -1,0 +1,9 @@
+*.s
+*.i
+*.p
+*.o
+/build
+/debug
+/dist
+/report
+/.generated_files
