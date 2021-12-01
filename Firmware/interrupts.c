@@ -46,7 +46,6 @@ void __attribute__((interrupt,no_auto_psv)) _DMA0Interrupt(void)
 }
 
 /******************************************************************************/
-extern uint16_t uwTick;
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void)
 {
 	uwTick++;

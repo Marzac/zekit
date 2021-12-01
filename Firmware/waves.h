@@ -21,8 +21,8 @@
 #ifndef WAVES_H
 #define WAVES_H
 
-	#include <stdint.h>
-	
+
+#include <stdint.h>
 /******************************************************************************/
 	#define MAX_WAVES				8
 	#define IS_WAVEFORM_MONO(w)		((w) < MAX_WAVES)

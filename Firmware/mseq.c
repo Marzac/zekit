@@ -299,30 +299,37 @@ void seqPlay()
 // Play pattern notes
 	Pattern * p = &patterns[seq.pattern];
 	if (!p->length) return;
+	int nextStep = (seq.step + 1) % p->length;
+
 	for (int n = 0; n < SEQ_NOTES_MAX; n++) {
-		int16_t note = p->notes[seq.step][n];
+		int note = p->notes[seq.step][n];
 		if (note == STEP_EMPTY) {
 			if (lastNotes[n] > 0)
 				audioNoteOff(lastNotes[n]);
 			lastNotes[n] = -1;
-		}else if (note < STEP_EMPTY) {
+		}else{
 			if (seq.halfStep) {
-				if (lastNotes[n] > 0)
-					audioNoteOff(lastNotes[n]);
-				lastNotes[n] = -1;
+				int next = p->notes[nextStep][n];
+				if (next != STEP_TIE) {
+					if (lastNotes[n] > 0)
+						audioNoteOff(lastNotes[n]);
+					lastNotes[n] = -1;
+				}
 			}else{
-				note += seq.root - p->root;
-				if (note < 0) note = 0;
-				if (note > 127) note = 127;
-				audioNoteOn(note);
-				lastNotes[n] = note;
+				if (note < STEP_EMPTY) {
+					note += seq.root - p->root;
+					if (note < 0) note = 0;
+					if (note > 127) note = 127;
+					audioNoteOn(note);
+					lastNotes[n] = note;
+				}
 			}
 		}
 	}
-
+				
 // Advance the playback
-	if (seq.halfStep)
-		seq.step = (seq.step + 1) % p->length;
+	if (seq.halfStep) 
+		seq.step = nextStep;
 	seq.halfStep = !seq.halfStep;
 	if (seq.halfStep) seqTapBlinkFlash();
 }

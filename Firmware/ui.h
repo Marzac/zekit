@@ -22,8 +22,7 @@
 #define UI_H
 
 	#include <stdint.h>
-	
-/******************************************************************************/
+
 	typedef enum{
 		TACT_PATTERN	= 0x0001,
 		TACT_SYSTEM		= 0x0002,

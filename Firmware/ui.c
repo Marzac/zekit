@@ -171,6 +171,7 @@ inline void uiEvents()
 	}
 
 // Save globals on leaving
+	if (lastUIPage == uiPage) return;
 	if (lastUIPage == PAGE_MIDI_SELECT)
 		uiSaveGlobals();
 }
@@ -258,7 +259,6 @@ void uiSaveGlobals()
 	storeWrite32(GLOBAL_FRCTUNING_ADDR, &osctun);
 }
 
-/******************************************************************************/
 void uiFRCTuning(int value)
 {
 // Adjust MCU FRC frequency

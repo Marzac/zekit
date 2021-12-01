@@ -37,6 +37,7 @@ static int waveform;
 static int16_t pitchBend;
 static int16_t cutoffMIDI;
 static int16_t cutoffTrack;
+static bool envsTrigger;
 
 static int voicesCount;
 static int voicesMIDI[MAX_VOICES];
@@ -49,6 +50,7 @@ static Sawer oscs[MAX_OSCS];
 static void audioMuteOscs();
 static void audioMonoNoteOn(uint8_t note, int wave);
 static void audioParaNoteOn(uint8_t note, int wave);
+static inline void audioRelease();
 
 static void audioComputePitch(int voice, int note);
 static void audioUpdateTracking();
@@ -64,10 +66,12 @@ void audioInit()
 	pitchBend = 0;
 	cutoffMIDI = 0;
 	cutoffTrack = 0;
+	envsTrigger = false;
 
 	voicesCount = 0;
 	audioMuteOscs();
-
+	audioRelease();
+	
 	for (int i = 0; i < MAX_OSCS; i++) {
 		Sawer * o = &oscs[i];
 		o->phase = 0;
@@ -108,21 +112,6 @@ void audioSetBend(int16_t bend)
 void audioSetCutoff(int16_t cutoff)
 {
 	cutoffMIDI = (cutoff - 64) << 9;
-}
-
-/******************************************************************************/
-inline void audioTrigger()
-{
-	CVRCONbits.CVR = 24;		// Vref = 2.475V
-	CM1CONbits.CPOL = 1;		// Inverse polarity
-	VCA_ENV_SetHigh();
-	VCF_ENV_SetHigh();
-}
-
-inline void audioRelease()
-{
-	VCA_ENV_SetLow();
-	VCF_ENV_SetLow();
 }
 
 /******************************************************************************/
@@ -183,10 +172,10 @@ void audioMonoNoteOn(uint8_t note, int wave)
 	oscs[1] = wavesMono[wave][1];
 	oscs[2] = wavesMono[wave][2];
 	oscs[3] = wavesMono[wave][3];
+	
 	audioComputePitch(0, note);
 	voicesCount = 1;
-
-	audioTrigger();
+	envsTrigger = true;
 }
 
 void audioParaNoteOn(uint8_t note, int wave)
@@ -204,7 +193,14 @@ void audioParaNoteOn(uint8_t note, int wave)
 	}
 
 	bool always = uiSystem & SYSTEM_ENVF_RETRIG;
-	if (trigger || always) audioTrigger();
+	if (trigger || always) envsTrigger = true;
+}
+
+/******************************************************************************/
+static inline void audioRelease()
+{
+	VCF_ENV_SetLow();
+	VCA_ENV_SetLow();
 }
 
 /******************************************************************************/
@@ -226,15 +222,15 @@ static const uint32_t pt[] = {
 
 void audioUpdateTracking()
 {
-	int16_t newTrack = 0;
+	int16_t newTrack = -32768;
 
 	for (int i = 0; i < MAX_VOICES; i++) {
 		int note = voicesMIDI[i];
 		if (note < 0) continue;
 		if (note > 91) note = 91;	// G6 = ~1568Hz
 		if (note < 28) note = 28;	// E1 = ~41Hz
-
-		int16_t track = (note - TRACK_REF) * 990; // ~100% tracking
+		
+		int16_t track = (note - TRACK_REF) * 600; // ~100% tracking
 		if (track < newTrack) continue;
 		newTrack = track;
 	}
@@ -301,7 +297,15 @@ void audioRender(int16_t * buffer)
 		audioRenderMono(buffer, cutoff);
 	else audioRenderPara(buffer, cutoff);
 
-// Manage the analog envelopes
+// Manage the envelopes
+	if (envsTrigger) {
+		CVRCONbits.CVR = 24;			// Vref = 2.475V
+		CM1CONbits.CPOL = 1;			// Inverse polarity
+		VCF_ENV_SetHigh();				// Trigger VCF env.
+		VCA_ENV_SetHigh();				// Trigger VCA env.
+		envsTrigger = false;
+	}
+
 	if (CM1CONbits.COUT) {
 		if (!CM1CONbits.CPOL) {			// Filter env. reached bottom
 			if (uiSystem & SYSTEM_ENVF_LOOP) {
@@ -319,7 +323,7 @@ void audioRender(int16_t * buffer)
 // Read switches state (in sync)
 	TRISA |= PORTA_TACTS;
 	TRISB |= PORTB_TACTS;
-	__asm__ volatile ("repeat #10\n nop\n");
+	__asm volatile ("repeat #10\n nop\n");
 	uiSwitchPortA = PORTA;
 	uiSwitchPortB = PORTB;
 	TRISA &= ~PORTA_TACTS;
