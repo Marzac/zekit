@@ -33,6 +33,8 @@ Firmware Release Notes
 V2.0 - 03/01/2022
 - Adding vibrato using the modwheel
 - Adding a clock setting page (press wave + options)
+- Adding MIDI CC 70 for selecting waveform
+- Adding MIDI CC 71 for selecting pattern
 - MIDI clock can now be enabled or disabled
 - EXT clock can now be enabled or disabled
 - Clock divider for EXT clock (from 1 to 4) 
@@ -40,6 +42,7 @@ V2.0 - 03/01/2022
 - Legato in mono mode (when holding a note)
 - Glide time twice as long as before
 - Fixing pitchbend role on chords release
+- Improved handling of pattern transposition
 
 V1.1 - 01/12/2021
 - Fixing a rare envelope glitch (wouldn't retrigger)
