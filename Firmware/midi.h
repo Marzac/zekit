@@ -27,6 +27,7 @@
 /******************************************************************************/
 	extern uint16_t midiBuffer[MIDIRX_BUFFER_LEN];
 	extern uint8_t midiChannel;
+	extern uint8_t midiRT;
 
 	void midiInit();
 	void midiUpdate();

@@ -47,6 +47,7 @@ static const uint8_t midiMsgLengths[] = {
 /******************************************************************************/
 uint16_t midiBuffer[MIDIRX_BUFFER_LEN];	// DMA RX buffer
 uint8_t	 midiChannel;
+uint8_t	 midiRT;
 
 /******************************************************************************/
 static uint16_t midiRd;
@@ -61,6 +62,7 @@ static void midiNoteOff(uint8_t note, uint8_t velo);
 void midiInit()
 {
 	midiRd = 0;
+	midiRT = 1;
 	midiBytes[0] = 0;
 	midiBytes[1] = 0;
 	midiBytes[2] = 0;
@@ -79,7 +81,7 @@ void midiUpdate()
 		midiRd = (midiRd + 1) & MIDIRX_BUFFER_MASK;
 
 	// Realtime messages
-		if ((b & 0xF8) == 0xF8) {
+		if (midiRT && ((b & 0xF8) == 0xF8)) {
 			switch(b) {
 			case MIDI_TICK: mseqMIDITick(); break;
 			case MIDI_START: mseqMIDIStart(); break;
@@ -144,12 +146,20 @@ void midiUpdate()
 					audioResetCtrls();
 					break;
 
+				case MIDI_CC_RTTOGGLE:
+					midiRT = midiBytes[2];
+					break;
+
 				default: break;
 				}
 				break;
 
 			case MIDI_PITCHBEND:
 				audioSetBend((midiBytes[2] << 7) | midiBytes[1]);
+				break;
+
+			case MIDI_PROGRAM:
+				audioSetWave(midiBytes[1] & 0x0F);
 				break;
 
 			default: break;
