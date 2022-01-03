@@ -1,0 +1,53 @@
+ ______     _   ___ _   
+|___  /    | | / (_) |  
+   / /  ___| |/ / _| |_ 
+  / /  / _ \    \| | __|
+./ /__|  __/ |\  \ | |_ 
+\_____/\___\_| \_/_|\__|
+                        
+=============================
+ZeKit Firmware
+(c) Fred's Lab - Frédéric Meslin
+Licensed under GPLv3 terms
+03.01.2022
+
+=============================
+Official repository:
+https://github.com/Marzac/zekit/
+
+Get the sources & extra design files:
+git clone git@github.com:Marzac/zekit.git
+or:
+git clone https://github.com/Marzac/zekit.git
+
+Support
+=======
+Email: support@fredslab.net
+Address:
+Frederic Meslin Audiogeräte
+HerwarthStr. 20
+53115 BONN / GERMANY
+
+Firmware Release Notes
+======================
+V2.0 - 03/01/2022
+- Adding vibrato using the modwheel
+- Adding a clock setting page (press wave + options)
+- Adding MIDI CC 70 for selecting waveform
+- Adding MIDI CC 71 for selecting pattern
+- MIDI clock can now be enabled or disabled
+- EXT clock can now be enabled or disabled
+- Clock divider for EXT clock (from 1 to 4) 
+- Faster navigation through UI pages
+- Legato in mono mode (when holding a note)
+- Glide time twice as long as before
+- Fixing pitchbend role on chords release
+- Improved handling of pattern transposition
+
+V1.1 - 01/12/2021
+- Fixing a rare envelope glitch (wouldn't retrigger)
+- Enabling option to add ties to sequences
+- Fixing saving feature of master tuning
+
+V1.0 - 29/09/2021
+Initial firmware release
