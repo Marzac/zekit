@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -28,25 +28,40 @@
 	#define SEQ_PATTERNS_MAX	16		// number of patterns
 	#define SEQ_STEPS_MAX		96		// max: 127 steps
 	#define SEQ_NOTES_MAX		4		// notes per step
-	#define SEQ_CLOCK_TIMEOUT	3000	// timeout for clock switching
+	#define SEQ_CLOCK_TIMEOUT	1500	// timeout for clock switching
 
 /******************************************************************************/
-/* Sequencer control */
+/* States and configuration */
 	typedef enum {
-		SEQ_RESET = 0,
-		SEQ_PLAY,
-		SEQ_RECORD,
+		MSEQ_STATE_RESET = 0,
+		MSEQ_STATE_PLAY,
+		MSEQ_STATE_RECORD,
 	}MSEQ_STATES;
 
+	typedef enum {
+		MSEQ_CLOCK_TAKE_NONE	= 0x0,
+		MSEQ_CLOCK_TAKE_MIDI	= 0x1,
+		MSEQ_CLOCK_TAKE_EXT		= 0x2,
+		MSEQ_CLOCK_TAKE_BOTH	= 0x3,
+		MSEQ_CLOCK_DIV_0		= 0x0,
+		MSEQ_CLOCK_DIV_2		= 0x4,
+		MSEQ_CLOCK_DIV_4		= 0x8,
+	}MSEQ_CLOCKINGS;
+
+/******************************************************************************/	
+/* Base and pattern functions */
 	void mseqInit();
 	void mseqUpdate();
 	MSEQ_STATES mseqGetState();
-
+	
 	void mseqSetPattern(int pattern);
 	int mseqGetPattern();
 
 /******************************************************************************/
 /* Clock related functions */
+	void mseqSetClocking(int config);
+	int mseqGetClocking();
+	
 	void mseqMIDITick();
 	void mseqMIDIStart();
 	void mseqMIDIContinue();

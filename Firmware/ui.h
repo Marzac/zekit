@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -24,20 +24,20 @@
 	#include <stdint.h>
 
 	typedef enum{
-		TACT_PATTERN	= 0x0001,
-		TACT_SYSTEM		= 0x0002,
-		TACT_WAVE		= 0x0004,
-		TACT_PLAY		= 0x0008,
-		TACT_REC		= 0x0010,
-		TACT_TAP		= 0x0020,
-		TACT_SAVE		= 0x0040,
+		TACT_PATTERN	= 0x01,
+		TACT_SYSTEM		= 0x02,
+		TACT_WAVE		= 0x04,
+		TACT_PLAY		= 0x08,
+		TACT_REC		= 0x10,
+		TACT_TAP		= 0x20,
+		TACT_SAVE		= 0x40,
 	}TACT_FLAGS;
 
 	typedef enum{
-		SYSTEM_ENVF_RETRIG	= 0x0001,
-		SYSTEM_ENVF_LOOP	= 0x0002,
-		SYSTEM_ENVF_TRACK	= 0x0004,
-		SYSTEM_ENVF_GLIDE	= 0x0008,
+		SYSTEM_ENV_RETRIG	= 0x01,
+		SYSTEM_ENV_LOOP		= 0x02,
+		SYSTEM_FILTER_TRACK	= 0x04,
+		SYSTEM_PITCH_GLIDE	= 0x08,
 	}SYSTEM_FLAGS;
 
 	extern uint16_t uiSystem;

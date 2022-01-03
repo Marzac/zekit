@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify

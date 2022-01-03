@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -46,9 +46,10 @@ static const uint8_t midiMsgLengths[] = {
 
 /******************************************************************************/
 uint16_t midiBuffer[MIDIRX_BUFFER_LEN];	// DMA RX buffer
-uint8_t	 midiChannel;
 
 /******************************************************************************/
+static uint8_t	midiChannel;
+
 static uint16_t midiRd;
 static uint8_t	midiBytes[4];
 static uint16_t midiLength;
@@ -60,6 +61,8 @@ static void midiNoteOff(uint8_t note, uint8_t velo);
 /******************************************************************************/
 void midiInit()
 {
+	midiChannel = 0;
+	
 	midiRd = 0;
 	midiBytes[0] = 0;
 	midiBytes[1] = 0;
@@ -125,13 +128,22 @@ void midiUpdate()
 
 				switch(midiBytes[1]) {
 				case MIDI_CC_MODWHEEL:
+					audioSetWheel(midiBytes[2]);
 					uiFRCTuning(midiBytes[2]);
+					break;
+
+				case MIDI_CC_WAVE:
+					audioSetWave(midiBytes[2] >> 3);
+					break;
+				
+				case MIDI_CC_PATTERN:
+					mseqSetPattern(midiBytes[2] >> 3);
 					break;
 
 				case MIDI_CC_CUTOFF:
 					audioSetCutoff(midiBytes[2]);
 					break;
-
+					
 				case MIDI_CC_ALLNOTESOFF:
 					audioAllNotesOff();
 					break;
@@ -158,6 +170,15 @@ void midiUpdate()
 	}
 }
 
+/******************************************************************************/
+void midiSetChannel(int channel)
+{
+	audioAllNotesOff();
+	midiChannel = channel;
+}
+
+int midiGetChannel() {return midiChannel;}
+	
 /******************************************************************************/
 void midiNoteOn(uint8_t note, uint8_t velo)
 {

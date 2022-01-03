@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -47,9 +47,11 @@
 	#define MIDI_CC_BALANCE				8
 	#define MIDI_CC_PAN					10
 	#define MIDI_CC_EXPRESSION			11
-	#define MIDI_CC_RESONANCE			71
-	#define MIDI_CC_CUTOFF				74
 
+	#define MIDI_CC_WAVE				70
+	#define MIDI_CC_PATTERN				71	
+	#define MIDI_CC_CUTOFF				74
+	
 /* MIDI - Special CC numbers */
 	#define MIDI_CC_ALLSOUNDSOFF		120
 	#define MIDI_CC_RESETCTRLS			121

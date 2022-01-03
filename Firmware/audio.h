@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
 /******************************************************************************/
 	#define MAX_VOICES		4
 	#define MAX_OSCS		(MAX_VOICES * 2)
-	#define GLIDE_SHIFT		2
+	#define GLIDE_SHIFT		3
 	#define BEND_RANGE		7
 
 /******************************************************************************/
@@ -48,7 +48,11 @@
 
 	void audioSetWave(int wave);
 	int	 audioGetWave();
+	
 	void audioSetBend(int16_t bend);
 	void audioSetCutoff(int16_t cutoff);
-
+	void audioSetWheel(int16_t wheel);
+	
+	int audioGetNoVoices();
+	
 #endif

@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 #include <stdbool.h>
 
 /*****************************************************************************/
-// Sequencer functions
+// Internal sequencer state and functions
 typedef struct {
 	uint8_t state;
 	uint16_t dt, plldt, stamp;
@@ -62,9 +62,9 @@ static void seqPatternsLoad();
 static void seqPatternsSave(int id);
 
 /*****************************************************************************/
-// Pattern functions
-#define STEP_EMPTY		0x80
-#define STEP_TIE		0x81
+// Internal pattern related functions
+#define STEP_EMPTY	0x80
+#define STEP_TIE	0x81
 
 typedef struct {
 	uint8_t root;
@@ -82,11 +82,13 @@ static void patternLoad(uint32_t addr, Pattern * p);
 static void patternSave(uint32_t addr, const Pattern * p);
 
 /*****************************************************************************/
-// Clocks and internal states
+// Clocks and other states
+static volatile int clocking;
 static bool extClock;
-static bool midiClock;
 static uint16_t extClockTicks;
-static uint16_t midiClockEvents;
+static bool midiClock;
+static uint16_t midiClockTicks;
+static uint16_t masterClockTicks;
 
 static uint16_t clockStamp;
 static uint16_t tapStamps[3];
@@ -108,7 +110,8 @@ static uint16_t seqSaveBlinkStamp;
 /******************************************************************************/
 void mseqInit()
 {
-	seq.state = SEQ_RESET;
+// Sequencer state
+	seq.state = MSEQ_STATE_RESET;
 	seq.dt = 300000UL / (1200 * 2);
 	seq.stamp = uwTick;
 	seq.tick = 0;
@@ -118,22 +121,29 @@ void mseqInit()
 	seq.step = 0;
 	seq.halfStep = false;
 	seq.mustClear = false;
-	seq.root = 48;
-
+	seq.root = NOTE_NONE;
+	
+// Clocking state
+	clocking = MSEQ_CLOCK_TAKE_BOTH | MSEQ_CLOCK_DIV_0;
+	extClock = false;
 	extClockTicks = 0;
-	midiClockEvents = 0;
-
+	midiClock = false;
+	midiClockTicks = 0;
+	masterClockTicks = 0;
+		
 	clockStamp = uwTick;
 	tapStamps[0] = uwTick;
 	tapStamps[1] = uwTick;
 	tapStamps[2] = uwTick;
 	tapCount = 0;
 
+// UI related state
 	seqPlayBlink = false;
 	seqRecBlink = false;
 	seqTapBlink = false;
 	seqSaveBlink = false;
 
+// Notes and patterns
 	for (int n = 0; n < SEQ_NOTES_MAX; n++)
 		lastNotes[n] = STEP_EMPTY;
 
@@ -148,7 +158,7 @@ void mseqUpdate()
 		if (dt > SEQ_CLOCK_TIMEOUT) {
 			seqClean();
 			midiClock = extClock = false;
-			seq.state = SEQ_RESET;
+			seq.state = MSEQ_STATE_RESET;
 		}
 	}
 
@@ -186,71 +196,121 @@ MSEQ_STATES mseqGetState() {return seq.state;}
 void mseqSetPattern(int pattern)
 {
 	seq.nextPattern = pattern;
-	if (seq.state == SEQ_RESET)
+	if (seq.state == MSEQ_STATE_RESET)
 		seq.pattern = seq.nextPattern;
 }
 int mseqGetPattern() {return seq.nextPattern;}
 
 /******************************************************************************/
+void mseqSetClocking(int config)
+{
+	int change = config ^ clocking;
+	if (change & MSEQ_CLOCK_TAKE_EXT) {
+		clockStamp = uwTick;
+		extClock = false;
+		extClockTicks = 0;
+	}
+	
+	if (change & MSEQ_CLOCK_TAKE_MIDI) {
+		midiClock = false;
+		midiClockTicks = 0;
+	}
+
+	clocking = config;
+}
+
+int mseqGetClocking() {return clocking;}
+
+/******************************************************************************/
 void mseqMIDITick()
 {
+	if (!(clocking & MSEQ_CLOCK_TAKE_MIDI))
+		return;
+
 	if (extClock || !midiClock)
 		return;
 
-	if (midiClockEvents) {
-		midiClockEvents--;
+	if (midiClockTicks) {
+		midiClockTicks--;
 		return;
 	}
 
-	midiClockEvents = 5;
-	extClockTicks++;
+	midiClockTicks = 6 - 1;
+	masterClockTicks++;
 }
 
 void mseqMIDIStart()
 {
+	if (!(clocking & MSEQ_CLOCK_TAKE_MIDI))
+		return;
+	
+	if (extClock) return;
 	midiClock = true;
-	midiClockEvents = 0;
-	extClockTicks = 0;
+	midiClockTicks = 0;
+	masterClockTicks = 0;
 
 	seqHome();
-	seq.state = SEQ_PLAY;
+	seq.state = MSEQ_STATE_PLAY;
 }
 
 void mseqMIDIContinue()
 {
+	if (!(clocking & MSEQ_CLOCK_TAKE_MIDI))
+		return;
+	
+	if (extClock) return;
 	midiClock = true;
-	seq.state = SEQ_PLAY;
+	seq.state = MSEQ_STATE_PLAY;
 }
 
 void mseqMIDIStop()
 {
+	if (!(clocking & MSEQ_CLOCK_TAKE_MIDI))
+		return;
+	
+	if (extClock) return;
 	midiClock = false;
-	seq.state = SEQ_RESET;
+	seq.state = MSEQ_STATE_RESET;
 	seqClean();
 }
 
 /******************************************************************************/
 void mseqExtClockTick()
 {
+	if (!(clocking & MSEQ_CLOCK_TAKE_EXT))
+		return;
+	
+// First clock tick
 	if (!extClock) {
 		clockStamp = uwTick;
-		extClockTicks = 1;
 		extClock = true;
+		extClockTicks = ((int) clocking) >> 2;
+		masterClockTicks = 1;
 		return;
 	}
 
+// Regular ticks
 	uint16_t dt = uwTick - clockStamp;
 	if (dt < 20) return;
 	clockStamp = uwTick;
+		
+	if (extClockTicks) {
+		extClockTicks--;
+		return;
+	}
 
 	seq.plldt = dt >> 1;
-	extClockTicks++;
+	extClockTicks = ((int) clocking) >> 2;
+	masterClockTicks++;
 }
 
 void mseqExtClockStart()
 {
+	if (!(clocking & MSEQ_CLOCK_TAKE_EXT))
+		return;
+	
 	seqHome();
-	seq.state = SEQ_PLAY;
+	seq.state = MSEQ_STATE_PLAY;
 }
 
 /******************************************************************************/
@@ -258,8 +318,9 @@ void seqHome()
 {
 	seq.step = 0;
 	seq.halfStep = false;
-	seq.tick = extClockTicks;
+	seq.tick = masterClockTicks;
 	seq.stamp = uwTick;
+	seq.root = NOTE_NONE;
 }
 
 void seqClean()
@@ -267,34 +328,43 @@ void seqClean()
 	audioAllNotesOff();
 	for (int n = 0; n < SEQ_NOTES_MAX; n++)
 		lastNotes[n] = -1;
+	masterClockTicks = 0;
 }
 
 void seqPlay()
 {
-// Manage the clock sources
+// Is it time to play?
 	if (extClock) {
-		if (seq.tick == extClockTicks) {
+	// External clock scheme
+		if (seq.tick == masterClockTicks) {
 			if (!seq.halfStep) return;
 			uint16_t dt = uwTick - seq.stamp;
 			if (dt < seq.plldt) return;
 		}else seqTapBlinkFlash();
 	}else if (midiClock) {
-		if (seq.tick == extClockTicks) return;
-		if (extClockTicks & 1) seqTapBlinkFlash();
+	// MIDI clock scheme
+		if (seq.tick == masterClockTicks) 
+			return;
+		if (masterClockTicks & 1)
+			seqTapBlinkFlash();
 	}else{
+	// Internal clock scheme
 		uint16_t dt = uwTick - seq.stamp;
 		if (dt < seq.dt) return;
 	}
 
 // Update sequencer state
 	seq.stamp = uwTick;
-	seq.tick = extClockTicks;
-	if (seq.state != SEQ_PLAY)
+	seq.tick = masterClockTicks;
+	if (seq.state != MSEQ_STATE_PLAY)
 		return;
 
-// Change pattern
-	if (!seq.step && !seq.halfStep)
-		seq.pattern = seq.nextPattern;
+// Change current pattern
+	if (seq.pattern != seq.nextPattern) {
+		if (!seq.step && !seq.halfStep) {
+			seq.pattern = seq.nextPattern;
+		}
+	}
 
 // Play pattern notes
 	Pattern * p = &patterns[seq.pattern];
@@ -317,7 +387,8 @@ void seqPlay()
 				}
 			}else{
 				if (note < STEP_EMPTY) {
-					note += seq.root - p->root;
+					if (seq.root != NOTE_NONE)
+						note += seq.root - p->root;
 					if (note < 0) note = 0;
 					if (note > 127) note = 127;
 					audioNoteOn(note);
@@ -337,13 +408,14 @@ void seqPlay()
 /*****************************************************************************/
 void mseqNoteOn(uint8_t note)
 {
-	if (seq.state == SEQ_RESET) {
+	if (seq.state == MSEQ_STATE_RESET) {
 		seqPlayBlinkFlash();
 		audioNoteOn(note);
-	}else if (seq.state == SEQ_PLAY) {
+		seq.root = note;
+	}else if (seq.state == MSEQ_STATE_PLAY) {
 		seqPlayBlinkFlash();
 		seq.root = note;
-	}else if (seq.state == SEQ_RECORD) {
+	}else if (seq.state == MSEQ_STATE_RECORD) {
 		seqRecBlinkFlash();
 		Pattern * p = &patterns[seq.pattern];
 		if (seq.mustClear) {
@@ -357,9 +429,9 @@ void mseqNoteOn(uint8_t note)
 
 void mseqNoteOff(uint8_t note)
 {
-	if (seq.state == SEQ_RESET) {
+	if (seq.state == MSEQ_STATE_RESET) {
 		audioNoteOff(note);
-	}else if (seq.state == SEQ_RECORD) {
+	}else if (seq.state == MSEQ_STATE_RECORD) {
 		Pattern * p = &patterns[seq.pattern];
 		if (p->notes[p->length][0] == note)
 			patternAdvance(p);
@@ -369,12 +441,12 @@ void mseqNoteOff(uint8_t note)
 /*****************************************************************************/
 void mseqPressSave()
 {
-	if (seq.state == SEQ_RESET) {
+	if (seq.state == MSEQ_STATE_RESET) {
 		if (!seqSaveBlink) {
 			seqPatternsSave(seq.pattern);
 			seqSaveBlinkFlash();
 		}
-	}else if (seq.state == SEQ_RECORD) {
+	}else if (seq.state == MSEQ_STATE_RECORD) {
 		Pattern * p = &patterns[seq.pattern];
 		patternInsert(p, STEP_EMPTY);
 		patternAdvance(p);
@@ -383,8 +455,8 @@ void mseqPressSave()
 
 void mseqPressTap()
 {
-	if (seq.state == SEQ_PLAY) mseqTap();
-	else if (seq.state == SEQ_RECORD) {
+	if (seq.state == MSEQ_STATE_PLAY) mseqTap();
+	else if (seq.state == MSEQ_STATE_RECORD) {
 		Pattern * p = &patterns[seq.pattern];
 		patternInsert(p, STEP_TIE);
 		patternAdvance(p);
@@ -394,30 +466,33 @@ void mseqPressTap()
 void mseqPressRec()
 {
 	seqClean();
-	if (seq.state == SEQ_RESET ||
-		seq.state == SEQ_PLAY) {
+	if (seq.state == MSEQ_STATE_RESET ||
+		seq.state == MSEQ_STATE_PLAY) {
 		seq.step = 0;
 		seq.mustClear = true;
-		seq.state = SEQ_RECORD;
-	}else if (seq.state == SEQ_RECORD) {
+		seq.state = MSEQ_STATE_RECORD;
+	}else if (seq.state == MSEQ_STATE_RECORD) {
 		seq.step = 0;
-		seq.state = SEQ_RESET;
+		seq.state = MSEQ_STATE_RESET;
 	}
 }
 
 void mseqPressPlay()
 {
+	bool keep = audioGetNoVoices() == 0;
 	seqClean();
-	if (seq.state == SEQ_RESET ||
-		seq.state == SEQ_RECORD) {
+	
+	if (seq.state == MSEQ_STATE_RESET ||
+		seq.state == MSEQ_STATE_RECORD) {
 		seq.plldt = 0;
 		seq.stamp = uwTick - seq.dt;
-		seq.tick = extClockTicks;
+		seq.tick = masterClockTicks;
 		seq.step = 0;
 		seq.halfStep = false;
-		seq.root = patterns[seq.pattern].root;
-		seq.state = SEQ_PLAY;
-	}else seq.state = SEQ_RESET;
+		if (keep) seq.root = NOTE_NONE;
+		if (extClock) extClockTicks = 0;
+		seq.state = MSEQ_STATE_PLAY;
+	}else seq.state = MSEQ_STATE_RESET;
 }
 
 /******************************************************************************/
@@ -731,7 +806,7 @@ void patternAdvance(Pattern * p)
 	else{
 		seq.step = 0;
 		seq.halfStep = false;
-		seq.state = SEQ_PLAY;
+		seq.state = MSEQ_STATE_PLAY;
 	}
 }
 void patternLoad(uint32_t addr, Pattern * p)

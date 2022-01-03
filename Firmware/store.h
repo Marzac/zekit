@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/v2.0 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,8 @@
 
 	#define GLOBALS_ADDR				(0x7800u)
 	#define GLOBAL_MIDICHANNEL_ADDR		(GLOBALS_ADDR + 0)
-	#define GLOBAL_FRCTUNING_ADDR		(GLOBALS_ADDR + 4)
+	#define GLOBAL_CLOCKING_ADDR		(GLOBALS_ADDR + 4)	
+	#define GLOBAL_FRCTUNING_ADDR		(GLOBALS_ADDR + 8)
 	#define PATTERNS_ADDR				(0x8000u)
 
 	#define STORE_PATTERN_SIZE			(FLASH_ROW_SIZE * 2)

@@ -1,6 +1,6 @@
 /**
- * ZeKit Firmware
- * Copyright (C) 2021 - Frédéric Meslin
+ * ZeKit Firmware v2.0
+ * Copyright (C) 2021/2022 - Frédéric Meslin
  * Contact: fred@fredslab.net
 
  * This program is free software: you can redistribute it and/or modify
@@ -34,13 +34,18 @@
 int16_t audioBuffer[AUDIO_BUFFER_LEN * 2];
 
 static int waveform;
+
 static int16_t pitchBend;
+static int16_t modWheel;
 static int16_t cutoffMIDI;
 static int16_t cutoffTrack;
+
+static int16_t vibrato;
 static bool envsTrigger;
+static bool legato;
 
 static int voicesCount;
-static int voicesMIDI[MAX_VOICES];
+static int16_t  voicesMIDI[MAX_VOICES];
 static uint32_t voicesPitch[MAX_VOICES];
 static uint32_t voicesInc[MAX_VOICES];
 
@@ -52,7 +57,7 @@ static void audioMonoNoteOn(uint8_t note, int wave);
 static void audioParaNoteOn(uint8_t note, int wave);
 static inline void audioRelease();
 
-static void audioComputePitch(int voice, int note);
+static void audioComputePitch(int voice);
 static void audioUpdateTracking();
 static void audioUpdateWaveforms();
 
@@ -63,11 +68,16 @@ static void audioRenderPara(int16_t * buffer, uint16_t cutoff);
 void audioInit()
 {
 	waveform = 0;
+
 	pitchBend = 0;
+	modWheel = 0;
 	cutoffMIDI = 0;
 	cutoffTrack = 0;
+	
+	vibrato = 0;	
 	envsTrigger = false;
-
+	legato = false;
+		
 	voicesCount = 0;
 	audioMuteOscs();
 	audioRelease();
@@ -80,20 +90,27 @@ void audioInit()
 	}
 }
 
+
 void audioUpdate()
 {
 	static uint16_t stamp = 0;
 	if (uwTick == stamp) return;
 	stamp = uwTick;
 
+	static int16_t phase = 0;
+	vibrato = ((phase ^ (phase >> 15)) << 1) ^ 0x8000;
+	__asm volatile ("mul.ss %0, %1, w0\n mov w1, %0\n" : "+r" (vibrato) : "r" (modWheel): "w0", "w1");
+	phase += 393; // ~6Hz 
+		
 	static int robin = 0;
-	audioComputePitch(robin, voicesMIDI[robin]);
+	audioComputePitch(robin);
 	robin = (robin + 1) & (MAX_VOICES - 1);
 }
 
 /******************************************************************************/
 void audioSetWave(int wave)
 {
+	if (waveform == wave) return;
 	bool oldMono = IS_WAVEFORM_MONO(waveform);
 	bool newMono = IS_WAVEFORM_MONO(wave);
 	if (oldMono != newMono) audioAllSoundsOff();
@@ -104,6 +121,7 @@ void audioSetWave(int wave)
 
 int audioGetWave() {return waveform;}
 
+/******************************************************************************/
 void audioSetBend(int16_t bend)
 {
 	pitchBend = ((int32_t) (bend - 0x2000) * BEND_RANGE) >> (13 - 8);
@@ -112,6 +130,11 @@ void audioSetBend(int16_t bend)
 void audioSetCutoff(int16_t cutoff)
 {
 	cutoffMIDI = (cutoff - 64) << 9;
+}
+
+void audioSetWheel(int16_t wheel)
+{
+	modWheel = wheel << 1;
 }
 
 /******************************************************************************/
@@ -136,16 +159,17 @@ void audioNoteOff(uint8_t note)
 {
 	for (int i = 0; i < MAX_VOICES; i++) {
 		if (voicesMIDI[i] != note) continue;
-		voicesMIDI[i] = -1;
+		voicesMIDI[i] |= 0x8000;
 		if (voicesCount) voicesCount--;
 	}
 	if (!voicesCount) audioRelease();
 }
 
+/******************************************************************************/
 void audioAllNotesOff()
 {
 	for (int i = 0; i < MAX_VOICES; i++)
-		voicesMIDI[i] = -1;
+		voicesMIDI[i] |= 0x8000;
 	voicesCount = 0;
 	audioRelease();
 }
@@ -156,12 +180,15 @@ void audioAllSoundsOff()
 		voicesMIDI[i] = -1;
 		voicesInc[i] = 0;
 	}
+	legato = false;
 	voicesCount = 0;
 	audioRelease();
 }
 
 void audioResetCtrls()
 {
+	pitchBend = 0;
+	modWheel = 0;
 	cutoffMIDI = 0;
 }
 
@@ -172,8 +199,11 @@ void audioMonoNoteOn(uint8_t note, int wave)
 	oscs[1] = wavesMono[wave][1];
 	oscs[2] = wavesMono[wave][2];
 	oscs[3] = wavesMono[wave][3];
-	
-	audioComputePitch(0, note);
+
+	legato = voicesCount > 0;
+	voicesMIDI[0] = note;
+	audioComputePitch(0);
+
 	voicesCount = 1;
 	envsTrigger = true;
 }
@@ -182,19 +212,23 @@ void audioParaNoteOn(uint8_t note, int wave)
 {
 	bool trigger = !voicesCount;
 	if (trigger) audioMuteOscs();
-
+	
+	legato = false;
 	for (int i = 0; i < MAX_VOICES; i++) {
-		if (voicesMIDI[i] > 0) continue;
+		if (voicesMIDI[i] >= 0) continue;
 		oscs[i*2+0] = wavesPara[wave][0];
 		oscs[i*2+1] = wavesPara[wave][1];
-		audioComputePitch(i, note);
+		voicesMIDI[i] = note;
+		audioComputePitch(i);
 		voicesCount++;
 		break;
 	}
 
-	bool always = uiSystem & SYSTEM_ENVF_RETRIG;
+	bool always = uiSystem & SYSTEM_ENV_RETRIG;
 	if (trigger || always) envsTrigger = true;
 }
+
+int audioGetNoVoices() {return voicesCount;}
 
 /******************************************************************************/
 static inline void audioRelease()
@@ -226,7 +260,8 @@ void audioUpdateTracking()
 
 	for (int i = 0; i < MAX_VOICES; i++) {
 		int note = voicesMIDI[i];
-		if (note < 0) continue;
+		if (note == -1) return;
+		note &= 0xFF;				// Remove release flag
 		if (note > 91) note = 91;	// G6 = ~1568Hz
 		if (note < 28) note = 28;	// E1 = ~41Hz
 		
@@ -255,23 +290,25 @@ void audioUpdateWaveforms()
 	}
 }
 
-void audioComputePitch(int voice, int note)
+void audioComputePitch(int voice)
 {
-	if (note < 0) return;
-	voicesMIDI[voice] = note;
-
+	int note = voicesMIDI[voice];
+	if (note == -1) return;
+	note &= 0xFF;	// Remove release flag
+	
 // Clamp the pitch
-	int16_t pitch = (note << 8) + pitchBend;
-	if (pitch < 0) pitch = 0;
+	int16_t pitch = note << 8;
 	if (pitch > 0x6000) {
 		voicesInc[voice] = 0;
 		voicesPitch[voice] = 0x6000l << GLIDE_SHIFT;
 		return;
 	}
+	pitch += vibrato + pitchBend;
+	if (pitch < 0) pitch = 0;
 
 // Compute glide effect
 	voicesPitch[voice] += pitch - (voicesPitch[voice] >> GLIDE_SHIFT);
-	if (uiSystem & SYSTEM_ENVF_GLIDE)
+	if (legato || uiSystem & SYSTEM_PITCH_GLIDE)
 		pitch = voicesPitch[voice] >> GLIDE_SHIFT;
 
 // Compute the final pitch
@@ -292,7 +329,7 @@ void audioRender(int16_t * buffer)
 	//LED_WAVE_SetHigh();
 
 // Render digital oscillators
-	int16_t cutoff = (uiSystem & SYSTEM_ENVF_TRACK) ? cutoffTrack : cutoffMIDI;
+	int16_t cutoff = (uiSystem & SYSTEM_FILTER_TRACK) ? cutoffTrack : cutoffMIDI;
 	if (IS_WAVEFORM_MONO(waveform))
 		audioRenderMono(buffer, cutoff);
 	else audioRenderPara(buffer, cutoff);
@@ -308,7 +345,7 @@ void audioRender(int16_t * buffer)
 
 	if (CM1CONbits.COUT) {
 		if (!CM1CONbits.CPOL) {			// Filter env. reached bottom
-			if (uiSystem & SYSTEM_ENVF_LOOP) {
+			if (uiSystem & SYSTEM_ENV_LOOP) {
 				CVRCONbits.CVR = 24;	// Vref = 2.475V
 				CM1CONbits.CPOL = 1;	// Normal polarity
 				VCF_ENV_SetHigh();		// Trigger the env.
